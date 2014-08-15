@@ -1,6 +1,8 @@
 package project;
 
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import panels.ChooseLanguagePanel;
 
@@ -12,11 +14,16 @@ public class GUI extends JFrame
     {
         super("Language");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(565, 256);
 
         container = getContentPane();
-        container.add(new ChooseLanguagePanel().get());
+        container.add(new ChooseLanguagePanel());
+        pack();
 
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation(
+            (int) ((dimension.getWidth() - getWidth()) / 2),
+            (int) ((dimension.getHeight() - getHeight()) / 2)
+        );
         setVisible(true);
     }
 

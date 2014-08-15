@@ -1,11 +1,13 @@
 package panels;
 
 import java.awt.GridLayout;
+import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import buttons.TransparentButton;
 
-public class ChooseLanguageFlagsPanel extends JPanel implements JPanelInterface
+public class ChooseLanguageFlagsPanel extends JPanel
 {
     protected String[] arLanguages = {"en", "br", "sp", "jp"};
 
@@ -13,20 +15,12 @@ public class ChooseLanguageFlagsPanel extends JPanel implements JPanelInterface
     {
         super(new GridLayout(1, 4));
         for (String image : arLanguages) {
-            JButton btLanguage =
-                new JButton(
-                    new ImageIcon(
-                        getClass().getResource("/images/" + image + ".png")
-                    )
-                );
-            btLanguage.setSize(130, 130);
-            btLanguage.setBorderPainted(false);
-            add(btLanguage);
+            add(
+                new TransparentButton(
+                    new ImageIcon(getClass().getResource("/images/" + image + ".png")),
+                    new Dimension(130, 130)
+                )
+            );
         }
-    }
-
-    public JPanel get()
-    {
-        return this;
     }
 }
