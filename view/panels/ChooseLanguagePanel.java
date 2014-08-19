@@ -1,11 +1,11 @@
-package panels;
+package project.view.panels;
 
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import panels.ChooseLanguageFlagsPanel;
-import panels.ChooseLanguageHeaderPanel;
+import project.view.panels.ChooseLanguageFlagsPanel;
+import project.view.panels.ChooseLanguageHeaderPanel;
 
 public class ChooseLanguagePanel extends JPanel
 {

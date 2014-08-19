@@ -1,4 +1,4 @@
-package buttons;
+package project.view.buttons;
 
 import java.awt.Dimension;
 import java.awt.Color;
@@ -14,7 +14,6 @@ public class TransparentButton extends JButton
     {
         super(image);
         stylize();
-        this.addMouseListener(new TransparentButtonMouseAdapter(this));
     }
 
     public TransparentButton(ImageIcon image, Dimension dimension)
@@ -36,25 +35,5 @@ public class TransparentButton extends JButton
         setBorderPainted(false);
         setBorder(null);
         setFocusPainted(false);
-    }
-
-    public void mousePressed(MouseEvent e)
-    {
-        setBackground(
-            new Color(0xCCCCCC)
-        );
-        setBorder(
-            new LineBorder(
-                new Color(0xCCCCCC), 1, true
-            )
-        );
-        setOpaque(true);
-        setContentAreaFilled(true);
-        setBorderPainted(true);
-    }
-
-    public void mouseReleased(MouseEvent e)
-    {
-        setBorder(null);
     }
 }

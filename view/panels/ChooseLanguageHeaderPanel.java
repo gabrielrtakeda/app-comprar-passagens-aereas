@@ -1,4 +1,4 @@
-package panels;
+package project.view.panels;
 
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
