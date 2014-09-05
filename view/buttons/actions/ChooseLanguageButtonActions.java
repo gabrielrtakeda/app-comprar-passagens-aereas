@@ -3,7 +3,7 @@ package project.view.buttons.actions;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
-// import project.GUI;
+import project.GUI;
 import project.view.pages.AuthenticationPage;
 import project.translation.Translator;
 

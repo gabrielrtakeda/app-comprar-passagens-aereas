@@ -7,7 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
-// import project.GUI;
+import project.GUI;
 
 public class AuthenticationFormPanel extends JPanel
 {
