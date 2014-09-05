@@ -1,12 +1,13 @@
 package project;
 
-import project.view.pages.ChooseLanguagePage;
 import javax.swing.JFrame;
+import project.view.pages.ChooseLanguagePage;
+import project.translation.Translator;
 
 public class GUI
 {
+    public static Translator translator;
     public static JFrame page;
-    public static String language;
 
     public GUI()
     {

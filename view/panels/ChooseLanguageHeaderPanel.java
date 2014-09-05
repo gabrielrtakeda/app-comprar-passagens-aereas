@@ -6,11 +6,9 @@ import javax.swing.JLabel;
 
 public class ChooseLanguageHeaderPanel extends JPanel
 {
-    protected String txSelecione = "Selecione o idioma:";
-
     public ChooseLanguageHeaderPanel()
     {
         super(new GridBagLayout());
-        add(new JLabel(txSelecione));
+        add(new JLabel("Choose the language"));
     }
 }

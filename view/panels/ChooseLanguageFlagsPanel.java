@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import project.GUI;
+// import project.GUI;
 import project.view.buttons.TransparentButton;
 import project.view.buttons.actions.ChooseLanguageButtonActions;
 
