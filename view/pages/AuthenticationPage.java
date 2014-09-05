@@ -1,6 +1,6 @@
 package project.view.pages;
 
-import project.view.panels.AuthenticationHeaderPanel;
+import project.view.panels.AuthenticationPanel;
 
 public class AuthenticationPage extends AbstractPage
 {
@@ -8,7 +8,7 @@ public class AuthenticationPage extends AbstractPage
     {
         super("Autenticação");
 
-        getContentPane().add(new AuthenticationHeaderPanel());
+        getContentPane().add(new AuthenticationPanel());
         pack();
         showPage();
     }
