@@ -2,12 +2,18 @@ package project.view.panels;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import project.GUI;
+import javax.swing.ImageIcon;
+import javax.swing.border.EmptyBorder;
 
 public class AuthenticationHeaderPanel extends JPanel
 {
     public AuthenticationHeaderPanel()
     {
-        add(new JLabel(GUI.language));
+    	setBorder(new EmptyBorder(0, 0, 10, 0));
+        add(
+        	new JLabel(
+        		new ImageIcon(getClass().getResource("/images/lock.png"))
+        	)
+        );
     }
 }

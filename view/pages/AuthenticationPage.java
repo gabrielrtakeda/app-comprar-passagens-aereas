@@ -1,6 +1,8 @@
 package project.view.pages;
 
-import project.view.panels.AuthenticationHeaderPanel;
+import java.awt.GridBagLayout;
+import java.awt.Container;
+import project.view.panels.AuthenticationPanel;
 
 public class AuthenticationPage extends AbstractPage
 {
@@ -8,7 +10,9 @@ public class AuthenticationPage extends AbstractPage
     {
         super("Autenticação");
 
-        getContentPane().add(new AuthenticationHeaderPanel());
+        Container container = getContentPane();
+        container.setLayout(new GridBagLayout());
+        container.add(new AuthenticationPanel());
         pack();
         showPage();
     }
