@@ -2,11 +2,19 @@ package project.modules.Authentication.Controller;
 
 import project.modules.Application.Controller.AbstractController;
 import project.modules.Authentication.View.AuthenticationView;
+import project.modules.Authentication.Model.AuthenticationModel;
+import project.modules.Authentication.Entity.UserEntity;
 
 public class AuthenticationController extends AbstractController
 {
+    private AuthenticationModel
+        model = new AuthenticationModel();
+
     public AuthenticationController()
+    {}
+
+    public Boolean authenticate(String user, String password)
     {
-        setView(new AuthenticationView());
+        return model.authenticate(user, password).isEmpty();
     }
 }

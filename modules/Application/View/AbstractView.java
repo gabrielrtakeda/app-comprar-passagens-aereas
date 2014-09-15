@@ -29,7 +29,7 @@ public abstract class AbstractView extends JFrame
         return this;
     }
 
-    public void showPage()
+    public void showTemplate()
     {
         pack();
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();

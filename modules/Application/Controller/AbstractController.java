@@ -7,8 +7,7 @@ public abstract class AbstractController
     protected AbstractView view;
 
     public AbstractController()
-    {
-    }
+    {}
 
     public void setView(AbstractView view)
     {

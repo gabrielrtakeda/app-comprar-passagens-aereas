@@ -12,6 +12,6 @@ public class AuthenticationView extends AbstractView
         setTitle("Autenticação");
         setLayout(new GridBagLayout());
         setTemplate(new AuthenticationTemplate());
-        showPage();
+        showTemplate();
     }
 }
