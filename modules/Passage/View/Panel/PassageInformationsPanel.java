@@ -2,6 +2,8 @@ package project.modules.Passage.View.Panel;
 
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Passenger.View.Panel.PassengerInformationsPanel;
+import project.modules.Application.View.Layout.AbstractGridBagLayout;
+import project.modules.Application.View.Layout.ColoredGridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
@@ -30,14 +32,14 @@ public class PassageInformationsPanel extends JPanel
         gridBagConstraints.fill = GridBagConstraints.CENTER;
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.insets = new Insets(0, 0, 10, 0);
-        addGridBagElement(
+        AbstractGridBagLayout.addGridBagElement(
+            this,
             buildTitleLabel("Informações da Passagem"),
             gridBagLayout,
             gridBagConstraints
         );
 
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        Integer[] containerMatrix = {1, 1};
         Integer[] allBorders = {1, 1, 1, 1};
         Integer[] sidesBorders = {0, 1, 0, 1};
         Integer[] bottomSidesBorders = {1, 1, 0, 1};
@@ -58,9 +60,9 @@ public class PassageInformationsPanel extends JPanel
             new JLabel("Data Partida:"),
             new JTextField(20)
         };
-        addGridBagElement(
-            buildColoredGridLayoutPanel(
-                containerMatrix,
+        AbstractGridBagLayout.addGridBagElement(
+            this,
+            ColoredGridLayout.build(
                 allBorders,
                 Color.BLACK,
                 lineDimension,
@@ -73,7 +75,8 @@ public class PassageInformationsPanel extends JPanel
         );
 
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        addGridBagElement(
+        AbstractGridBagLayout.addGridBagElement(
+            this,
             new ImageButton(
                 "Validar Disponibilidade",
                 "/images/buttonIcons/check.png"
@@ -82,7 +85,8 @@ public class PassageInformationsPanel extends JPanel
             gridBagConstraints
         );
 
-        addGridBagElement(
+        AbstractGridBagLayout.addGridBagElement(
+            this,
             new PassengerInformationsPanel(),
             gridBagLayout,
             gridBagConstraints
@@ -94,47 +98,5 @@ public class PassageInformationsPanel extends JPanel
         JLabel label = new JLabel(message);
         label.setFont(new Font("Arial", Font.PLAIN, 19));
         return label;
-    }
-
-    private JPanel buildColoredGridLayoutPanel(Integer[] containerMatrix,
-                                               Integer[] borderWeight,
-                                               Color borderColor,
-                                               Dimension panelSize,
-                                               Integer[] lineColumns,
-                                               Color backgroundColor,
-                                               Component[] components)
-    {
-        // Seta as bordas
-        JPanel setBorderPanel = new JPanel(new BorderLayout());
-        setBorderPanel.setBorder(
-            BorderFactory.createMatteBorder(
-                borderWeight[0], borderWeight[1], borderWeight[2], borderWeight[3],
-                borderColor
-            )
-        );
-        setBorderPanel.setPreferredSize(panelSize);
-
-        // Seta o background color;
-        // Seta padding;
-        // Adiciona os componentes.
-        JPanel marginPanel = new JPanel(
-            new GridLayout(lineColumns[0], lineColumns[1])
-        );
-        marginPanel.setBorder(BorderFactory.createEmptyBorder(0, 8, 0, 8));
-        marginPanel.setBackground(backgroundColor);
-        for (Component component : components) {
-            marginPanel.add(component);
-        }
-        setBorderPanel.add(marginPanel);
-
-        return setBorderPanel;
-    }
-
-    private void addGridBagElement(Component component,
-                                   GridBagLayout gridBagLayout,
-                                   GridBagConstraints gridBagConstraints)
-    {
-        gridBagLayout.setConstraints(component, gridBagConstraints);
-        add(component);
     }
 }
