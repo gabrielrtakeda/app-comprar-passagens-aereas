@@ -65,6 +65,6 @@ public class UserEntity
 
     public Boolean isEmpty()
     {
-        return id != -1;
+        return id == -1;
     }
 }

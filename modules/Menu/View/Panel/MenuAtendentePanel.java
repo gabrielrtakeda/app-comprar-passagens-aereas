@@ -1,6 +1,7 @@
 package project.modules.Menu.View.Panel;
 
 import project.modules.Application.View.Button.ImageButton;
+import project.modules.Passage.View.ActionListener.PassagePurchaseActionListener;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -15,9 +16,10 @@ public class MenuAtendentePanel extends JPanel
         String imageDirectoryPath = "/images/buttonIcons/";
 
         add(new ImageButton(
-            "Compra de Passage",
-            imageDirectoryPath + "basket.png")
-        );
+            "Compra de Passagem",
+            imageDirectoryPath + "basket.png",
+            new PassagePurchaseActionListener()
+        ));
         add(new ImageButton(
             "Check-in",
             imageDirectoryPath + "check.png"

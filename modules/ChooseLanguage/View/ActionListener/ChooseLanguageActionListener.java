@@ -13,7 +13,7 @@ public class ChooseLanguageActionListener implements ActionListener
     {
         String language = e.getActionCommand();
         Main.translator = new Translator(language);
-        Main.view.getTemplate().setVisible(false);
+        Main.view.dispose();
         Main.view = new AuthenticationView();
     }
 }

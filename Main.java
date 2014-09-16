@@ -15,7 +15,7 @@ public class Main
 
     public Main()
     {
-        view = new PassengerRegisterView();
+        view = new ChooseLanguageView();
     }
 
     public static void main(String args[])

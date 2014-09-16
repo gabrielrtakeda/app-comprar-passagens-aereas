@@ -4,6 +4,8 @@ import project.Main;
 import project.modules.Application.Controller.AbstractController;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Authentication.Controller.AuthenticationController;
+import project.modules.Authentication.Entity.UserEntity;
+import project.modules.Menu.View.MenuAtendenteView;
 import project.modules.Menu.View.MenuSupervisorView;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,12 +23,22 @@ public class AuthenticationActionListener extends AbstractActionListener
         JTextField userTextField = (JTextField) getComponent("userTextField");
         JPasswordField userPasswordField = (JPasswordField) getComponent("userPasswordField");
 
-        authenticationController.authenticate(
+        UserEntity userEntity = authenticationController.authenticate(
             userTextField.getText(),
             String.valueOf(userPasswordField.getPassword())
         );
 
-        Main.view.getTemplate().setVisible(false);
-        Main.view = new MenuSupervisorView();
+        if (!userEntity.isEmpty()) {
+            Main.view.dispose();
+            if (userEntity.isSupervisor()) {
+                Main.view = new MenuSupervisorView();
+                System.out.println("Supervisor");
+            } else {
+                Main.view = new MenuAtendenteView();
+                System.out.println("Atendente");
+            }
+        } else {
+            System.out.println("Falha na autenticação.");
+        }
     }
 }

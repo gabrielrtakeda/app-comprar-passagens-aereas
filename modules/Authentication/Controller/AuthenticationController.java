@@ -13,8 +13,8 @@ public class AuthenticationController extends AbstractController
     public AuthenticationController()
     {}
 
-    public Boolean authenticate(String user, String password)
+    public UserEntity authenticate(String user, String password)
     {
-        return model.authenticate(user, password).isEmpty();
+        return model.authenticate(user, password);
     }
 }
