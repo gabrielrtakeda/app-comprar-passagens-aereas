@@ -1,6 +1,9 @@
 package project.modules.Passenger.View.Panel;
 
 import project.modules.Application.View.Layout.ColoredGridLayout;
+import project.modules.Application.View.AbstractView;
+import project.modules.Passenger.View.ActionListener.PassengerRegisterCloseFormActionListener;
+import project.modules.Passenger.View.ActionListener.PassengerRegisterActionListener;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
@@ -9,6 +12,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -19,9 +23,12 @@ import javax.swing.BorderFactory;
 
 public class PassengerRegisterFormPanel extends JPanel
 {
-    public PassengerRegisterFormPanel()
+    private AbstractView view;
+
+    public PassengerRegisterFormPanel(AbstractView view)
     {
         super(new BorderLayout());
+        this.view = view;
 
         add(buildTitleLabel("Dados Cadastrais"), BorderLayout.NORTH);
 
@@ -145,8 +152,18 @@ public class PassengerRegisterFormPanel extends JPanel
         JPanel buttonsPanel = new JPanel(new GridLayout(1, 2));
         buttonsPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
         buttonsPanel.setPreferredSize(new Dimension(200, 60));
-        buttonsPanel.add(new JButton("Voltar"));
-        buttonsPanel.add(new JButton("Cadastrar"));
+        buttonsPanel.add(
+            buildButtonWithActionListener(
+                new JButton("Voltar"),
+                new PassengerRegisterCloseFormActionListener(view)
+            )
+        );
+        buttonsPanel.add(
+            buildButtonWithActionListener(
+                new JButton("Cadastrar"),
+                new PassengerRegisterActionListener(view)
+            )
+        );
         add(buttonsPanel, BorderLayout.SOUTH);
     }
 
@@ -155,5 +172,11 @@ public class PassengerRegisterFormPanel extends JPanel
         JLabel label = new JLabel(message, JLabel.CENTER);
         label.setFont(new Font("Arial", Font.PLAIN, 19));
         return label;
+    }
+
+    private JButton buildButtonWithActionListener(JButton button, ActionListener actionListener)
+    {
+        button.addActionListener(actionListener);
+        return button;
     }
 }

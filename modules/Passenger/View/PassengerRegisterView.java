@@ -8,7 +8,7 @@ public class PassengerRegisterView extends AbstractView
     public PassengerRegisterView()
     {
         setTitle("Cadastro de Passageiro");
-        setTemplate(new PassengerRegisterTemplate());
+        setTemplate(new PassengerRegisterTemplate(this));
         showTemplate();
     }
 }
