@@ -11,7 +11,7 @@ public class AuthenticationHeaderPanel extends JPanel
     public AuthenticationHeaderPanel()
     {
         super(new GridBagLayout());
-    	setBorder(new EmptyBorder(0, 0, 10, 0));
+    	setBorder(new EmptyBorder(30, 0, 10, 0));
         add(
             new JLabel(
                 new ImageIcon(getClass().getResource("/images/lock.png"))

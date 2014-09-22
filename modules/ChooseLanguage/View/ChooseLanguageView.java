@@ -1,5 +1,6 @@
 package project.modules.ChooseLanguage.View;
 
+import project.Main;
 import project.modules.Application.View.AbstractView;
 import project.modules.Application.View.Template.AbstractTemplate;
 import project.modules.ChooseLanguage.View.Factory.ChooseLanguageTemplateFactory;

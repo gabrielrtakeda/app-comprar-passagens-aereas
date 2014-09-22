@@ -3,7 +3,6 @@ package project.modules.Application.Translation;
 import java.util.HashMap;
 import java.util.Iterator;
 import project.modules.Application.Library.FileManager;
-import project.modules.Translation.Exception.TranslationNotFoundException;
 
 public class Translator
 {
@@ -30,14 +29,15 @@ public class Translator
         }
     }
 
-    public String __(String key) throws TranslationNotFoundException
+    public String __(String key)
     {
         if (vocabulary.containsKey(key)) {
             return vocabulary.get(key);
+        } else {
+            throw new IllegalArgumentException(
+                "Tradução inexistente: [" + key + "]" +
+                "\n\tArquivo: \"" + filePath + "\""
+            );
         }
-        throw new TranslationNotFoundException(
-            "Tradução inexistente: [" + key + "]" +
-            "\n\tArquivo: \"" + filePath + "\""
-        );
     }
 }

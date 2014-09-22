@@ -32,13 +32,11 @@ public class AuthenticationActionListener extends AbstractActionListener
             Main.view.dispose();
             if (userEntity.isSupervisor()) {
                 Main.view = new MenuSupervisorView();
-                System.out.println("Supervisor");
             } else {
                 Main.view = new MenuAtendenteView();
-                System.out.println("Atendente");
             }
         } else {
-            System.out.println("Falha na autenticação.");
+            JOptionPane.showMessageDialog(null, "Usuário e/ou senha incorretos.");
         }
     }
 }

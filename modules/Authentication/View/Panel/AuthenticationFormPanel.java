@@ -5,14 +5,12 @@ import project.modules.Application.Controller.AbstractController;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Authentication.Controller.AuthenticationController;
 import project.modules.Authentication.View.ActionListener.AuthenticationActionListener;
-import project.modules.Translation.Exception.TranslationNotFoundException;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
 
 public class AuthenticationFormPanel extends JPanel
@@ -26,26 +24,22 @@ public class AuthenticationFormPanel extends JPanel
     public AuthenticationFormPanel()
     {
         super(new GridLayout(3, 2));
-        setBorder(new EmptyBorder(30, 150, 30, 150));
+        setBorder(new EmptyBorder(0, 150, 30, 150));
 
-        try {
-            add(new JLabel(Main.translator.__("Usuário") + ":"));
-            add(authenticationActionListener.addComponent(
-                "userTextField",
-                new JTextField(10)
-            ));
+        add(new JLabel(Main.translator.__("Usuário") + ":"));
+        add(authenticationActionListener.addComponent(
+            "userTextField",
+            new JTextField(10)
+        ));
 
-            add(new JLabel(Main.translator.__("Senha") + ":"));
-            add(authenticationActionListener.addComponent(
-                "userPasswordField",
-                new JPasswordField(10)
-            ));
+        add(new JLabel(Main.translator.__("Senha") + ":"));
+        add(authenticationActionListener.addComponent(
+            "userPasswordField",
+            new JPasswordField(10)
+        ));
 
-            add(new JLabel());
-            add(buildSendButton(Main.translator.__("Entrar")));
-        } catch (TranslationNotFoundException e) {
-            e.printMessage();
-        }
+        add(new JLabel());
+        add(buildSendButton(Main.translator.__("Entrar")));
     }
 
     private JButton buildSendButton(String message)

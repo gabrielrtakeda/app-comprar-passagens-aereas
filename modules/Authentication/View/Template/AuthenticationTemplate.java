@@ -10,16 +10,16 @@ import javax.swing.border.EmptyBorder;
 
 public class AuthenticationTemplate extends AbstractTemplate
 {
-	public AuthenticationTemplate()
-	{
-		setLayout(new BorderLayout());
+    public AuthenticationTemplate()
+    {
+        setLayout(new BorderLayout());
         add(new AuthenticationHeaderPanel(), BorderLayout.NORTH);
         add(new AuthenticationFormPanel(), BorderLayout.CENTER);
 
         JPanel baseTemplateFooter = new JPanel();
         baseTemplateFooter.setLayout(new BorderLayout());
-        baseTemplateFooter.setBorder(new EmptyBorder(0, 15, 15, 0));
+        baseTemplateFooter.setBorder(new EmptyBorder(0, 10, 10, 10));
         baseTemplateFooter.add(new ChooseLanguageWidgetPanel(), BorderLayout.WEST);
         add(baseTemplateFooter, BorderLayout.SOUTH);
-	}
+    }
 }

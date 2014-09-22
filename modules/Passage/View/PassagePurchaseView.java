@@ -8,7 +8,7 @@ public class PassagePurchaseView extends AbstractView
     public PassagePurchaseView()
     {
         setTitle("Compra de Passagem");
-        setTemplate(new PassagePurchaseTemplate());
+        setTemplate(new PassagePurchaseTemplate(this));
         showTemplate();
     }
 }
