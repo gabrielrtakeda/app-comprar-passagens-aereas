@@ -1,4 +1,4 @@
-# Instruções para compilar e rodar o App:
+## Instruções para compilar:
 
 * Ter o git instalado na máquina
     * [Baixar Git](http://git-scm.com/downloads)
