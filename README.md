@@ -1,24 +1,35 @@
 # Instruções para compilar e rodar o App:
 
-### Windows:
-
-1. Ter o git instalado na máquina
+* Ter o git instalado na máquina
     * [Baixar Git](http://git-scm.com/downloads)
 
-2. Baixar o repositório
+* Baixar o repositório
     ```
-    cd C:\diretorio-onde-deseja-baixar-o-repositorio\
     git clone https://github.com/gabrielrtakeda/project
     cd project
     ```
 
-3. Compilar o arquivo
+### Linux/Mac OS
+
+1. Compilar o arquivo
+    ```
+    find . -name '*.java' | xargs javac -d binary/
+    ```
+
+2. Rodar o app;
+    ```
+    java -cp binary/ project.Main
+    ```
+
+### Windows:
+
+1. Compilar o arquivo
     ```
     dir /s /B *.java > sources.txt
     javac -d binary/ @sources.txt
     ```
 
-4. Rodar o app;
+2. Rodar o app;
     ```
     java -cp binary/ project.Main
     ```
