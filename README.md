@@ -12,12 +12,12 @@
 ### Linux/Mac OS
 
 1. Compile
-    ```Shell
+    ```sh
     find . -name '*.java' | xargs javac -d binary/
     ```
 
 2. Run
-    ```Shell
+    ```sh
     java -cp binary/ project.Main
     ```
 
