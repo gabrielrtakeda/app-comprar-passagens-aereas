@@ -24,12 +24,12 @@
 ### Windows:
 
 1. Compile
-    ```Batchfile
+    ```bat
     dir /s /B *.java > sources.txt
     javac -d binary/ @sources.txt
     ```
 
 2. Run
-    ```Batchfile
+    ```bat
     java -cp binary/ project.Main
     ```
