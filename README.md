@@ -12,24 +12,24 @@
 ### Linux/Mac OS
 
 1. Compile
-    ```
+    ```Shell
     find . -name '*.java' | xargs javac -d binary/
     ```
 
 2. Run
-    ```
+    ```Shell
     java -cp binary/ project.Main
     ```
 
 ### Windows:
 
 1. Compile
-    ```
+    ```Batchfile
     dir /s /B *.java > sources.txt
     javac -d binary/ @sources.txt
     ```
 
 2. Run
-    ```
+    ```Batchfile
     java -cp binary/ project.Main
     ```
