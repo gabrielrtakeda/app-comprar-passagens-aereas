@@ -1,5 +1,6 @@
 package project.modules.Menu.View.Panel;
 
+import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
@@ -8,15 +9,15 @@ import javax.swing.border.EmptyBorder;
 
 public class MenuSupervisorPanel extends JPanel
 {
-    public MenuSupervisorPanel()
+    public MenuSupervisorPanel(ConfigurationEntity configuration)
     {
         super(new BorderLayout());
 
-        add(new MenuAtendentePanel(), BorderLayout.NORTH);
-        add(buildSupervisorPanel(), BorderLayout.SOUTH);
+        add(new MenuAtendentePanel(configuration), BorderLayout.NORTH);
+        add(buildSupervisorPanel(configuration), BorderLayout.SOUTH);
     }
 
-    private JPanel buildSupervisorPanel()
+    private JPanel buildSupervisorPanel(ConfigurationEntity configuration)
     {
         String imageDirectoryPath = "/images/buttonIcons/";
 
@@ -24,15 +25,15 @@ public class MenuSupervisorPanel extends JPanel
         supervisorPanel.setBorder(new EmptyBorder(0, 45, 0, 45));
 
         supervisorPanel.add(new ImageButton(
-            "Cadastrar Voos",
+            configuration.getTranslator().__("Cadastrar Voos"),
             imageDirectoryPath + "calendar.png")
         );
         supervisorPanel.add(new ImageButton(
-            "Cadastrar Aeronaves",
+            configuration.getTranslator().__("Cadastrar Aeronaves"),
             imageDirectoryPath + "shipping.png"
         ));
         supervisorPanel.add(new ImageButton(
-            "Consultar Vendas",
+            configuration.getTranslator().__("Consultar Vendas"),
             imageDirectoryPath + "bank.png"
         ));
 

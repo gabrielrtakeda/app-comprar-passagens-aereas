@@ -1,6 +1,7 @@
 package project.modules.Application.View;
 
-import project.Main;
+import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Interface.ConfigurationInterface;
 import java.awt.LayoutManager;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -9,9 +10,21 @@ import javax.swing.JPanel;
 
 public abstract class AbstractView extends JFrame
 {
+    protected ConfigurationEntity config;
+
     public AbstractView()
     {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void setConfiguration(ConfigurationEntity config)
+    {
+        this.config = config;
+    }
+
+    public ConfigurationEntity getConfiguration()
+    {
+        return config;
     }
 
     public void setLayout(Object layout)

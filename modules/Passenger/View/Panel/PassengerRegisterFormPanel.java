@@ -1,7 +1,7 @@
 package project.modules.Passenger.View.Panel;
 
+import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Layout.ColoredGridLayout;
-import project.modules.Application.View.AbstractView;
 import project.modules.Passenger.View.ActionListener.PassengerRegisterCloseFormActionListener;
 import project.modules.Passenger.View.ActionListener.PassengerRegisterActionListener;
 import java.awt.GridLayout;
@@ -23,12 +23,9 @@ import javax.swing.BorderFactory;
 
 public class PassengerRegisterFormPanel extends JPanel
 {
-    private AbstractView view;
-
-    public PassengerRegisterFormPanel(AbstractView view)
+    public PassengerRegisterFormPanel(ConfigurationEntity configuration)
     {
         super(new BorderLayout());
-        this.view = view;
 
         add(buildTitleLabel("Dados Cadastrais"), BorderLayout.NORTH);
 
@@ -41,12 +38,15 @@ public class PassengerRegisterFormPanel extends JPanel
         Color whiteBackground = new Color(255, 255, 255);
 
         String[] formasTratamento = {
-            "Sr.", "Sra.", "Srta.",
-            "Dr.", "Dra."
+            configuration.getTranslator().__("Sr."),
+            configuration.getTranslator().__("Sra."),
+            configuration.getTranslator().__("Srta."),
+            configuration.getTranslator().__("Dr."),
+            configuration.getTranslator().__("Dra.")
         };
         JComboBox<String> formaTratamentoComboBox = new JComboBox<String>(formasTratamento);
         Component[] components = {
-            new JLabel("Forma de tratamento:"),
+            new JLabel(configuration.getTranslator().__("Forma de tratamento:")),
             formaTratamentoComboBox,
         };
         formPanel.add(
@@ -61,7 +61,9 @@ public class PassengerRegisterFormPanel extends JPanel
         );
 
         components = new Component[] {
-            new JLabel("Data de Nascimento:"),
+            new JLabel(
+                configuration.getTranslator().__("Data de Nascimento:")
+            ),
             new JTextField()
         };
         formPanel.add(
@@ -76,7 +78,9 @@ public class PassengerRegisterFormPanel extends JPanel
         );
 
         components = new Component[] {
-            new JLabel("Nome Completo:"),
+            new JLabel(
+                configuration.getTranslator().__("Nome Completo:")
+            ),
             new JTextField()
         };
         formPanel.add(
@@ -96,15 +100,25 @@ public class PassengerRegisterFormPanel extends JPanel
         JRadioButton simRadioButton = new JRadioButton();
         simRadioButton.setBackground(whiteBackground);
         responsavelOpcoesPanel.add(simRadioButton);
-        responsavelOpcoesPanel.add(new JLabel("Sim"));
+        responsavelOpcoesPanel.add(
+            new JLabel(
+                configuration.getTranslator().__("Sim")
+            )
+        );
 
         JRadioButton naoRadioButton = new JRadioButton();
         naoRadioButton.setBackground(whiteBackground);
         responsavelOpcoesPanel.add(naoRadioButton);
-        responsavelOpcoesPanel.add(new JLabel("Não"));
+        responsavelOpcoesPanel.add(
+            new JLabel(
+                configuration.getTranslator().__("Não")
+            )
+        );
 
         components = new Component[] {
-            new JLabel("Responsável pela compra?"),
+            new JLabel(
+                configuration.getTranslator().__("Responsável pela compra?")
+            ),
             responsavelOpcoesPanel
         };
         formPanel.add(
@@ -119,7 +133,9 @@ public class PassengerRegisterFormPanel extends JPanel
         );
 
         components = new Component[] {
-            new JLabel("Email:"),
+            new JLabel(
+                configuration.getTranslator().__("Email:")
+            ),
             new JTextField()
         };
         formPanel.add(
@@ -134,7 +150,9 @@ public class PassengerRegisterFormPanel extends JPanel
         );
 
         components = new Component[] {
-            new JLabel("Telefone para contato:"),
+            new JLabel(
+                configuration.getTranslator().__("Telefone para contato:")
+            ),
             new JTextField()
         };
         formPanel.add(
@@ -154,14 +172,18 @@ public class PassengerRegisterFormPanel extends JPanel
         buttonsPanel.setPreferredSize(new Dimension(200, 60));
         buttonsPanel.add(
             buildButtonWithActionListener(
-                new JButton("Voltar"),
-                new PassengerRegisterCloseFormActionListener(view)
+                new JButton(
+                    configuration.getTranslator().__("Voltar")
+                ),
+                new PassengerRegisterCloseFormActionListener(configuration)
             )
         );
         buttonsPanel.add(
             buildButtonWithActionListener(
-                new JButton("Cadastrar"),
-                new PassengerRegisterActionListener(view)
+                new JButton(
+                    configuration.getTranslator().__("Cadastrar")
+                ),
+                new PassengerRegisterActionListener(configuration)
             )
         );
         add(buttonsPanel, BorderLayout.SOUTH);

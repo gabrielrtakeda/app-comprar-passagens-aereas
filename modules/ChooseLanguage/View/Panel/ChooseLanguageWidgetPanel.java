@@ -1,5 +1,6 @@
 package project.modules.ChooseLanguage.View.Panel;
 
+import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.TransparentButton;
 import project.modules.ChooseLanguage.View.ActionListener.ChooseLanguageActionListener;
 import java.awt.GridLayout;
@@ -13,7 +14,7 @@ public class ChooseLanguageWidgetPanel extends JPanel
 {
     protected String[] arLanguages = {"br", "uk", "es", "fr"};
 
-    public ChooseLanguageWidgetPanel()
+    public ChooseLanguageWidgetPanel(ConfigurationEntity configuration)
     {
         super(new GridLayout(1, 4));
         setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -23,7 +24,7 @@ public class ChooseLanguageWidgetPanel extends JPanel
                     new ImageIcon(getClass().getResource("/images/" + language + "_22x16.png")),
                     new Dimension(22, 16)
                 );
-            button.addActionListener(new ChooseLanguageActionListener());
+            button.addActionListener(new ChooseLanguageActionListener(configuration));
             button.setActionCommand(language);
             add(button);
         }

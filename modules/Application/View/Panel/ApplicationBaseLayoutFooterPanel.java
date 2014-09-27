@@ -1,5 +1,6 @@
 package project.modules.Application.View.Panel;
 
+import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.ChooseLanguage.View.Panel.ChooseLanguageWidgetPanel;
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -9,12 +10,18 @@ import javax.swing.border.EmptyBorder;
 
 public class ApplicationBaseLayoutFooterPanel extends JPanel
 {
-    public ApplicationBaseLayoutFooterPanel()
+    public ApplicationBaseLayoutFooterPanel(ConfigurationEntity configuration)
     {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(20, 3, 3, 3));
-        add(new ChooseLanguageWidgetPanel(), BorderLayout.WEST);
-        add(buildLoginLabel("Login em: 13/09/2014 23:48:00"), BorderLayout.EAST);
+        add(
+            new ChooseLanguageWidgetPanel(configuration),
+            BorderLayout.WEST
+        );
+        add(
+            buildLoginLabel("Login em: 13/09/2014 23:48:00"),
+            BorderLayout.EAST
+        );
     }
 
     private JLabel buildLoginLabel(String message)

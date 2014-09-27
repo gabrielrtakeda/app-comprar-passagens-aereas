@@ -1,15 +1,20 @@
 package project.modules.Passage.View.ActionListener;
 
-import project.Main;
+import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Passage.View.PassagePurchaseView;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PassagePurchaseActionListener implements ActionListener
+public class PassagePurchaseActionListener extends AbstractActionListener
 {
+    public PassagePurchaseActionListener(ConfigurationEntity configuration)
+    {
+        setConfiguration(configuration.setActionListener(this));
+    }
+
     public void actionPerformed(ActionEvent e)
     {
-        Main.view.dispose();
-        Main.view = new PassagePurchaseView();
+        config.getView().dispose();
+        new PassagePurchaseView(config);
     }
 }

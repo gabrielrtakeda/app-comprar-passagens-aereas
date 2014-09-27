@@ -1,26 +1,25 @@
 package project.modules.Passage.View.ActionListener;
 
-import project.modules.Application.View.AbstractView;
+import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Menu.View.MenuSupervisorView;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PassageInformationNavigationButton implements ActionListener
+public class PassageInformationNavigationButton extends AbstractActionListener
 {
-    protected AbstractView view;
-
-    public PassageInformationNavigationButton(AbstractView view)
+    public PassageInformationNavigationButton(ConfigurationEntity configuration)
     {
-        this.view = view;
+        setConfiguration(configuration.setActionListener(this));
     }
 
     public void actionPerformed(ActionEvent e)
     {
-        view.dispose();
+        config.getView().dispose();
 
         switch (e.getActionCommand()) {
             case "back":
-                new MenuSupervisorView();
+                new MenuSupervisorView(config);
                 break;
         }
     }

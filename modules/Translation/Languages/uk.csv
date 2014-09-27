@@ -1,5 +1,36 @@
-Usuário;Login
+Seja bem-vindo(a);Welcome
+Sair;Logout
+Usuário;User
 Senha;Password
-Entrar;Sign in
-Selecione o idioma;Choose the language
+Entrar;Sign In
+Compra de Passagem;Passage Purchase
+Check-in;Check-in
+Cancelamento;Cancellation
+Transferência;Transfer
+Cadastrar Voos;Register Flights
+Cadastrar Aeronaves;Register Aircraft
+Consultar Vendas;Consult Sales
+Informações da Passagem;Passage Information
+Destino:;Destination:
+Data Partida:;Departure Date:
+Validar Disponibilidade;Confirm Availability
+Informações dos Passageiros;Passenger Information
+Cadastrar Passageiro;Register Passenger
+Sr.;Mr.
+Sra.;Mrs.
+Srta.;Miss.
+Dr.;Dr.
+Dra.;Dr.
+Forma de tratamento:;Treatment:
+Data de Nascimento:;Date of Birth:
+Nome Completo:;Full Name:
+Sim;Yes
+Não;No
+Responsável pela compra?;Responsible for purchasing?
+Email:;Email:
+Telefone para contato:;Contact telephone number:
+Voltar;Back
+Cadastrar;Register
 Autenticação;Authentication
+Menu Inicial;Home Menu
+Falha na autenticação;Authentication failed

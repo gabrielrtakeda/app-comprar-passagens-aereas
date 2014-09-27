@@ -1,6 +1,6 @@
 package project.modules.Passage.View.Panel;
 
-import project.modules.Application.View.AbstractView;
+import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
@@ -8,7 +8,6 @@ import project.modules.Passage.View.ActionListener.PassageInformationNavigationB
 import project.modules.Passenger.View.Panel.PassengerInformationsPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -21,17 +20,11 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.BorderFactory;
-import javax.swing.border.LineBorder;
 
 public class PassageInformationsPanel extends JPanel
 {
-    protected AbstractView view;
-
-    public PassageInformationsPanel(AbstractView view)
+    public PassageInformationsPanel(ConfigurationEntity configuration)
     {
-        this.view = view;
-
         GridBagLayout gridBagLayout = new GridBagLayout();
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
@@ -39,7 +32,7 @@ public class PassageInformationsPanel extends JPanel
 
         JPanel navigationButton = new JPanel(new BorderLayout());
         navigationButton.add(
-            buildNavigationButton(),
+            buildNavigationButton(configuration),
             BorderLayout.WEST
         );
         gridBagConstraints.anchor = GridBagConstraints.WEST;
@@ -56,7 +49,9 @@ public class PassageInformationsPanel extends JPanel
         gridBagConstraints.insets = new Insets(0, 0, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildTitleLabel("Informações da Passagem"),
+            buildTitleLabel(
+                configuration.getTranslator().__("Informações da Passagem")
+            ),
             gridBagLayout,
             gridBagConstraints
         );
@@ -77,9 +72,9 @@ public class PassageInformationsPanel extends JPanel
         JComboBox<String> destinosComboBox = new JComboBox<String>(destinos);
 
         Component[] components = {
-            new JLabel("Destino:"),
+            new JLabel(configuration.getTranslator().__("Destino:")),
             destinosComboBox,
-            new JLabel("Data Partida:"),
+            new JLabel(configuration.getTranslator().__("Data Partida:")),
             new JTextField(20)
         };
         AbstractGridBagLayout.addGridBagElement(
@@ -100,7 +95,7 @@ public class PassageInformationsPanel extends JPanel
         AbstractGridBagLayout.addGridBagElement(
             this,
             new ImageButton(
-                "Validar Disponibilidade",
+                configuration.getTranslator().__("Validar Disponibilidade"),
                 "/images/buttonIcons/check.png"
             ),
             gridBagLayout,
@@ -109,7 +104,7 @@ public class PassageInformationsPanel extends JPanel
 
         AbstractGridBagLayout.addGridBagElement(
             this,
-            new PassengerInformationsPanel(),
+            new PassengerInformationsPanel(configuration),
             gridBagLayout,
             gridBagConstraints
         );
@@ -122,7 +117,7 @@ public class PassageInformationsPanel extends JPanel
         return label;
     }
 
-    private JButton buildNavigationButton()
+    private JButton buildNavigationButton(ConfigurationEntity configuration)
     {
         JButton backButton = new JButton(
             new ImageIcon(getClass().getResource("/images/buttonIcons/arrow-left.png"))
@@ -131,7 +126,7 @@ public class PassageInformationsPanel extends JPanel
         backButton.setFocusable(false);
         backButton.setActionCommand("back");
         backButton.addActionListener(
-            new PassageInformationNavigationButton(view)
+            new PassageInformationNavigationButton(configuration)
         );
         return backButton;
     }

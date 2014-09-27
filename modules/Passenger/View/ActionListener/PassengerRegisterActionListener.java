@@ -1,24 +1,25 @@
 package project.modules.Passenger.View.ActionListener;
 
-import project.modules.Application.View.AbstractView;
-import project.Main;
+import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.View.ActionListener.AbstractActionListener;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class PassengerRegisterActionListener implements ActionListener
+public class PassengerRegisterActionListener extends AbstractActionListener
 {
-    private AbstractView view;
-
-    public PassengerRegisterActionListener(AbstractView view)
+    public PassengerRegisterActionListener(ConfigurationEntity configuration)
     {
-        this.view = view;
+        setConfiguration(configuration.setActionListener(this));
     }
 
     public void actionPerformed(ActionEvent e)
     {
-        JOptionPane.showMessageDialog(null, "Passageiro cadastrado com sucesso!");
-        view.dispose();
+        JOptionPane.showMessageDialog(
+            null,
+            config.getTranslator().__("Passageiro cadastrado com sucesso!")
+        );
+        config.getView().dispose();
     }
 }

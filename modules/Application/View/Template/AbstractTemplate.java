@@ -1,27 +1,23 @@
 package project.modules.Application.View.Template;
 
-import project.modules.Application.View.AbstractView;
+import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Interface.ConfigurationInterface;
 import javax.swing.JPanel;
 
 public abstract class AbstractTemplate extends JPanel
 {
-    private AbstractView view;
+    protected ConfigurationEntity config;
 
     public AbstractTemplate()
     {}
 
-    public AbstractTemplate(AbstractView view)
+    public void setConfiguration(ConfigurationEntity config)
     {
-        setView(view);
+        this.config = config;
     }
 
-    public void setView(AbstractView view)
+    public ConfigurationEntity getConfiguration()
     {
-        this.view = view;
-    }
-
-    public AbstractView getView()
-    {
-        return view;
+        return config;
     }
 }

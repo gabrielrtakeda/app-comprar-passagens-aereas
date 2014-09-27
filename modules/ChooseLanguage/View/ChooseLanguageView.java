@@ -1,26 +1,17 @@
 package project.modules.ChooseLanguage.View;
 
-import project.Main;
+import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.AbstractView;
 import project.modules.Application.View.Template.AbstractTemplate;
-import project.modules.ChooseLanguage.View.Factory.ChooseLanguageTemplateFactory;
+import project.modules.ChooseLanguage.View.Template.ChooseLanguageDefaultTemplate;
 
 public class ChooseLanguageView extends AbstractView
 {
-    private static final String title = "Linguagem";
-
-    private static ChooseLanguageTemplateFactory
-        templateFactory = ChooseLanguageTemplateFactory.getInstance();
-
-    public ChooseLanguageView()
+    public ChooseLanguageView(ConfigurationEntity configuration)
     {
-        setTitle(title);
-        setTemplate(templateFactory.get("default"));
+        setConfiguration(configuration.setView(this));
+        setTitle("Linguagem");
+        setTemplate(new ChooseLanguageDefaultTemplate(config));
         showTemplate();
-    }
-
-    public static AbstractTemplate getTemplate(String templateFlavour)
-    {
-        return templateFactory.get(templateFlavour);
     }
 }

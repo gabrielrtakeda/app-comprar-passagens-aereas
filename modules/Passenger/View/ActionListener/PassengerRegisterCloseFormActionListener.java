@@ -1,20 +1,19 @@
 package project.modules.Passenger.View.ActionListener;
 
-import project.modules.Application.View.AbstractView;
+import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.View.ActionListener.AbstractActionListener;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PassengerRegisterCloseFormActionListener implements ActionListener
+public class PassengerRegisterCloseFormActionListener extends AbstractActionListener
 {
-    private AbstractView view;
-
-    public PassengerRegisterCloseFormActionListener(AbstractView view)
+    public PassengerRegisterCloseFormActionListener(ConfigurationEntity configuration)
     {
-        this.view = view;
+        setConfiguration(configuration.setActionListener(this));
     }
 
     public void actionPerformed(ActionEvent e)
     {
-        view.dispose();
+        config.getView().dispose();
     }
 }

@@ -19,8 +19,8 @@ public class ChooseLanguageTemplateFactory
 
     private ChooseLanguageTemplateFactory()
     {
-        strategies.put("default", new ChooseLanguageDefaultTemplate());
-        strategies.put("widget", new ChooseLanguageWidgetTemplate());
+        // strategies.put("default", new ChooseLanguageDefaultTemplate());
+        // strategies.put("widget", new ChooseLanguageWidgetTemplate());
     }
 
     public static ChooseLanguageTemplateFactory getInstance()

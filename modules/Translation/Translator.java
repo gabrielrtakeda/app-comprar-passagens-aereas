@@ -1,4 +1,4 @@
-package project.modules.Application.Translation;
+package project.modules.Translation;
 
 import java.util.HashMap;
 import java.util.Iterator;

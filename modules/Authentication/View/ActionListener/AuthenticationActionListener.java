@@ -1,7 +1,8 @@
 package project.modules.Authentication.View.ActionListener;
 
-import project.Main;
 import project.modules.Application.Controller.AbstractController;
+import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.View.AbstractView;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Authentication.Controller.AuthenticationController;
 import project.modules.Authentication.Entity.UserEntity;
@@ -15,8 +16,13 @@ import javax.swing.JPasswordField;
 
 public class AuthenticationActionListener extends AbstractActionListener
 {
-    protected AuthenticationController
-        authenticationController = new AuthenticationController();
+    protected AuthenticationController authenticationController = new AuthenticationController();
+
+    public AuthenticationActionListener(ConfigurationEntity configuration)
+    {
+        configuration.setActionListener(this);
+        setConfiguration(configuration);
+    }
 
     public void actionPerformed(ActionEvent e)
     {
@@ -29,14 +35,20 @@ public class AuthenticationActionListener extends AbstractActionListener
         );
 
         if (!userEntity.isEmpty()) {
-            Main.view.dispose();
+
+            config.getView().dispose();
             if (userEntity.isSupervisor()) {
-                Main.view = new MenuSupervisorView();
+                new MenuSupervisorView(config);
             } else {
-                Main.view = new MenuAtendenteView();
+                new MenuAtendenteView(config);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Usuário e/ou senha incorretos.");
+            JOptionPane.showMessageDialog(
+                null,
+                config.getTranslator().__("Falha na autenticação") + ".",
+                config.getTranslator().__("Autenticação"),
+                JOptionPane.WARNING_MESSAGE
+            );
         }
     }
 }

@@ -1,21 +1,22 @@
 package project.modules.Application.Controller;
 
-import project.modules.Application.View.AbstractView;
+import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Interface.ConfigurationInterface;
 
-public abstract class AbstractController
+public abstract class AbstractController implements ConfigurationInterface
 {
-    protected AbstractView view;
+    protected ConfigurationEntity configuration;
 
     public AbstractController()
     {}
 
-    public void setView(AbstractView view)
+    public void setConfiguration(ConfigurationEntity configuration)
     {
-        this.view = view;
+        this.configuration = configuration;
     }
 
-    public AbstractView getView()
+    public ConfigurationEntity getConfiguration()
     {
-        return this.view;
+        return configuration;
     }
 }

@@ -1,6 +1,8 @@
 package project.modules.Authentication.View.Template;
 
+import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Template.AbstractTemplate;
+import project.modules.Application.View.Panel.ApplicationBaseLayoutFooterPanel;
 import project.modules.Authentication.View.Panel.AuthenticationHeaderPanel;
 import project.modules.Authentication.View.Panel.AuthenticationFormPanel;
 import project.modules.ChooseLanguage.View.Panel.ChooseLanguageWidgetPanel;
@@ -10,16 +12,12 @@ import javax.swing.border.EmptyBorder;
 
 public class AuthenticationTemplate extends AbstractTemplate
 {
-    public AuthenticationTemplate()
+    public AuthenticationTemplate(ConfigurationEntity configuration)
     {
+        setConfiguration(configuration.setTemplate(this));
         setLayout(new BorderLayout());
         add(new AuthenticationHeaderPanel(), BorderLayout.NORTH);
-        add(new AuthenticationFormPanel(), BorderLayout.CENTER);
-
-        JPanel baseTemplateFooter = new JPanel();
-        baseTemplateFooter.setLayout(new BorderLayout());
-        baseTemplateFooter.setBorder(new EmptyBorder(0, 10, 10, 10));
-        baseTemplateFooter.add(new ChooseLanguageWidgetPanel(), BorderLayout.WEST);
-        add(baseTemplateFooter, BorderLayout.SOUTH);
+        add(new ApplicationBaseLayoutFooterPanel(config), BorderLayout.SOUTH);
+        add(new AuthenticationFormPanel(config));
     }
 }
