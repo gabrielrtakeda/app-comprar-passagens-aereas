@@ -10,6 +10,8 @@ import project.modules.Menu.View.MenuAtendenteView;
 import project.modules.Menu.View.MenuSupervisorView;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Date;
+import java.text.DateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -36,7 +38,12 @@ public class AuthenticationActionListener extends AbstractActionListener
 
         if (!userEntity.isEmpty()) {
 
+            userEntity.setDataLogin(
+                DateFormat.getDateTimeInstance().format(new Date())
+            );
             config.getView().dispose();
+            config.setUser(userEntity);
+
             if (userEntity.isSupervisor()) {
                 new MenuSupervisorView(config);
             } else {

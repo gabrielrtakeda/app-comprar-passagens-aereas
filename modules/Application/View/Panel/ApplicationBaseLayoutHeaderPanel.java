@@ -18,7 +18,8 @@ public class ApplicationBaseLayoutHeaderPanel extends JPanel
         setBorder(new EmptyBorder(3, 3, 20, 3));
         add(
             buildWelcomeLabel(
-                configuration.getTranslator().__("Seja bem-vindo(a)") + " ${nomeAtendente}"
+                configuration.getTranslator().__("Seja bem-vindo(a)") + " " +
+                configuration.getUser().getNome()
             ), BorderLayout.WEST
         );
         add(

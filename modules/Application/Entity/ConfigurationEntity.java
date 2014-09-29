@@ -5,6 +5,7 @@ import project.modules.Application.View.AbstractView;
 import project.modules.Application.View.Template.AbstractTemplate;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Translation.Translator;
+import project.modules.Authentication.Entity.UserEntity;
 
 public class ConfigurationEntity
 {
@@ -15,64 +16,6 @@ public class ConfigurationEntity
     protected AbstractActionListener actionListener;
     protected Translator translator;
     protected UserEntity user;
-
-    public ConfigurationEntity() {}
-
-    public ConfigurationEntity( AbstractController controller,
-                                AbstractView view,
-                                AbstractTemplate template,
-                                AbstractActionListener actionListener,
-                                Translator translator)
-    {
-        this.setController(controller)
-            .setView(view)
-            .setTemplate(template)
-            .setActionListener(actionListener)
-            .setTranslator(translator);
-    }
-
-    public ConfigurationEntity( AbstractView view,
-                                Translator translator)
-    {
-        this.setView(view)
-            .setTranslator(translator);
-    }
-
-    public ConfigurationEntity(AbstractController controller)
-    { setController(controller); }
-
-    public ConfigurationEntity(AbstractView view)
-    { setView(view); }
-
-    public ConfigurationEntity(AbstractTemplate template)
-    { setTemplate(template); }
-
-    public ConfigurationEntity(AbstractActionListener actionListener)
-    { setActionListener(actionListener); }
-
-    public ConfigurationEntity(Translator translator)
-    { setTranslator(translator); }
-
-
-    public ConfigurationEntity(ConfigurationEntity configuration)
-    { build(configuration); }
-
-    public ConfigurationEntity(ConfigurationEntity configuration, AbstractController controller)
-    { build(configuration); setController(controller); }
-
-    public ConfigurationEntity(ConfigurationEntity configuration, AbstractView view)
-    { build(configuration); setView(view); }
-
-    public ConfigurationEntity(ConfigurationEntity configuration, AbstractTemplate template)
-    { build(configuration); setTemplate(template); }
-
-    public ConfigurationEntity(ConfigurationEntity configuration, AbstractActionListener actionListener)
-    { build(configuration); setActionListener(actionListener); }
-
-    public ConfigurationEntity(ConfigurationEntity configuration, Translator translator)
-    { build(configuration); setTranslator(translator); }
-
-
 
     public ConfigurationEntity setController(AbstractController controller)
     {
@@ -140,12 +83,24 @@ public class ConfigurationEntity
         return translator;
     }
 
+    public ConfigurationEntity setUser(UserEntity user)
+    {
+        this.user = user;
+        return this;
+    }
+
+    public UserEntity getUser()
+    {
+        return user;
+    }
+
     private ConfigurationEntity build(ConfigurationEntity configuration)
     {
         return this .setController(configuration.getController())
                     .setView(configuration.getView())
                     .setTemplate(configuration.getTemplate())
                     .setActionListener(configuration.getActionListener())
-                    .setTranslator(configuration.getTranslator());
+                    .setTranslator(configuration.getTranslator())
+                    .setUser(configuration.getUser());
     }
 }

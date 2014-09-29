@@ -7,6 +7,7 @@ public class UserEntity
     private String password;
     private Boolean supervisor;
     private String nome;
+    private String dataLogin;
 
     public UserEntity setId(Integer id)
     {
@@ -61,6 +62,17 @@ public class UserEntity
     public String getNome()
     {
         return nome;
+    }
+
+    public UserEntity setDataLogin(String dataLogin)
+    {
+        this.dataLogin = dataLogin;
+        return this;
+    }
+
+    public String getDataLogin()
+    {
+        return dataLogin;
     }
 
     public Boolean isEmpty()

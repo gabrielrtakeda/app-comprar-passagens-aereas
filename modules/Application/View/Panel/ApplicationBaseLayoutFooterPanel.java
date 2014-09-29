@@ -10,7 +10,22 @@ import javax.swing.border.EmptyBorder;
 
 public class ApplicationBaseLayoutFooterPanel extends JPanel
 {
+    public static Boolean SHOW_LOGIN_DATETIME = true;
+    public static Boolean HIDE_LOGIN_DATETIME = false;
+
     public ApplicationBaseLayoutFooterPanel(ConfigurationEntity configuration)
+    {
+        build(configuration, SHOW_LOGIN_DATETIME);
+    }
+
+    public ApplicationBaseLayoutFooterPanel(ConfigurationEntity configuration,
+                                            Boolean showLoginDatetime)
+    {
+        build(configuration, showLoginDatetime);
+    }
+
+    private void build(ConfigurationEntity configuration,
+                       Boolean showLoginDatetime)
     {
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(20, 3, 3, 3));
@@ -18,10 +33,14 @@ public class ApplicationBaseLayoutFooterPanel extends JPanel
             new ChooseLanguageWidgetPanel(configuration),
             BorderLayout.WEST
         );
-        add(
-            buildLoginLabel("Login em: 13/09/2014 23:48:00"),
-            BorderLayout.EAST
-        );
+        if (showLoginDatetime) {
+            add(
+                buildLoginLabel(
+                    configuration.getTranslator().__("Logado desde") + ": " +
+                    configuration.getUser().getDataLogin()
+                ), BorderLayout.EAST
+            );
+        }
     }
 
     private JLabel buildLoginLabel(String message)

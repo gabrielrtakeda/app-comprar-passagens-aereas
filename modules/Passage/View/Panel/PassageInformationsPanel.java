@@ -57,9 +57,6 @@ public class PassageInformationsPanel extends JPanel
         );
 
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        Integer[] allBorders = {1, 1, 1, 1};
-        Integer[] sidesBorders = {0, 1, 0, 1};
-        Integer[] bottomSidesBorders = {1, 1, 0, 1};
         Integer[] lineColumns = {1, 4};
         Dimension lineDimension = new Dimension(725, 30);
 
@@ -74,13 +71,13 @@ public class PassageInformationsPanel extends JPanel
         Component[] components = {
             new JLabel(configuration.getTranslator().__("Destino") + ":"),
             destinosComboBox,
-            new JLabel(configuration.getTranslator().__("Data Partida" + ":")),
+            new JLabel(configuration.getTranslator().__("Data Partida") + ":"),
             new JTextField(20)
         };
         AbstractGridBagLayout.addGridBagElement(
             this,
             ColoredGridLayout.build(
-                allBorders,
+                ColoredGridLayout.allBorders,
                 Color.BLACK,
                 lineDimension,
                 lineColumns,

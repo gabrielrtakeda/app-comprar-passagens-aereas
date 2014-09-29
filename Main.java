@@ -8,17 +8,17 @@ import project.modules.Translation.Translator;
 
 public class Main
 {
-    // public Main()
-    // {
-    //     new ChooseLanguageView(new ConfigurationEntity());
-    // }
-
     public Main()
     {
-        ConfigurationEntity configurationEntity = new ConfigurationEntity();
-        configurationEntity.setTranslator(new Translator("br"));
-        new PassageConsultView(configurationEntity);
+        new ChooseLanguageView(new ConfigurationEntity());
     }
+
+    // public Main()
+    // {
+    //     ConfigurationEntity configurationEntity = new ConfigurationEntity();
+    //     configurationEntity.setTranslator(new Translator("br"));
+    //     new PassageConsultView(configurationEntity);
+    // }
 
     public static void main(String args[])
     {
