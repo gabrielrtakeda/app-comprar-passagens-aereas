@@ -11,8 +11,10 @@ public class ConfigurationEntity
     protected AbstractController controller;
     protected AbstractView view;
     protected AbstractTemplate template;
+    protected AbstractTemplate previousTemplate;
     protected AbstractActionListener actionListener;
     protected Translator translator;
+    protected UserEntity user;
 
     public ConfigurationEntity() {}
 
@@ -103,6 +105,17 @@ public class ConfigurationEntity
     public AbstractTemplate getTemplate()
     {
         return template;
+    }
+
+    public ConfigurationEntity setPreviousTemplate(AbstractTemplate previousTemplate)
+    {
+        this.previousTemplate = previousTemplate;
+        return this;
+    }
+
+    public AbstractTemplate getPreviousTemplate()
+    {
+        return previousTemplate;
     }
 
     public ConfigurationEntity setActionListener(AbstractActionListener actionListener)

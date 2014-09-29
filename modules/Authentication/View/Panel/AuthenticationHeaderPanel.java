@@ -14,7 +14,7 @@ public class AuthenticationHeaderPanel extends JPanel
     	setBorder(new EmptyBorder(30, 0, 10, 0));
         add(
             new JLabel(
-                new ImageIcon(getClass().getResource("/images/lock.png"))
+                new ImageIcon(getClass().getResource("/images/icons/lock.png"))
             )
         );
     }

@@ -46,7 +46,7 @@ public class PassengerRegisterFormPanel extends JPanel
         };
         JComboBox<String> formaTratamentoComboBox = new JComboBox<String>(formasTratamento);
         Component[] components = {
-            new JLabel(configuration.getTranslator().__("Forma de tratamento:")),
+            new JLabel(configuration.getTranslator().__("Forma de tratamento") + ":"),
             formaTratamentoComboBox,
         };
         formPanel.add(
@@ -62,7 +62,7 @@ public class PassengerRegisterFormPanel extends JPanel
 
         components = new Component[] {
             new JLabel(
-                configuration.getTranslator().__("Data de Nascimento:")
+                configuration.getTranslator().__("Data de Nascimento") + ":"
             ),
             new JTextField()
         };
@@ -79,7 +79,7 @@ public class PassengerRegisterFormPanel extends JPanel
 
         components = new Component[] {
             new JLabel(
-                configuration.getTranslator().__("Nome Completo:")
+                configuration.getTranslator().__("Nome Completo") + ":"
             ),
             new JTextField()
         };
@@ -134,7 +134,7 @@ public class PassengerRegisterFormPanel extends JPanel
 
         components = new Component[] {
             new JLabel(
-                configuration.getTranslator().__("Email:")
+                configuration.getTranslator().__("Email") + ":"
             ),
             new JTextField()
         };
@@ -151,7 +151,7 @@ public class PassengerRegisterFormPanel extends JPanel
 
         components = new Component[] {
             new JLabel(
-                configuration.getTranslator().__("Telefone para contato:")
+                configuration.getTranslator().__("Telefone para contato") + ":"
             ),
             new JTextField()
         };
@@ -192,7 +192,7 @@ public class PassengerRegisterFormPanel extends JPanel
     private JLabel buildTitleLabel(String message)
     {
         JLabel label = new JLabel(message, JLabel.CENTER);
-        label.setFont(new Font("Arial", Font.PLAIN, 19));
+        label.setFont(new Font("Arial", Font.PLAIN, 18));
         return label;
     }
 

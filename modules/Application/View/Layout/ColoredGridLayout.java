@@ -17,7 +17,7 @@ public class ColoredGridLayout
     public ColoredGridLayout()
     {}
 
-    public static JPanel build(Integer[] borderWeight,
+    public static JPanel build(Integer[] borderPosition,
                                Color borderColor,
                                Dimension panelSize,
                                Integer[] lineColumns,
@@ -28,11 +28,13 @@ public class ColoredGridLayout
         JPanel setBorderPanel = new JPanel(new BorderLayout());
         setBorderPanel.setBorder(
             BorderFactory.createMatteBorder(
-                borderWeight[0], borderWeight[1], borderWeight[2], borderWeight[3],
+                borderPosition[0], borderPosition[1], borderPosition[2], borderPosition[3],
                 borderColor
             )
         );
-        setBorderPanel.setPreferredSize(panelSize);
+        if (panelSize != null) {
+            setBorderPanel.setPreferredSize(panelSize);
+        }
 
         JPanel marginPanel = new JPanel(
             new GridLayout(lineColumns[0], lineColumns[1])

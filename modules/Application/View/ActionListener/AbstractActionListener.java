@@ -36,7 +36,6 @@ implements  ActionListener,
 
     public void setConfiguration(ConfigurationEntity config)
     {
-        System.out.println(config.getClass().getName() + "\n");
         this.config = config;
 
     }

@@ -5,7 +5,7 @@ import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Passage.View.ActionListener.PassageNavigationButton;
-import project.modules.Passenger.View.Panel.PassengerInformationsPanel;
+import project.modules.Passenger.View.Panel.PassengerInformationsResultPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.BorderLayout;
@@ -21,29 +21,16 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 
-public class PassageInformationsPanel extends JPanel
+public class PassageInformationsResultPanel extends JPanel
 {
-    public PassageInformationsPanel(ConfigurationEntity configuration)
+    public PassageInformationsResultPanel(ConfigurationEntity configuration)
     {
         GridBagLayout gridBagLayout = new GridBagLayout();
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
         setLayout(gridBagLayout);
 
-        JPanel navigationButton = new JPanel(new BorderLayout());
-        navigationButton.add(
-            buildNavigationButton(configuration),
-            BorderLayout.WEST
-        );
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.gridwidth  =GridBagConstraints.REMAINDER;
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            navigationButton,
-            gridBagLayout,
-            gridBagConstraints
-        );
-
+        // Informações da Passagem
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.insets = new Insets(0, 0, 10, 0);
@@ -57,30 +44,19 @@ public class PassageInformationsPanel extends JPanel
         );
 
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        Integer[] allBorders = {1, 1, 1, 1};
-        Integer[] sidesBorders = {0, 1, 0, 1};
-        Integer[] bottomSidesBorders = {1, 1, 0, 1};
         Integer[] lineColumns = {1, 4};
         Dimension lineDimension = new Dimension(725, 30);
 
-        String[] destinos = {
-            "Aeroporto de Congonhas",
-            "Aeroporto de Guarulhos",
-            "Aeroporto de Melborn",
-            "Aeroporto de Los Angeles"
-        };
-        JComboBox<String> destinosComboBox = new JComboBox<String>(destinos);
-
         Component[] components = {
             new JLabel(configuration.getTranslator().__("Destino") + ":"),
-            destinosComboBox,
-            new JLabel(configuration.getTranslator().__("Data Partida" + ":")),
-            new JTextField(20)
+            new JLabel("Aeroporto de Congonhas (Temporário)"),
+            new JLabel(configuration.getTranslator().__("Data Partida") + ":"),
+            new JLabel("05/01/2015 (Temporário)")
         };
         AbstractGridBagLayout.addGridBagElement(
             this,
             ColoredGridLayout.build(
-                allBorders,
+                ColoredGridLayout.allBorders,
                 Color.BLACK,
                 lineDimension,
                 lineColumns,
@@ -91,20 +67,10 @@ public class PassageInformationsPanel extends JPanel
             gridBagConstraints
         );
 
-        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        // Informações dos Passageiros
         AbstractGridBagLayout.addGridBagElement(
             this,
-            new ImageButton(
-                configuration.getTranslator().__("Validar Disponibilidade"),
-                "/images/buttonIcons/check.png"
-            ),
-            gridBagLayout,
-            gridBagConstraints
-        );
-
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            new PassengerInformationsPanel(configuration),
+            new PassengerInformationsResultPanel(configuration),
             gridBagLayout,
             gridBagConstraints
         );
@@ -115,19 +81,5 @@ public class PassageInformationsPanel extends JPanel
         JLabel label = new JLabel(message);
         label.setFont(new Font("Arial", Font.PLAIN, 18));
         return label;
-    }
-
-    private JButton buildNavigationButton(ConfigurationEntity configuration)
-    {
-        JButton backButton = new JButton(
-            new ImageIcon(getClass().getResource("/images/buttonIcons/arrow-left.png"))
-        );
-        backButton.setPreferredSize(new Dimension(25, 25));
-        backButton.setFocusable(false);
-        backButton.setActionCommand("back");
-        backButton.addActionListener(
-            new PassageNavigationButton(configuration)
-        );
-        return backButton;
     }
 }

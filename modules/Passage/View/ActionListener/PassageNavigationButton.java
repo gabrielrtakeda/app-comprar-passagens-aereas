@@ -3,12 +3,13 @@ package project.modules.Passage.View.ActionListener;
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Menu.View.MenuSupervisorView;
+import project.modules.Passage.View.PassageNavigationView;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PassageInformationNavigationButton extends AbstractActionListener
+public class PassageNavigationButton extends AbstractActionListener
 {
-    public PassageInformationNavigationButton(ConfigurationEntity configuration)
+    public PassageNavigationButton(ConfigurationEntity configuration)
     {
         setConfiguration(configuration.setActionListener(this));
     }
@@ -19,7 +20,12 @@ public class PassageInformationNavigationButton extends AbstractActionListener
 
         switch (e.getActionCommand()) {
             case "back":
-                new MenuSupervisorView(config);
+                new PassageNavigationView(
+                    config,
+                    // config.getView().getTitle(),
+                    "Autenticação",
+                    config.getPreviousTemplate()
+                );
                 break;
         }
     }

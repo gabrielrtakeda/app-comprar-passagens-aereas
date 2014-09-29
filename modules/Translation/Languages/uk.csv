@@ -11,8 +11,8 @@ Cadastrar Voos;Register Flights
 Cadastrar Aeronaves;Register Aircraft
 Consultar Vendas;Consult Sales
 Informações da Passagem;Passage Information
-Destino:;Destination:
-Data Partida:;Departure Date:
+Destino;Destination
+Data Partida;Departure Date
 Validar Disponibilidade;Confirm Availability
 Informações dos Passageiros;Passenger Information
 Cadastrar Passageiro;Register Passenger
@@ -21,16 +21,26 @@ Sra.;Mrs.
 Srta.;Miss.
 Dr.;Dr.
 Dra.;Dr.
-Forma de tratamento:;Treatment:
-Data de Nascimento:;Date of Birth:
-Nome Completo:;Full Name:
+Forma de tratamento;Treatment
+Data de Nascimento;Date of Birth
+Nome Completo;Full Name
 Sim;Yes
 Não;No
 Responsável pela compra?;Responsible for purchasing?
-Email:;Email:
-Telefone para contato:;Contact telephone number:
+Email;Email
+Telefone para contato;Contact telephone number
 Voltar;Back
 Cadastrar;Register
 Autenticação;Authentication
 Menu Inicial;Home Menu
 Falha na autenticação;Authentication failed
+Tem certeza que deseja encerrar a sessão?;Are you sure you want to logout?
+Requisição de encerramento de sessão;Logout request
+Check In;Check In
+Consultar Passagem;Passage Consult
+Código da Passagem;Passage Code
+Consultar;Consult
+Perfil;Profile
+Total de Passageiros;Total Passengers
+Passageiro Responsável;Responsible Passenger
+Responsável;Responsible

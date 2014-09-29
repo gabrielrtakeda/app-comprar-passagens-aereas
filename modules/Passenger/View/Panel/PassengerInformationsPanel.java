@@ -47,7 +47,7 @@ public class PassengerInformationsPanel extends JPanel
     private JLabel buildTitleLabel(String message)
     {
         JLabel label = new JLabel(message);
-        label.setFont(new Font("Arial", Font.PLAIN, 19));
+        label.setFont(new Font("Arial", Font.PLAIN, 18));
         return label;
     }
 

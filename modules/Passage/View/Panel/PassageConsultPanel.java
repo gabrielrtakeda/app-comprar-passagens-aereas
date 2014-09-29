@@ -5,6 +5,7 @@ import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Passage.View.ActionListener.PassageNavigationButton;
+import project.modules.Passage.View.ActionListener.PassageConsultResultActionListener;
 import project.modules.Passenger.View.Panel.PassengerInformationsPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -21,28 +22,41 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 
-public class PassageInformationsPanel extends JPanel
+public class PassageConsultPanel extends JPanel
 {
-    public PassageInformationsPanel(ConfigurationEntity configuration)
+    public static Boolean SHOW_NAVIGATION_BUTTON = true;
+    public static Boolean HIDE_NAVIGATION_BUTTON = false;
+
+    private ConfigurationEntity configuration;
+
+    public PassageConsultPanel(ConfigurationEntity configuration)
+    {
+        this.configuration = configuration;
+        buildContent(SHOW_NAVIGATION_BUTTON);
+    }
+
+    public PassageConsultPanel( ConfigurationEntity configuration,
+                                Boolean showNavigationButton)
+    {
+        this.configuration = configuration;
+        buildContent(showNavigationButton);
+    }
+
+    private void buildContent(Boolean showNavigationButton)
     {
         GridBagLayout gridBagLayout = new GridBagLayout();
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
-
         setLayout(gridBagLayout);
 
-        JPanel navigationButton = new JPanel(new BorderLayout());
-        navigationButton.add(
-            buildNavigationButton(configuration),
-            BorderLayout.WEST
-        );
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.gridwidth  =GridBagConstraints.REMAINDER;
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            navigationButton,
-            gridBagLayout,
-            gridBagConstraints
-        );
+        if (showNavigationButton) {
+            gridBagConstraints.anchor = GridBagConstraints.WEST;
+            AbstractGridBagLayout.addGridBagElement(
+                this,
+                buildNavigationBackButton(configuration),
+                gridBagLayout,
+                gridBagConstraints
+            );
+        }
 
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
@@ -50,37 +64,24 @@ public class PassageInformationsPanel extends JPanel
         AbstractGridBagLayout.addGridBagElement(
             this,
             buildTitleLabel(
-                configuration.getTranslator().__("Informações da Passagem")
+                configuration.getTranslator().__("Consultar Passagem")
             ),
             gridBagLayout,
             gridBagConstraints
         );
 
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        Integer[] allBorders = {1, 1, 1, 1};
-        Integer[] sidesBorders = {0, 1, 0, 1};
-        Integer[] bottomSidesBorders = {1, 1, 0, 1};
-        Integer[] lineColumns = {1, 4};
-        Dimension lineDimension = new Dimension(725, 30);
-
-        String[] destinos = {
-            "Aeroporto de Congonhas",
-            "Aeroporto de Guarulhos",
-            "Aeroporto de Melborn",
-            "Aeroporto de Los Angeles"
-        };
-        JComboBox<String> destinosComboBox = new JComboBox<String>(destinos);
+        Integer[] lineColumns = {1, 2};
+        Dimension lineDimension = new Dimension(425, 30);
 
         Component[] components = {
-            new JLabel(configuration.getTranslator().__("Destino") + ":"),
-            destinosComboBox,
-            new JLabel(configuration.getTranslator().__("Data Partida" + ":")),
-            new JTextField(20)
+            new JLabel(configuration.getTranslator().__("Código da Passagem") + ":"),
+            new JTextField()
         };
         AbstractGridBagLayout.addGridBagElement(
             this,
             ColoredGridLayout.build(
-                allBorders,
+                ColoredGridLayout.allBorders,
                 Color.BLACK,
                 lineDimension,
                 lineColumns,
@@ -95,16 +96,11 @@ public class PassageInformationsPanel extends JPanel
         AbstractGridBagLayout.addGridBagElement(
             this,
             new ImageButton(
-                configuration.getTranslator().__("Validar Disponibilidade"),
-                "/images/buttonIcons/check.png"
+                configuration.getTranslator().__("Consultar"),
+                "/images/buttonIcons/search.png",
+                new Dimension(195, 45),
+                new PassageConsultResultActionListener(configuration)
             ),
-            gridBagLayout,
-            gridBagConstraints
-        );
-
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            new PassengerInformationsPanel(configuration),
             gridBagLayout,
             gridBagConstraints
         );
@@ -117,7 +113,7 @@ public class PassageInformationsPanel extends JPanel
         return label;
     }
 
-    private JButton buildNavigationButton(ConfigurationEntity configuration)
+    private JButton buildNavigationBackButton(ConfigurationEntity configuration)
     {
         JButton backButton = new JButton(
             new ImageIcon(getClass().getResource("/images/buttonIcons/arrow-left.png"))

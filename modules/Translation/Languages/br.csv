@@ -11,8 +11,8 @@ Cadastrar Voos;Cadastrar Voos
 Cadastrar Aeronaves;Cadastrar Aeronaves
 Consultar Vendas;Consultar Vendas
 Informações da Passagem;Informações da Passagem
-Destino:;Destino:
-Data Partida:;Data Partida:
+Destino;Destino
+Data Partida;Data Partida
 Validar Disponibilidade;Validar Disponibilidade
 Informações dos Passageiros;Informações dos Passageiros
 Cadastrar Passageiro;Cadastrar Passageiro
@@ -21,16 +21,26 @@ Sra.;Sra.
 Srta.;Srta.
 Dr.;Dr.
 Dra.;Dra.
-Forma de tratamento:;Forma de tratamento:
-Data de Nascimento:;Data de Nascimento:
-Nome Completo:;Nome Completo:
+Forma de tratamento;Forma de tratamento
+Data de Nascimento;Data de Nascimento
+Nome Completo;Nome Completo
 Sim;Sim
 Não;Não
 Responsável pela compra?;Responsável pela compra?
-Email:;Email:
-Telefone para contato:;Telefone para contato:
+Email;Email
+Telefone para contato;Telefone para contato
 Voltar;Voltar
 Cadastrar;Cadastrar
 Autenticação;Autenticação
 Menu Inicial;Menu Inicial
 Falha na autenticação;Falha na autenticação
+Tem certeza que deseja encerrar a sessão?;Tem certeza que deseja encerrar a sessão?
+Requisição de encerramento de sessão;Requisição de encerramento de sessão
+Check In;Check In
+Consultar Passagem;Consultar Passagem
+Código da Passagem;Código da Passagem
+Consultar;Consultar
+Perfil;Perfil
+Total de Passageiros;Total de Passageiros
+Passageiro Responsável;Passageiro Responsável
+Responsável;Responsável
