@@ -2,6 +2,7 @@ package project.modules.Application.Entity;
 
 import project.modules.Application.Controller.AbstractController;
 import project.modules.Application.View.AbstractView;
+import project.modules.Application.View.Modal.AbstractModal;
 import project.modules.Application.View.Template.AbstractTemplate;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Translation.Translator;
@@ -11,6 +12,7 @@ public class ConfigurationEntity
 {
     protected AbstractController controller;
     protected AbstractView view;
+    protected AbstractModal modal;
     protected AbstractTemplate template;
     protected AbstractTemplate previousTemplate;
     protected AbstractActionListener actionListener;
@@ -37,6 +39,17 @@ public class ConfigurationEntity
     public AbstractView getView()
     {
         return view;
+    }
+
+    public ConfigurationEntity setModal(AbstractModal modal)
+    {
+        this.modal = modal;
+        return this;
+    }
+
+    public AbstractModal getModal()
+    {
+        return modal;
     }
 
     public ConfigurationEntity setTemplate(AbstractTemplate template)
@@ -102,5 +115,84 @@ public class ConfigurationEntity
                     .setActionListener(configuration.getActionListener())
                     .setTranslator(configuration.getTranslator())
                     .setUser(configuration.getUser());
+    }
+
+    public String toString()
+    {
+        StringBuilder builder = new StringBuilder("[\n\t");
+        // Controller
+        builder.append("Controller: ");
+        builder.append(
+            getController() != null
+             ? getController().getClass().getName()
+             : "null"
+        ).append("\n\t");
+
+        // View
+        builder.append("View: ");
+        builder.append(
+            getView() != null
+             ? getView().getClass().getName()
+             : "null"
+        ).append("\n\t");
+
+        // Modal
+        builder.append("Modal: ");
+        builder.append(
+            getModal() != null
+             ? getModal().getClass().getName()
+             : "null"
+        ).append("\n\t");
+
+        // Template
+        builder.append("Template: ");
+        builder.append(
+            getTemplate() != null
+             ? getTemplate().getClass().getName()
+             : "null"
+        ).append("\n\t");
+
+        // Previous Template
+        builder.append("PreviousTemplate: ");
+        builder.append(
+            getPreviousTemplate() != null
+             ? getPreviousTemplate().getClass().getName()
+             : "null"
+        ).append("\n\t");
+
+        // Action Listener
+        builder.append("ActionListener: ");
+        builder.append(
+            getActionListener() != null
+             ? getActionListener().getClass().getName()
+             : "null"
+        ).append("\n\t");
+
+        // Translator
+        builder.append("Translator: ");
+        builder.append(
+            getTranslator() != null
+             ? getTranslator().getClass().getName() + " : " + getTranslator().getLanguage()
+             : "null"
+        ).append("\n\t");
+
+        // User
+        builder.append("User: ");
+        if (getUser() != null) {
+            builder.append("[\n\t\t");
+            builder.append("Id: " + getUser().getId()).append("\n\t\t");
+            builder.append("User: " + getUser().getUser()).append("\n\t\t");
+            builder.append("Password: " + getUser().getPassword()).append("\n\t\t");
+            builder.append("Supervisor: " + getUser().isSupervisor()).append("\n\t\t");
+            builder.append("Nome: " + getUser().getNome()).append("\n\t\t");
+            builder.append("DataLogin: " + getUser().getDataLogin());
+            builder.append("\n\t]");
+        } else {
+            builder.append("null");
+        }
+
+        builder.append("\n]");
+
+        return builder.toString();
     }
 }

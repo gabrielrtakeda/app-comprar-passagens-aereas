@@ -5,10 +5,13 @@ import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Application.View.AbstractView;
 import project.modules.Application.View.GenericView;
 import project.modules.Authentication.View.AuthenticationView;
+import project.modules.Menu.View.MenuSupervisorView;
 import project.modules.Translation.Translator;
+import java.lang.reflect.Constructor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class ChooseLanguageActionListener extends AbstractActionListener
 {
@@ -42,11 +45,19 @@ public class ChooseLanguageActionListener extends AbstractActionListener
             )
         );
 
-        config.getView().dispose();
-
         if (widget == USING_WIDGET) {
-            new GenericView(config);
+            try {
+                config.getView().dispose();
+                // Class<?> reflectionClass = Class.forName("project.modules.Authentication.View.AuthenticationView");
+                Class<?> reflectionClass = Class.forName(config.getView().getClass().getName());
+                Constructor<?> reflectionConstructor = reflectionClass.getConstructor(ConfigurationEntity.class);
+                AbstractView reflectionView = (AbstractView) reflectionConstructor.newInstance(config);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+            System.out.println(config.toString());
         } else {
+            config.getView().dispose();
             new AuthenticationView(config);
         }
     }

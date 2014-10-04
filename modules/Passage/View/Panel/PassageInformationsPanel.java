@@ -4,7 +4,7 @@ import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
-import project.modules.Passage.View.ActionListener.PassageNavigationButton;
+import project.modules.Passage.View.ActionListener.PassageInformationsNavigationActionListener;
 import project.modules.Passenger.View.Panel.PassengerInformationsPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -123,7 +123,7 @@ public class PassageInformationsPanel extends JPanel
         backButton.setFocusable(false);
         backButton.setActionCommand("back");
         backButton.addActionListener(
-            new PassageNavigationButton(configuration)
+            new PassageInformationsNavigationActionListener(configuration)
         );
         return backButton;
     }

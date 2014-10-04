@@ -2,7 +2,7 @@ package project.modules.Passenger.View.Panel;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Layout.ColoredGridLayout;
-import project.modules.Passenger.View.ActionListener.PassengerRegisterCloseFormActionListener;
+import project.modules.Passenger.View.ActionListener.PassengerRegisterModalCloseActionListener;
 import project.modules.Passenger.View.ActionListener.PassengerRegisterActionListener;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
@@ -175,7 +175,7 @@ public class PassengerRegisterFormPanel extends JPanel
                 new JButton(
                     configuration.getTranslator().__("Voltar")
                 ),
-                new PassengerRegisterCloseFormActionListener(configuration)
+                new PassengerRegisterModalCloseActionListener(configuration)
             )
         );
         buttonsPanel.add(

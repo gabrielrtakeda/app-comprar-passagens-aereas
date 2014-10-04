@@ -10,9 +10,11 @@ public class Translator
     private String fileDirectory = "modules/Translation/Languages/";
     private String fileExtension = ".csv";
     private String filePath;
+    private String language;
 
     public Translator(String language)
     {
+        setLanguage(language);
         FileManager fileManager = new FileManager(
             (filePath = fileDirectory + language + fileExtension)
         );
@@ -39,5 +41,15 @@ public class Translator
                 "\n\tArquivo: \"" + filePath + "\""
             );
         }
+    }
+
+    public Translator setLanguage(String language)
+    {
+        this.language = language;
+        return this;
+    }
+    public String getLanguage()
+    {
+        return language;
     }
 }

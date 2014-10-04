@@ -2,7 +2,7 @@ package project.modules.Passenger.View.Panel;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
-import project.modules.Passenger.View.ActionListener.PassengerRegisterShowFormActionListener;
+import project.modules.Passenger.View.ActionListener.PassengerRegisterModalActionListener;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -37,7 +37,7 @@ public class PassengerInformationsPanel extends JPanel
             new ImageButton(
                 configuration.getTranslator().__("Cadastrar Passageiro"),
                 "/images/buttonIcons/user.png",
-                new PassengerRegisterShowFormActionListener(configuration)
+                new PassengerRegisterModalActionListener(configuration)
             ),
             gridBagLayout,
             gridBagConstraints

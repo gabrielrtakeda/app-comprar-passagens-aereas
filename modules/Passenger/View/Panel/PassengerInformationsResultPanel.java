@@ -5,7 +5,7 @@ import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Passenger.Entity.PassengerEntity;
-import project.modules.Passenger.View.ActionListener.PassengerRegisterShowFormActionListener;
+import project.modules.Passenger.View.ActionListener.PassengerRegisterModalActionListener;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Dimension;

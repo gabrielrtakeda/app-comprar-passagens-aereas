@@ -4,7 +4,7 @@ import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
-import project.modules.Passage.View.ActionListener.PassageNavigationButton;
+import project.modules.Passage.View.ActionListener.PassageInformationsResultNavigationActionListener;
 import project.modules.Passenger.View.Panel.PassengerInformationsResultPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;

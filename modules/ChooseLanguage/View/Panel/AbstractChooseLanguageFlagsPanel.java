@@ -63,7 +63,6 @@ public class AbstractChooseLanguageFlagsPanel extends JPanel
                     ),
                     flagButtonSize
                 );
-            System.out.println(usingWidget);
             button.addActionListener(
                 usingWidget == ChooseLanguageActionListener.USING_WIDGET
                     ? new ChooseLanguageActionListener(configuration, usingWidget)
