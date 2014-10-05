@@ -43,7 +43,7 @@ public class AbstractModal extends JDialog
         return getContentPane();
     }
 
-    public void showModalTemplate()
+    public void showModal()
     {
         pack();
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();

@@ -16,8 +16,5 @@ public class PassagePurchaseView extends AbstractView
         setTitle(config.getTranslator().__("Compra de Passagem"));
         setTemplate(new PassagePurchaseTemplate(config));
         showTemplate();
-        System.out.println("Actual View: " + config.getView().getClass().getName());
-        System.out.println("PassagePurchaseView");
-        System.out.println("--------------------------------------");
     }
 }

@@ -7,12 +7,14 @@ import project.modules.Application.View.Template.AbstractTemplate;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Translation.Translator;
 import project.modules.Authentication.Entity.UserEntity;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class ConfigurationEntity
 {
     protected AbstractController controller;
     protected AbstractView view;
-    protected AbstractModal modal;
+    protected HashMap<String, AbstractModal> modals = new HashMap<String, AbstractModal>();
     protected AbstractTemplate template;
     protected AbstractTemplate previousTemplate;
     protected AbstractActionListener actionListener;
@@ -41,15 +43,26 @@ public class ConfigurationEntity
         return view;
     }
 
-    public ConfigurationEntity setModal(AbstractModal modal)
+    public ConfigurationEntity setModal(String name, AbstractModal modal)
     {
-        this.modal = modal;
+        modals.put(name, modal);
         return this;
     }
 
-    public AbstractModal getModal()
+    public AbstractModal getModal(String name)
     {
-        return modal;
+        return modals.get(name);
+    }
+
+    public HashMap<String, AbstractModal> getModals()
+    {
+        return modals;
+    }
+
+    public ConfigurationEntity removeModal(String name)
+    {
+        modals.remove(name);
+        return this;
     }
 
     public ConfigurationEntity setTemplate(AbstractTemplate template)
@@ -136,13 +149,21 @@ public class ConfigurationEntity
              : "null"
         ).append("\n\t");
 
-        // Modal
-        builder.append("Modal: ");
-        builder.append(
-            getModal() != null
-             ? getModal().getClass().getName()
-             : "null"
-        ).append("\n\t");
+        // Modals
+        builder.append("Modals: ");
+        if (getModals().size() > 0) {
+            builder.append("[");
+            Iterator<String> keySetIterator = getModals().keySet().iterator();
+            while (keySetIterator.hasNext()) {
+                String name = keySetIterator.next();
+                builder.append("\n\t\t");
+                builder.append("\"" + name + "\": "+ getModal(name).getClass().getName());
+            }
+            builder.append("\n\t]");
+        } else {
+            builder.append("null");
+        }
+        builder.append("\n\t");
 
         // Template
         builder.append("Template: ");

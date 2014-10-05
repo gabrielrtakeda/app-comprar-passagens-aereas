@@ -6,6 +6,7 @@ import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Passage.View.ActionListener.PassageInformationsNavigationActionListener;
 import project.modules.Passenger.View.Panel.PassengerInformationsPanel;
+import project.modules.Flight.View.ActionListener.FlightAvailabilityConfirmationActionListener;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.BorderLayout;
@@ -93,7 +94,8 @@ public class PassageInformationsPanel extends JPanel
             this,
             new ImageButton(
                 configuration.getTranslator().__("Validar Disponibilidade"),
-                "/images/buttonIcons/check.png"
+                "/images/buttonIcons/check.png",
+                new FlightAvailabilityConfirmationActionListener(configuration)
             ),
             gridBagLayout,
             gridBagConstraints

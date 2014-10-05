@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 
 public class PassengerRegisterActionListener extends AbstractActionListener
 {
+    protected String nameModal = "passenger-register";
+
     public PassengerRegisterActionListener(ConfigurationEntity configuration)
     {
         setConfiguration(configuration.setActionListener(this));
@@ -20,6 +22,7 @@ public class PassengerRegisterActionListener extends AbstractActionListener
             null,
             config.getTranslator().__("Passageiro cadastrado com sucesso!")
         );
-        config.getView().dispose();
+        config.getModal(nameModal).dispose();
+        config.removeModal(nameModal);
     }
 }

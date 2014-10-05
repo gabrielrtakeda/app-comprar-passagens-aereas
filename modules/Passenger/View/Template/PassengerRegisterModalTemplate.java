@@ -8,11 +8,13 @@ import project.modules.Passenger.View.Panel.PassengerRegisterFormPanel;
 import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 
-public class PassengerRegisterTemplate extends AbstractTemplate
+public class PassengerRegisterModalTemplate extends AbstractTemplate
 {
-    public PassengerRegisterTemplate(ConfigurationEntity configuration)
+    public PassengerRegisterModalTemplate(ConfigurationEntity configuration)
     {
-        setConfiguration(configuration.setTemplate(this));
+        configuration.setTemplate(this);
+        setConfiguration(configuration);
+
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
         add(new ApplicationBaseLayoutHeaderPanel(config), BorderLayout.NORTH);

@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 
 public class PassengerRegisterModalCloseActionListener extends AbstractActionListener
 {
+    protected String nameModal = "passenger-register";
+
     public PassengerRegisterModalCloseActionListener(ConfigurationEntity configuration)
     {
         setConfiguration(configuration.setActionListener(this));
@@ -14,7 +16,7 @@ public class PassengerRegisterModalCloseActionListener extends AbstractActionLis
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getModal().dispose();
-        config.setModal(null);
+        config.getModal(nameModal).dispose();
+        config.removeModal(nameModal);
     }
 }
