@@ -51,3 +51,7 @@ Disponibilidade do Voo;Flight Availability
 Voo;Flight
 Status;Status
 Valor;Price
+Aeronave;Airplane
+Aeroporto;Airport
+Descrição;Descrição
+Código;Code
