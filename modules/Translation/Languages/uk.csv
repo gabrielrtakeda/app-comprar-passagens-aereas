@@ -55,3 +55,7 @@ Aeronave;Airplane
 Aeroporto;Airport
 Descrição;Descrição
 Código;Code
+Total de Assentos;Total Seats
+Assentos Vagos;Vacant Seats
+Reserva;Booking
+Quantidade de assentos a reservar;Number of seats to be reserved

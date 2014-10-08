@@ -9,6 +9,7 @@ public class AirplaneEntity
     protected String modelo;
     protected Integer assentosTotal;
     protected Integer assentosVagos;
+    protected String status;
     protected Date dataCadastro;
 
     public Integer getId() {
@@ -29,6 +30,10 @@ public class AirplaneEntity
 
     public Integer getAssentosVagos() {
         return this.assentosVagos;
+    }
+
+    public String getStatus() {
+        return this.status;
     }
 
     public Date getDataCadastro() {
@@ -57,6 +62,11 @@ public class AirplaneEntity
 
     public AirplaneEntity setAssentosVagos(Integer assentosVagos) {
         this.assentosVagos = assentosVagos;
+        return this;
+    }
+
+    public AirplaneEntity setStatus(String status) {
+        this.status = status;
         return this;
     }
 

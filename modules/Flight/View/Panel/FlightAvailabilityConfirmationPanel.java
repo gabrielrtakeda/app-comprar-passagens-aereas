@@ -8,6 +8,7 @@ import project.modules.Flight.View.ActionListener.FlightAvailabilityConfirmation
 import project.modules.Flight.Entity.FlightEntity;
 import project.modules.Airplane.Entity.AirplaneEntity;
 import project.modules.Airport.Entity.AirportEntity;
+import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
@@ -19,7 +20,9 @@ import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import javax.swing.BorderFactory;
 
 public class FlightAvailabilityConfirmationPanel extends JPanel
 {
@@ -28,6 +31,14 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         GridBagLayout gridBagLayout = new GridBagLayout();
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         setLayout(gridBagLayout);
+
+        ColoredGridDependencyEntity gridEntity = new ColoredGridDependencyEntity();
+        gridEntity.setBorderColor(Color.BLACK)
+                  .setPanelSize(new Dimension(364, 30))
+                  .setLineColumns(new Integer[] {1, 2})
+                  .setBackgroundColor("gray", new Color(204, 204, 204))
+                  .setBackgroundColor("white", Color.WHITE)
+                  .setGridBagLayout(gridBagLayout);
 
         // Navigation Button
         gridBagConstraints.anchor = GridBagConstraints.NORTH;
@@ -49,45 +60,22 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
             gridBagConstraints
         );
 
-        FlightEntity flightEntity = buildFlightEntity();
-        Component[] components = {
-            new JLabel(configuration.getTranslator().__("Status") + ":"),
-            new JLabel(flightEntity.getStatus())
-        };
-
         gridBagConstraints.insets = new Insets(0, 0, 0, 0);
-        Dimension panelSize = new Dimension(364, 30);
-        Integer[] lineColumns = {1, 2};
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            ColoredGridLayout.build(
-                ColoredGridLayout.allBorders,
-                Color.BLACK,
-                panelSize,
-                lineColumns,
-                new Color(204, 204, 204),
-                components
-            ),
-            gridBagLayout,
-            gridBagConstraints
-        );
-
-        components = new Component[] {
-            new JLabel(configuration.getTranslator().__("Valor") + ":"),
-            new JLabel("R$" + flightEntity.getValor())
+        FlightEntity flightEntity = buildFlightEntity();
+        Component[][] componentsMatrix = {
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Status") + ":"),
+                new JLabel(flightEntity.getStatus())
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Valor") + ":"),
+                new JLabel("R$" + flightEntity.getValor())
+            }
         };
-        AbstractGridBagLayout.addGridBagElement(
+        ColoredGridLayout.make(
             this,
-            ColoredGridLayout.build(
-                ColoredGridLayout.exceptTopBorders,
-                Color.BLACK,
-                panelSize,
-                lineColumns,
-                Color.WHITE,
-                components
-            ),
-            gridBagLayout,
-            gridBagConstraints
+            gridEntity.setGridBagConstraints(gridBagConstraints)
+                      .setComponents(componentsMatrix)
         );
 
         // Dados do Aeroporto
@@ -99,24 +87,17 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
             gridBagConstraints
         );
 
-        components = new Component[] {
-            new JLabel(configuration.getTranslator().__("Descrição") + ":"),
-            new JLabel(flightEntity.getAirport().getDescricao())
-        };
-
         gridBagConstraints.insets = new Insets(0, 0, 0, 0);
-        AbstractGridBagLayout.addGridBagElement(
+        componentsMatrix = new Component[][] {
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Descrição") + ":"),
+                new JLabel(flightEntity.getAirport().getDescricao())
+            }
+        };
+        ColoredGridLayout.make(
             this,
-            ColoredGridLayout.build(
-                ColoredGridLayout.allBorders,
-                Color.BLACK,
-                panelSize,
-                lineColumns,
-                new Color(204, 204, 204),
-                components
-            ),
-            gridBagLayout,
-            gridBagConstraints
+            gridEntity.setGridBagConstraints(gridBagConstraints)
+                      .setComponents(componentsMatrix)
         );
 
         // Dados Aeronave
@@ -128,86 +109,52 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
             gridBagConstraints
         );
 
-        components = new Component[] {
-            new JLabel(configuration.getTranslator().__("Código") + ":"),
-            new JLabel(String.valueOf(flightEntity.getAirplane().getId()))
-        };
-
         gridBagConstraints.insets = new Insets(0, 0, 0, 0);
+        componentsMatrix = new Component[][] {
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Código") + ":"),
+                new JLabel(String.valueOf(flightEntity.getAirplane().getId()))
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Total de Assentos") + ":"),
+                new JLabel(String.valueOf(flightEntity.getAirplane().getAssentosTotal()))
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Assentos Vagos") + ":"),
+                new JLabel(String.valueOf(flightEntity.getAirplane().getAssentosVagos()))
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Status") + ":"),
+                new JLabel(String.valueOf(flightEntity.getAirplane().getStatus()))
+            }
+        };
+        ColoredGridLayout.make(
+            this,
+            gridEntity.setGridBagConstraints(gridBagConstraints)
+                      .setComponents(componentsMatrix)
+        );
+
+        // Reserva
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.insets = new Insets(20, 5, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
             this,
-            ColoredGridLayout.build(
-                ColoredGridLayout.allBorders,
-                Color.BLACK,
-                panelSize,
-                lineColumns,
-                new Color(204, 204, 204),
-                components
-            ),
+            buildTitleLabel(configuration.getTranslator().__("Reserva")),
             gridBagLayout,
             gridBagConstraints
         );
 
-        Component[][] componentsRox = {
-            new Component[] {
-                new JButton(configuration.getTranslator().__("Código") + ":"),
-                new JLabel(String.valueOf(flightEntity.getAirplane().getId()))
-            },
-            new Component[] {
-                new JLabel(configuration.getTranslator().__("Código") + ":"),
-                new JLabel(String.valueOf(flightEntity.getAirplane().getId()))
-            },
-            new Component[] {
-                new JLabel(configuration.getTranslator().__("Código") + ":"),
-                new JLabel(String.valueOf(flightEntity.getAirplane().getId()))
-            },
-            new Component[] {
-                new JButton(configuration.getTranslator().__("Código") + ":"),
-                new JButton(String.valueOf(flightEntity.getAirplane().getId()))
-            }
-        };
-
-        ColoredGridDependencyEntity gridEntity = new ColoredGridDependencyEntity();
-        gridEntity.setBorderColor(Color.BLACK)
-                  .setPanelSize(new Dimension(364, 30))
-                  .setLineColumns(new Integer[] {1, 2})
-                  .setBackgroundColor("gray", new Color(204, 204, 204))
-                  .setBackgroundColor("white", Color.WHITE)
-                  .setComponents(components)
-                  .setGridBagLayout(gridBagLayout)
-                  .setGridBagConstraints(gridBagConstraints);
-
-        buildZebraTable(this, gridEntity);
-    }
-
-    private void buildZebraTable(JPanel container, ColoredGridDependencyEntity gridEntity)
-    {
-        Integer count = 0;
-        for (Component[] fatherComponents : gridEntity.getComponents()) {
-            for (Component childComponents : fatherComponents) {
-                if (count == 0) {
-                    AbstractGridBagLayout.addGridBagElement(
-                        container,
-                        ColoredGridLayout.build(
-                            ColoredGridLayout.allBorders,
-                            gridEntity.getBorderColor(),
-                            gridEntity.getPanelSize(),
-                            gridEntity.getLineColumns(),
-                            gridEntity.getBackgroundColor("gray"),
-                            childComponents
-                        ),
-                        gridEntity.gridBagLayout,
-                        gridEntity.gridBagConstraints
-                    );
-                    System.out.println("0: " + childComponents.getClass().getName());
-                } else if (count == (components.length - 1)) {
-                    System.out.println((components.length - 1) + ": " + childComponents.getClass().getName());
-                } else {
-                    System.out.println("midle: " + childComponents.getClass().getName());
-                }
-            }
-            count++;
-        }
+        gridBagConstraints.insets = new Insets(0, 5, 0, 0);
+        JPanel bookingPanel = new JPanel(new GridLayout(1, 2));
+        bookingPanel.add(buildTextLabel(configuration.getTranslator().__("Quantidade de assentos a reservar") + ":"));
+        bookingPanel.add(new JTextField(2));
+        AbstractGridBagLayout.addGridBagElement(
+            this,
+            bookingPanel,
+            gridBagLayout,
+            gridBagConstraints
+        );
     }
 
     private JLabel buildTitleLabel(String message)
@@ -215,6 +162,13 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         JLabel title = new JLabel(message);
         title.setFont(new Font("Arial", Font.PLAIN, 18));
         return title;
+    }
+
+    private JLabel buildTextLabel(String message)
+    {
+        JLabel text = new JLabel(message);
+        text.setFont(new Font("Arial", Font.PLAIN, 10));
+        return text;
     }
 
     private JButton buildNavigationButton(ConfigurationEntity configuration)
@@ -231,6 +185,9 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         return navigationButton;
     }
 
+    /**
+     * Mock
+     */
     private FlightEntity buildFlightEntity()
     {
         FlightEntity flightEntity = new FlightEntity();
@@ -242,6 +199,9 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
                            .setDataPartida(new Date());
     }
 
+    /**
+     * Mock
+     */
     private AirplaneEntity buildAirplaneEntity()
     {
         AirplaneEntity airplaneEntity = new AirplaneEntity();
@@ -250,9 +210,13 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
                              .setModelo("ERJ 135")
                              .setAssentosTotal(37)
                              .setAssentosVagos(12)
+                             .setStatus("Reservado")
                              .setDataCadastro(new Date());
     }
 
+    /**
+     * Mock
+     */
     private AirportEntity buildAirportEntity()
     {
         AirportEntity airportEntity = new AirportEntity();

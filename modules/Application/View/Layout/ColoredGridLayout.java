@@ -1,5 +1,7 @@
 package project.modules.Application.View.Layout;
 
+import project.modules.Application.Entity.ColoredGridDependencyEntity;
+import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Component;
@@ -52,5 +54,30 @@ public class ColoredGridLayout
         setBorderPanel.add(marginPanel);
 
         return setBorderPanel;
+    }
+
+    public static void make(JPanel container, ColoredGridDependencyEntity gridEntity)
+    {
+        Integer count = 0;
+        for (Component[] components : gridEntity.getComponents()) {
+            AbstractGridBagLayout.addGridBagElement(
+                container,
+                build(
+                    count == 0
+                        ? ColoredGridLayout.allBorders
+                        : ColoredGridLayout.exceptTopBorders,
+                    gridEntity.getBorderColor(),
+                    gridEntity.getPanelSize(),
+                    gridEntity.getLineColumns(),
+                    count % 2 == 0
+                        ? gridEntity.getBackgroundColor("gray")
+                        : gridEntity.getBackgroundColor("white"),
+                    components
+                ),
+                gridEntity.getGridBagLayout(),
+                gridEntity.getGridBagConstraints()
+            );
+            count++;
+        }
     }
 }

@@ -14,7 +14,7 @@ public class ColoredGridDependencyEntity
     protected Color borderColor;
     protected Dimension panelSize;
     protected Integer[] lineColumns;
-    protected HashMap<String, Color> backgroundColors;
+    protected HashMap<String, Color> backgroundColors = new HashMap<String, Color>();
     protected Component[][] components;
 
     public ColoredGridDependencyEntity setGridBagLayout(GridBagLayout gridBagLayout)
@@ -26,12 +26,6 @@ public class ColoredGridDependencyEntity
     public ColoredGridDependencyEntity setGridBagConstraints(GridBagConstraints gridBagConstraints)
     {
         this.gridBagConstraints = gridBagConstraints;
-        return this;
-    }
-
-    public ColoredGridDependencyEntity setBorderColor(Color borderColor)
-    {
-        this.borderColor = borderColor;
         return this;
     }
 
@@ -55,7 +49,7 @@ public class ColoredGridDependencyEntity
 
     public ColoredGridDependencyEntity setBackgroundColor(String name, Color backgroundColor)
     {
-        this.backgroundColors.put(name, backgroundColor);
+        backgroundColors.put(name, backgroundColor);
         return this;
     }
 
