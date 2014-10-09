@@ -65,6 +65,11 @@ public class ConfigurationEntity
         return this;
     }
 
+    public Boolean hasModal(String name)
+    {
+        return modals.containsKey(name);
+    }
+
     public ConfigurationEntity setTemplate(AbstractTemplate template)
     {
         this.template = template;
