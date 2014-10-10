@@ -12,23 +12,23 @@ import java.text.DateFormat;
 
 public class Main
 {
-    // public Main()
-    // {
-    //     new ChooseLanguageView(new ConfigurationEntity());
-    // }
-
     public Main()
     {
-        AuthenticationController authenticationController = new AuthenticationController();
-        UserEntity userEntity = authenticationController.authenticate("gabrieltakeda", "eusoeu");
-        userEntity.setDataLogin(DateFormat.getDateTimeInstance().format(new Date()));
-
-        ConfigurationEntity configurationEntity = new ConfigurationEntity();
-        configurationEntity.setTranslator(new Translator("br"));
-        configurationEntity.setUser(userEntity);
-
-        new PassagePurchaseView(configurationEntity);
+        new ChooseLanguageView(new ConfigurationEntity());
     }
+
+    // public Main()
+    // {
+    //     AuthenticationController authenticationController = new AuthenticationController();
+    //     UserEntity userEntity = authenticationController.authenticate("gabrieltakeda", "eusoeu");
+    //     userEntity.setDataLogin(DateFormat.getDateTimeInstance().format(new Date()));
+
+    //     ConfigurationEntity configurationEntity = new ConfigurationEntity();
+    //     configurationEntity.setTranslator(new Translator("br"));
+    //     configurationEntity.setUser(userEntity);
+
+    //     new PassagePurchaseView(configurationEntity);
+    // }
 
     public static void main(String args[])
     {

@@ -11,7 +11,7 @@ public class ColoredGridDependencyEntity
 {
     protected GridBagLayout gridBagLayout;
     protected GridBagConstraints gridBagConstraints;
-    protected Color borderColor;
+    protected Color borderColor = Color.BLACK;
     protected Dimension panelSize;
     protected Integer[] lineColumns;
     protected HashMap<String, Color> backgroundColors = new HashMap<String, Color>();

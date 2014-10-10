@@ -4,6 +4,7 @@ import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
+import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Passage.View.ActionListener.PassageInformationsNavigationActionListener;
 import project.modules.Passenger.View.Panel.PassengerInformationsPanel;
 import project.modules.Flight.View.ActionListener.FlightAvailabilityConfirmationActionListener;
@@ -33,8 +34,9 @@ public class PassageInformationsPanel extends JPanel
 
         JPanel navigationButton = new JPanel(new BorderLayout());
         navigationButton.add(
-            buildNavigationButton(configuration),
-            BorderLayout.WEST
+            ComponentCreatePattern.buildNavigationButton(
+                new PassageInformationsNavigationActionListener(configuration)
+            ), BorderLayout.WEST
         );
         gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.gridwidth  =GridBagConstraints.REMAINDER;
@@ -50,7 +52,7 @@ public class PassageInformationsPanel extends JPanel
         gridBagConstraints.insets = new Insets(0, 0, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildTitleLabel(
+            ComponentCreatePattern.buildTitleLabel(
                 configuration.getTranslator().__("Informações da Passagem")
             ),
             gridBagLayout,
@@ -107,26 +109,5 @@ public class PassageInformationsPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
-    }
-
-    private JLabel buildTitleLabel(String message)
-    {
-        JLabel label = new JLabel(message);
-        label.setFont(new Font("Arial", Font.PLAIN, 18));
-        return label;
-    }
-
-    private JButton buildNavigationButton(ConfigurationEntity configuration)
-    {
-        JButton backButton = new JButton(
-            new ImageIcon(getClass().getResource("/images/buttonIcons/arrow-left.png"))
-        );
-        backButton.setPreferredSize(new Dimension(25, 25));
-        backButton.setFocusable(false);
-        backButton.setActionCommand("back");
-        backButton.addActionListener(
-            new PassageInformationsNavigationActionListener(configuration)
-        );
-        return backButton;
     }
 }

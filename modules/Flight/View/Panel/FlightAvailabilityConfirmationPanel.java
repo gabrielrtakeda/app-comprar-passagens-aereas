@@ -6,6 +6,7 @@ import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
+import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Flight.View.ActionListener.FlightAvailabilityConfirmationNavigationActionListener;
 import project.modules.Flight.View.ActionListener.FlightAvailabilityConfirmBookingActionListener;
 import project.modules.Flight.Entity.FlightEntity;
@@ -51,7 +52,9 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         gridBagConstraints.anchor = GridBagConstraints.NORTH;
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildNavigationButton(configuration),
+            ComponentCreatePattern.buildNavigationButton(
+                new FlightAvailabilityConfirmationNavigationActionListener(configuration)
+            ),
             gridBagLayout,
             gridBagConstraints
         );
@@ -62,7 +65,9 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         gridBagConstraints.insets = new Insets(0, 0, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildTitleLabel(configuration.getTranslator().__("Voo")),
+            ComponentCreatePattern.buildTitleLabel(
+                configuration.getTranslator().__("Voo")
+            ),
             gridBagLayout,
             gridBagConstraints
         );
@@ -89,7 +94,7 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         gridBagConstraints.insets = new Insets(20, 0, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildTitleLabel(configuration.getTranslator().__("Aeronave")),
+            ComponentCreatePattern.buildTitleLabel(configuration.getTranslator().__("Aeronave")),
             gridBagLayout,
             gridBagConstraints
         );
@@ -111,7 +116,9 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         gridBagConstraints.insets = new Insets(20, 0, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildTitleLabel(configuration.getTranslator().__("Aeronave")),
+            ComponentCreatePattern.buildTitleLabel(
+                configuration.getTranslator().__("Aeronave")
+            ),
             gridBagLayout,
             gridBagConstraints
         );
@@ -147,7 +154,9 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         gridBagConstraints.insets = new Insets(20, 5, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildTitleLabel(configuration.getTranslator().__("Reserva")),
+            ComponentCreatePattern.buildTitleLabel(
+                configuration.getTranslator().__("Reserva")
+            ),
             gridBagLayout,
             gridBagConstraints
         );
@@ -155,7 +164,7 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         gridBagConstraints.insets = new Insets(0, 5, 0, 0);
         JPanel bookingPanel = new JPanel(new GridLayout(1, 2));
         bookingPanel.add(
-            buildTextLabel(
+            ComponentCreatePattern.buildTextLabel(
                 configuration.getTranslator().__("Quantidade de assentos a reservar") + ":"
             )
         );
@@ -198,34 +207,6 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
-    }
-
-    private JLabel buildTitleLabel(String message)
-    {
-        JLabel title = new JLabel(message);
-        title.setFont(new Font("Arial", Font.PLAIN, 18));
-        return title;
-    }
-
-    private JLabel buildTextLabel(String message)
-    {
-        JLabel text = new JLabel(message);
-        text.setFont(new Font("Arial", Font.PLAIN, 10));
-        return text;
-    }
-
-    private JButton buildNavigationButton(ConfigurationEntity configuration)
-    {
-        JButton navigationButton = new JButton(
-            new ImageIcon(getClass().getResource("/images/buttonIcons/arrow-left.png"))
-        );
-        navigationButton.setPreferredSize(new Dimension(25, 25));
-        navigationButton.setFocusable(false);
-        navigationButton.setActionCommand("back");
-        navigationButton.addActionListener(
-            new FlightAvailabilityConfirmationNavigationActionListener(configuration)
-        );
-        return navigationButton;
     }
 
     /**

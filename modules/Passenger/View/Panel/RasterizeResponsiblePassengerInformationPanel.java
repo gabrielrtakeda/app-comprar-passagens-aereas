@@ -3,6 +3,7 @@ package project.modules.Passenger.View.Panel;
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
+import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Passenger.Entity.PassengerEntity;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -28,7 +29,9 @@ public class RasterizeResponsiblePassengerInformationPanel extends JPanel
         gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildTitleLabel(configuration.getTranslator().__("Passageiro Responsável")),
+            ComponentCreatePattern.buildSubTitleLabel(
+                configuration.getTranslator().__("Passageiro Responsável")
+            ),
             gridBagLayout,
             gridBagConstraints
         );
@@ -109,12 +112,5 @@ public class RasterizeResponsiblePassengerInformationPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
-    }
-
-    private JLabel buildTitleLabel(String message)
-    {
-        JLabel title = new JLabel(message);
-        title.setFont(new Font("Arial", Font.PLAIN, 14));
-        return title;
     }
 }

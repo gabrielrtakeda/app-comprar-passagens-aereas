@@ -2,6 +2,7 @@ package project.modules.Passenger.View.Panel;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Layout.ColoredGridLayout;
+import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Passenger.View.ActionListener.PassengerRegisterModalCloseActionListener;
 import project.modules.Passenger.View.ActionListener.PassengerRegisterActionListener;
 import java.awt.GridLayout;
@@ -27,7 +28,11 @@ public class PassengerRegisterFormPanel extends JPanel
     {
         super(new BorderLayout());
 
-        add(buildTitleLabel("Dados Cadastrais"), BorderLayout.NORTH);
+        add(
+            ComponentCreatePattern.buildTitleLabel(
+                configuration.getTranslator().__("Dados Cadastrais")
+            ), BorderLayout.NORTH
+        );
 
         JPanel formPanel = new JPanel(new GridLayout(6, 1));
         formPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
@@ -187,13 +192,6 @@ public class PassengerRegisterFormPanel extends JPanel
             )
         );
         add(buttonsPanel, BorderLayout.SOUTH);
-    }
-
-    private JLabel buildTitleLabel(String message)
-    {
-        JLabel label = new JLabel(message, JLabel.CENTER);
-        label.setFont(new Font("Arial", Font.PLAIN, 18));
-        return label;
     }
 
     private JButton buildButtonWithActionListener(JButton button, ActionListener actionListener)

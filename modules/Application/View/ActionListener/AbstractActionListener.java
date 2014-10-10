@@ -2,6 +2,8 @@ package project.modules.Application.View.ActionListener;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.Interface.ConfigurationInterface;
+import project.modules.Menu.View.MenuSupervisorView;
+import project.modules.Menu.View.MenuAtendenteView;
 import java.util.Map;
 import java.util.HashMap;
 import java.awt.event.ActionListener;
@@ -38,6 +40,15 @@ implements  ActionListener,
     {
         this.config = config;
 
+    }
+
+    public void goBackToMenu()
+    {
+        if (config.getUser().isSupervisor()) {
+            new MenuSupervisorView(config);
+        } else {
+            new MenuAtendenteView(config);
+        }
     }
 
     public ConfigurationEntity getConfiguration()

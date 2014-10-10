@@ -4,6 +4,7 @@ import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
+import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Passage.View.ActionListener.PassageInformationsResultNavigationActionListener;
 import project.modules.Passenger.View.Panel.PassengerInformationsResultPanel;
 import java.awt.GridBagLayout;
@@ -36,7 +37,7 @@ public class PassageInformationsResultPanel extends JPanel
         gridBagConstraints.insets = new Insets(0, 0, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildTitleLabel(
+            ComponentCreatePattern.buildTitleLabel(
                 configuration.getTranslator().__("Informações da Passagem")
             ),
             gridBagLayout,
@@ -74,12 +75,5 @@ public class PassageInformationsResultPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
-    }
-
-    private JLabel buildTitleLabel(String message)
-    {
-        JLabel label = new JLabel(message);
-        label.setFont(new Font("Arial", Font.PLAIN, 18));
-        return label;
     }
 }

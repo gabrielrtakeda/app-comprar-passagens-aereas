@@ -4,6 +4,7 @@ import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
+import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Passenger.Entity.PassengerEntity;
 import project.modules.Passenger.View.ActionListener.PassengerRegisterModalActionListener;
 import java.awt.GridBagLayout;
@@ -30,8 +31,9 @@ public class PassengerInformationsResultPanel extends JPanel
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.insets = new Insets(0, 0, 10, 0);
-        addGridBagElement(
-            buildTitleLabel(
+        AbstractGridBagLayout.addGridBagElement(
+            this,
+            ComponentCreatePattern.buildTitleLabel(
                 configuration.getTranslator().__("Informações dos Passageiros")
             ),
             gridBagLayout,
@@ -107,21 +109,6 @@ public class PassengerInformationsResultPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
-    }
-
-    private JLabel buildTitleLabel(String message)
-    {
-        JLabel label = new JLabel(message);
-        label.setFont(new Font("Arial", Font.PLAIN, 18));
-        return label;
-    }
-
-    private void addGridBagElement(Component component,
-                                   GridBagLayout gridBagLayout,
-                                   GridBagConstraints gridBagConstraints)
-    {
-        gridBagLayout.setConstraints(component, gridBagConstraints);
-        add(component);
     }
 
     /**

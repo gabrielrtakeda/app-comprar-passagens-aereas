@@ -2,6 +2,7 @@ package project.modules.Menu.View.Panel;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
+import project.modules.Flight.View.ActionListener.FlightRegisterViewActionListener;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -26,8 +27,9 @@ public class MenuSupervisorPanel extends JPanel
 
         supervisorPanel.add(new ImageButton(
             configuration.getTranslator().__("Cadastrar Voos"),
-            imageDirectoryPath + "calendar.png")
-        );
+            imageDirectoryPath + "calendar.png",
+            new FlightRegisterViewActionListener(configuration)
+        ));
         supervisorPanel.add(new ImageButton(
             configuration.getTranslator().__("Cadastrar Aeronaves"),
             imageDirectoryPath + "shipping.png"

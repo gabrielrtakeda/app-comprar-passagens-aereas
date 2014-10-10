@@ -4,6 +4,7 @@ import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
+import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Passage.View.ActionListener.PassageConsultNavigationActionListener;
 import project.modules.Passage.View.ActionListener.PassageConsultResultActionListener;
 import project.modules.Passenger.View.Panel.PassengerInformationsPanel;
@@ -52,7 +53,9 @@ public class PassageConsultPanel extends JPanel
             gridBagConstraints.anchor = GridBagConstraints.WEST;
             AbstractGridBagLayout.addGridBagElement(
                 this,
-                buildNavigationBackButton(configuration),
+                ComponentCreatePattern.buildNavigationButton(
+                    new PassageConsultNavigationActionListener(configuration)
+                ),
                 gridBagLayout,
                 gridBagConstraints
             );
@@ -63,7 +66,7 @@ public class PassageConsultPanel extends JPanel
         gridBagConstraints.insets = new Insets(0, 0, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildTitleLabel(
+            ComponentCreatePattern.buildTitleLabel(
                 configuration.getTranslator().__("Consultar Passagem")
             ),
             gridBagLayout,
@@ -104,26 +107,5 @@ public class PassageConsultPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
-    }
-
-    private JLabel buildTitleLabel(String message)
-    {
-        JLabel label = new JLabel(message);
-        label.setFont(new Font("Arial", Font.PLAIN, 18));
-        return label;
-    }
-
-    private JButton buildNavigationBackButton(ConfigurationEntity configuration)
-    {
-        JButton backButton = new JButton(
-            new ImageIcon(getClass().getResource("/images/buttonIcons/arrow-left.png"))
-        );
-        backButton.setPreferredSize(new Dimension(25, 25));
-        backButton.setFocusable(false);
-        backButton.setActionCommand("back");
-        backButton.addActionListener(
-            new PassageConsultNavigationActionListener(configuration)
-        );
-        return backButton;
     }
 }

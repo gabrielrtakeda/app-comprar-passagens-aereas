@@ -4,14 +4,17 @@ import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
+import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Passage.View.ActionListener.PassageConsultResultNavigationActionListener;
 import project.modules.Passage.View.ActionListener.PassageConsultResultActionListener;
+import project.modules.Passage.View.ActionListener.PassageCheckInActionListener;
 import project.modules.Passage.View.Panel.PassageConsultPanel;
 import project.modules.Passage.View.Panel.PassageInformationsResultPanel;
 import project.modules.Passenger.View.Panel.PassengerInformationsPanel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
@@ -36,7 +39,9 @@ public class PassageConsultResultPanel extends JPanel
         gridBagConstraints.anchor = GridBagConstraints.NORTH;
         AbstractGridBagLayout.addGridBagElement(
             this,
-            buildNavigationBackButton(configuration),
+            ComponentCreatePattern.buildNavigationButton(
+                new PassageConsultResultNavigationActionListener(configuration)
+            ),
             gridBagLayout,
             gridBagConstraints
         );
@@ -71,26 +76,31 @@ public class PassageConsultResultPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
-    }
 
-    private JLabel buildTitleLabel(String message)
-    {
-        JLabel label = new JLabel(message);
-        label.setFont(new Font("Arial", Font.PLAIN, 18));
-        return label;
-    }
-
-    private JButton buildNavigationBackButton(ConfigurationEntity configuration)
-    {
-        JButton backButton = new JButton(
-            new ImageIcon(getClass().getResource("/images/buttonIcons/arrow-left.png"))
+        // Buttons
+        JPanel buttonsPanel = new JPanel(new FlowLayout());
+        buttonsPanel.add(
+            new ImageButton(
+                configuration.getTranslator().__("Voltar"),
+                "/images/buttonIcons/arrow-left.png",
+                new Dimension(250, 40),
+                new PassageConsultResultNavigationActionListener(configuration)
+            )
         );
-        backButton.setPreferredSize(new Dimension(25, 25));
-        backButton.setFocusable(false);
-        backButton.setActionCommand("back");
-        backButton.addActionListener(
-            new PassageConsultResultNavigationActionListener(configuration)
+        buttonsPanel.add(
+            new ImageButton(
+                configuration.getTranslator().__("Check In"),
+                "/images/buttonIcons/check.png",
+                new Dimension(250, 40),
+                new PassageCheckInActionListener(configuration)
+            )
         );
-        return backButton;
+        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
+        AbstractGridBagLayout.addGridBagElement(
+            this,
+            buttonsPanel,
+            gridBagLayout,
+            gridBagConstraints
+        );
     }
 }
