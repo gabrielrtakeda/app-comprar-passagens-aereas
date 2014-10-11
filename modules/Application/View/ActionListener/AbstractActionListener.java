@@ -31,7 +31,7 @@ implements  ActionListener,
         return components.get(key);
     }
 
-    public Map<String, Component> getComponent()
+    public Map<String, Component> getComponents()
     {
         return components;
     }
@@ -42,7 +42,7 @@ implements  ActionListener,
 
     }
 
-    public void goBackToMenu()
+    public void goToMenu()
     {
         if (config.getUser().isSupervisor()) {
             new MenuSupervisorView(config);

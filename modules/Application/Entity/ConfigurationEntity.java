@@ -7,8 +7,11 @@ import project.modules.Application.View.Template.AbstractTemplate;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Translation.Translator;
 import project.modules.Authentication.Entity.UserEntity;
+import java.awt.Component;
+import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import javax.swing.JTextField;
 
 public class ConfigurationEntity
 {
@@ -20,6 +23,7 @@ public class ConfigurationEntity
     protected AbstractActionListener actionListener;
     protected Translator translator;
     protected UserEntity user;
+    protected Map<String, Map<String, Component>> parameters = new HashMap<String, Map<String, Component>>();
 
     public ConfigurationEntity setController(AbstractController controller)
     {
@@ -125,6 +129,33 @@ public class ConfigurationEntity
         return user;
     }
 
+    public ConfigurationEntity setParameter(String name, Map<String, Component> parameter)
+    {
+        this.parameters.put(name, parameter);
+        return this;
+    }
+
+    public Map<String, Component> getParameter(String name)
+    {
+        return this.parameters.get(name);
+    }
+
+    public Boolean hasParameter(String name)
+    {
+        return parameters.containsKey(name);
+    }
+
+    public ConfigurationEntity setParameters(Map<String, Map<String, Component>> parameters)
+    {
+        this.parameters = parameters;
+        return this;
+    }
+
+    public Map<String, Map<String, Component>> getParameters()
+    {
+        return this.parameters;
+    }
+
     private ConfigurationEntity build(ConfigurationEntity configuration)
     {
         return this .setController(configuration.getController())
@@ -132,7 +163,8 @@ public class ConfigurationEntity
                     .setTemplate(configuration.getTemplate())
                     .setActionListener(configuration.getActionListener())
                     .setTranslator(configuration.getTranslator())
-                    .setUser(configuration.getUser());
+                    .setUser(configuration.getUser())
+                    .setParameters(configuration.getParameters());
     }
 
     public String toString()
@@ -216,6 +248,34 @@ public class ConfigurationEntity
         } else {
             builder.append("null");
         }
+        builder.append("\n\t");
+
+        // Parameters
+        builder.append("Parameters: ");
+        if (getParameters().size() > 0) {
+            builder.append("[");
+            Iterator<String> keySetIterator = getParameters().keySet().iterator();
+            while (keySetIterator.hasNext()) {
+                String name = keySetIterator.next();
+                builder.append("\n\t\t");
+                builder.append("\"" + name + "\": [");
+
+                Iterator<String> parameterKeySetIterator = getParameter(name).keySet().iterator();
+                while (parameterKeySetIterator.hasNext()) {
+                    String parameterName = parameterKeySetIterator.next();
+                    builder.append("\n\t\t\t");
+                    System.out.println(getParameter(name).get(parameterName).getClass().getName());
+                    JTextField textField = (JTextField) getParameter(name).get(parameterName);
+                    builder.append("\"" + parameterName + "\"" + ": " + textField.getText());
+                }
+
+                builder.append("\n\t\t]");
+            }
+            builder.append("\n\t]");
+        } else {
+            builder.append("null");
+        }
+        builder.append("\n\t");
 
         builder.append("\n]");
 

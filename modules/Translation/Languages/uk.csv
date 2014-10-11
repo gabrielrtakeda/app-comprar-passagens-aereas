@@ -8,7 +8,7 @@ Check-in;Check-in
 Cancelamento;Cancellation
 Transferência;Transfer
 Cadastrar Voos;Register Flights
-Cadastrar Aeronaves;Register Aircraft
+Cadastrar Aeronaves;Register Airplane
 Consultar Vendas;Consult Sales
 Informações da Passagem;Passage Information
 Destino;Destination
@@ -53,7 +53,7 @@ Status;Status
 Valor;Price
 Aeronave;Airplane
 Aeroporto;Airport
-Descrição;Descrição
+Descrição;Description
 Código;Code
 Total de Assentos;Total Seats
 Assentos Vagos;Vacant Seats
@@ -74,3 +74,13 @@ Suspenso;Drop down
 Transferido;Transferred
 Pendente;Pending
 Continuar;Continue
+Cadastrar Aeronave;Airplane Register
+Dados da Aeronave;Airplane Data
+Modelo;Model
+Quantidade de Assentos;Amount of Seats
+Preencha o campo;Enter the Field
+Preencha os campos;Fill in the fields
+Campo Obrigatório;Obrigatory Field
+Confirma o cadastro da Aeronave?;It confirms the register of the Airplane?
+Confirmação de Cadastro da Aeronave;Airplane Register Confirmation
+Aeronave cadastrada com sucesso!;Successfully registered Airplane!

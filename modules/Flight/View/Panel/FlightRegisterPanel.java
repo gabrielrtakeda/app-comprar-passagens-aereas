@@ -89,6 +89,7 @@ public class FlightRegisterPanel extends JPanel
                 configuration.getTranslator().__("Continuar"),
                 "/images/buttonIcons/check.png",
                 new Dimension(225, 40)
+                // new FlightRegisterConfirmationPanel(configuration)
             )
         );
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);

@@ -3,6 +3,7 @@ package project.modules.Menu.View.Panel;
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Flight.View.ActionListener.FlightRegisterViewActionListener;
+import project.modules.Airplane.View.ActionListener.AirplaneRegisterViewActionListener;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -32,7 +33,8 @@ public class MenuSupervisorPanel extends JPanel
         ));
         supervisorPanel.add(new ImageButton(
             configuration.getTranslator().__("Cadastrar Aeronaves"),
-            imageDirectoryPath + "shipping.png"
+            imageDirectoryPath + "shipping.png",
+            new AirplaneRegisterViewActionListener(configuration)
         ));
         supervisorPanel.add(new ImageButton(
             configuration.getTranslator().__("Consultar Vendas"),
