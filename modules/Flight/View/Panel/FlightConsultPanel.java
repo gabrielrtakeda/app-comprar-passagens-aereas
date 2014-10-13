@@ -65,6 +65,7 @@ public class FlightConsultPanel extends JPanel
         };
 
         JPanel byIdPanel = new JPanel();
+
         // GridBagLayout gbl = new GridBagLayout();
         // GridBagConstraints gbc = new GridBagConstraints();
         // byIdPanel.setLayout(gbl);
