@@ -62,16 +62,22 @@ public class FlightRegisterPanel extends JPanel
         // Form
         Component[][] components = {
             new Component[] {
-                new JLabel(configuration.getTranslator().__("Aeronave") + ":"),
-                new JComboBox<String>(buildAirplaneData())
+                new JLabel(configuration.getTranslator().__("Aeronave") + ":")
+                // new JComboBox<String>(
+                //     configuration.getController().getAirplanes()
+                // )
             },
             new Component[] {
-                new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":"),
-                new JComboBox<String>(buildAirportData())
+                new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":")
+                // new JComboBox<String>(
+                //     configuration.getController().getAirports()
+                // )
             },
             new Component[] {
-                new JLabel(configuration.getTranslator().__("Status") + ":"),
-                new JComboBox<String>(buildStatusOptions(configuration))
+                new JLabel(configuration.getTranslator().__("Status") + ":")
+                // new JComboBox<String>(
+                //     configuration.getController().getStatusOptions(configuration)
+                // )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Valor") + " (R$) :"),
@@ -110,66 +116,5 @@ public class FlightRegisterPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
-    }
-
-    /**
-     * Mock
-     */
-    private String[] buildAirplaneData()
-    {
-        return new String[]
-        {
-            "ERJ 135", "ERJ 140", "ERJ 145", "ERJ 145 XR",
-            "E170", "E175", "E190", "E195",
-            "E175-E2", "E190-E2", "E195-E2"
-        };
-    }
-
-    /**
-     * Mock
-     */
-    private String[] buildAirportData()
-    {
-        return new String[]
-        {
-            "Aeroporto Internacional de San Francisco",
-            "Aeroporto Internacional John F. Kennedy",
-            "Aeroporto de LaGuardia",
-            "Aeroporto Internacional de Newark",
-            "Aeroporto Internacional Logan",
-            "Aeroporto Internacional O'Hare",
-            "Aeroporto Internacional Washington Dulles",
-            "Aeroporto Ronald Reagan",
-            "Aeroporto Internacional William B Hartsfield",
-            "Aeroporto Internacional de Orlando",
-            "Aeroporto Internacional de Miami",
-            "Aeroporto Internacional George Bush",
-            "Aeroporto Internacional de Dallas-Fort Worth",
-            "Aeroporto Internacional de Los Angeles",
-            "Aeroporto Internacional McCarran",
-            "Aeroporto Internacional de Honolulu",
-            "Aeroporto Internacional de San Francisco",
-            "Aeroporto Internacional Tacoma",
-            "Aeroporto Internacional de Denver",
-            "Aeroporto Internacional de Sky Harbor",
-            "Aeroporto Internacional Midway",
-            "Aeroporto Internacional de Salt Lake City"
-        };
-    }
-
-    /**
-     * Mock
-     */
-    private String[] buildStatusOptions(ConfigurationEntity configuration)
-    {
-        return new String[]
-        {
-            configuration.getTranslator().__("Cancelado"),
-            configuration.getTranslator().__("Adiado"),
-            configuration.getTranslator().__("Prorrogado"),
-            configuration.getTranslator().__("Suspenso"),
-            configuration.getTranslator().__("Transferido"),
-            configuration.getTranslator().__("Pendente")
-        };
     }
 }

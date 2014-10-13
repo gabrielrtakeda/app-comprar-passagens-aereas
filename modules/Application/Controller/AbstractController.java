@@ -5,18 +5,18 @@ import project.modules.Application.Interface.ConfigurationInterface;
 
 public abstract class AbstractController implements ConfigurationInterface
 {
-    protected ConfigurationEntity configuration;
+    protected ConfigurationEntity config;
 
     public AbstractController()
     {}
 
-    public void setConfiguration(ConfigurationEntity configuration)
+    public void setConfiguration(ConfigurationEntity config)
     {
-        this.configuration = configuration;
+        this.config = config;
     }
 
     public ConfigurationEntity getConfiguration()
     {
-        return configuration;
+        return config;
     }
 }

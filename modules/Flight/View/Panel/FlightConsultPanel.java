@@ -53,9 +53,15 @@ public class FlightConsultPanel extends JPanel
         JTabbedPane tabPane = new JTabbedPane();
 
         // Tab: Consultar pelo ID do Voo
+        gridBagConstraints = new GridBagConstraints();
+
+        JPanel byIdPanel = new JPanel();
+        byIdPanel.setLayout(gridBagLayout);
+        byIdPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
         Component[][] components = {
             new Component[] {
-                new JLabel(configuration.getTranslator().__("Código")),
+                new JLabel(configuration.getTranslator().__("Código") + ":"),
                 new JTextField()
             },
             new Component[] {
@@ -63,33 +69,42 @@ public class FlightConsultPanel extends JPanel
                 new JButton(configuration.getTranslator().__("Confirmar"))
             }
         };
-
-        JPanel byIdPanel = new JPanel();
-
-        // GridBagLayout gbl = new GridBagLayout();
-        // GridBagConstraints gbc = new GridBagConstraints();
-        // byIdPanel.setLayout(gbl);
-
-        // gbc.insets = new Insets(10, 10, 10, 10);
-        // gbc.gridwidth = GridBagConstraints.REMAINDER;
-        // JLabel labelTeste = new JLabel("teste");
-        // JLabel labelTeste2 = new JLabel("teste2");
-        // JLabel labelTeste3 = new JLabel("teste3");
-        // JLabel labelTeste4 = new JLabel("teste4");
-        // gbl.setConstraints(labelTeste, gbc);
-        // gbl.setConstraints(labelTeste2, gbc);
-        // gbl.setConstraints(labelTeste3, gbc);
-        // gbl.setConstraints(labelTeste4, gbc);
-        // byIdPanel.add(labelTeste);
-        // byIdPanel.add(labelTeste2);
-        // byIdPanel.add(labelTeste3);
-        // byIdPanel.add(labelTeste4);
-
-        // Cria Painel de Abas
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        ColoredGridLayout.make(
+            byIdPanel,
+            gridEntity.setGridBagConstraints(gridBagConstraints)
+                      .setComponents(components)
+        );
         tabPane.addTab(
             configuration.getTranslator().__("Por Código"),
             byIdPanel
         );
+
+        // Tab: Consulta mais abrangente
+        JPanel macroSearchPanel = new JPanel();
+        macroSearchPanel.setLayout(gridBagLayout);
+        macroSearchPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        System.out.println(configuration.toString());
+        components = new Component[][] {
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":")
+                // new JComboBox<String>(
+                //     configuration.getController().getAirports()
+                // )
+            }
+        };
+        ColoredGridLayout.make(
+            macroSearchPanel,
+            gridEntity.setGridBagConstraints(gridBagConstraints)
+                      .setComponents(components)
+        );
+        tabPane.addTab(
+            "Macro Search",
+            macroSearchPanel
+        );
+
+        // Cria Painel de Abas
         add(tabPane);
     }
 }
