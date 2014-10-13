@@ -1,10 +1,15 @@
 package project.modules.Passenger.View.Panel;
 
 import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Entity.ColoredGridDependencyEntity;
+import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
+import project.modules.Application.View.Button.ImageButton;
 import project.modules.Passenger.View.ActionListener.PassengerRegisterModalCloseActionListener;
 import project.modules.Passenger.View.ActionListener.PassengerRegisterActionListener;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
@@ -19,6 +24,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
 
@@ -26,177 +32,122 @@ public class PassengerRegisterFormPanel extends JPanel
 {
     public PassengerRegisterFormPanel(ConfigurationEntity configuration)
     {
-        super(new BorderLayout());
+        GridBagLayout gridBagLayout = new GridBagLayout();
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        setLayout(gridBagLayout);
 
-        add(
+        // Entidade de Dependência do Grid
+        ColoredGridDependencyEntity gridEntity = new ColoredGridDependencyEntity();
+        gridEntity.setBorderColor(Color.BLACK)
+                  .setPanelSize(new Dimension(400, 30))
+                  .setLineColumns(new Integer[] {1, 2})
+                  .setBackgroundColor("gray", new Color(204, 204, 204))
+                  .setBackgroundColor("white", Color.WHITE)
+                  .setGridBagLayout(gridBagLayout);
+
+        // Título
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.insets = new Insets(0, 0, 10, 0);
+        AbstractGridBagLayout.addGridBagElement(
+            this,
             ComponentCreatePattern.buildTitleLabel(
                 configuration.getTranslator().__("Dados Cadastrais")
-            ), BorderLayout.NORTH
-        );
-
-        JPanel formPanel = new JPanel(new GridLayout(6, 1));
-        formPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-
-        Dimension lineDimension = new Dimension(400, 30);
-        Integer[] lineColumns = {1, 2};
-        Color grayBackground = new Color(204, 204, 204);
-        Color whiteBackground = new Color(255, 255, 255);
-
-        String[] formasTratamento = {
-            configuration.getTranslator().__("Sr."),
-            configuration.getTranslator().__("Sra."),
-            configuration.getTranslator().__("Srta."),
-            configuration.getTranslator().__("Dr."),
-            configuration.getTranslator().__("Dra.")
-        };
-        JComboBox<String> formaTratamentoComboBox = new JComboBox<String>(formasTratamento);
-        Component[] components = {
-            new JLabel(configuration.getTranslator().__("Forma de tratamento") + ":"),
-            formaTratamentoComboBox,
-        };
-        formPanel.add(
-            ColoredGridLayout.build(
-                ColoredGridLayout.allBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                grayBackground,
-                components
-            )
-        );
-
-        components = new Component[] {
-            new JLabel(
-                configuration.getTranslator().__("Data de Nascimento") + ":"
             ),
-            new JTextField()
+            gridBagLayout,
+            gridBagConstraints
+        );
+
+        // Formulário: Dados Cadastrais
+        Component[][] components = {
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Forma de tratamento") + ":"),
+                new JComboBox<String>(
+                    new String[] {
+                        configuration.getTranslator().__("Selecione..."),
+                        configuration.getTranslator().__("Sr."),
+                        configuration.getTranslator().__("Sra."),
+                        configuration.getTranslator().__("Srta."),
+                        configuration.getTranslator().__("Dr."),
+                        configuration.getTranslator().__("Dra.")
+                    }
+                )
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Data de Nascimento") + ":"),
+                new JTextField()
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Nome Completo") + ":"),
+                new JTextField()
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Responsável pela compra?")),
+                buildResponsiblePassengerRadioGroup(configuration)
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Email") + ":"),
+                new JTextField()
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Telefone para contato") + ":"),
+                new JTextField()
+            },
         };
-        formPanel.add(
-            ColoredGridLayout.build(
-                ColoredGridLayout.exceptTopBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                whiteBackground,
-                components
-            )
+        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
+        ColoredGridLayout.make(
+            this,
+            gridEntity.setGridBagConstraints(gridBagConstraints)
+                      .setComponents(components)
         );
 
-        components = new Component[] {
-            new JLabel(
-                configuration.getTranslator().__("Nome Completo") + ":"
-            ),
-            new JTextField()
-        };
-        formPanel.add(
-            ColoredGridLayout.build(
-                ColoredGridLayout.exceptTopBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                grayBackground,
-                components
-            )
-        );
-
-        JPanel responsavelOpcoesPanel = new JPanel(new FlowLayout());
-        responsavelOpcoesPanel.setBackground(whiteBackground);
-
-        JRadioButton simRadioButton = new JRadioButton();
-        simRadioButton.setBackground(whiteBackground);
-        responsavelOpcoesPanel.add(simRadioButton);
-        responsavelOpcoesPanel.add(
-            new JLabel(
-                configuration.getTranslator().__("Sim")
-            )
-        );
-
-        JRadioButton naoRadioButton = new JRadioButton();
-        naoRadioButton.setBackground(whiteBackground);
-        responsavelOpcoesPanel.add(naoRadioButton);
-        responsavelOpcoesPanel.add(
-            new JLabel(
-                configuration.getTranslator().__("Não")
-            )
-        );
-
-        components = new Component[] {
-            new JLabel(
-                configuration.getTranslator().__("Responsável pela compra?")
-            ),
-            responsavelOpcoesPanel
-        };
-        formPanel.add(
-            ColoredGridLayout.build(
-                ColoredGridLayout.exceptTopBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                whiteBackground,
-                components
-            )
-        );
-
-        components = new Component[] {
-            new JLabel(
-                configuration.getTranslator().__("Email") + ":"
-            ),
-            new JTextField()
-        };
-        formPanel.add(
-            ColoredGridLayout.build(
-                ColoredGridLayout.exceptTopBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                grayBackground,
-                components
-            )
-        );
-
-        components = new Component[] {
-            new JLabel(
-                configuration.getTranslator().__("Telefone para contato") + ":"
-            ),
-            new JTextField()
-        };
-        formPanel.add(
-            ColoredGridLayout.build(
-                ColoredGridLayout.exceptTopBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                whiteBackground,
-                components
-            )
-        );
-        add(formPanel, BorderLayout.CENTER);
-
-        JPanel buttonsPanel = new JPanel(new GridLayout(1, 2));
-        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
-        buttonsPanel.setPreferredSize(new Dimension(200, 60));
+        JPanel buttonsPanel = new JPanel(new FlowLayout());
         buttonsPanel.add(
-            buildButtonWithActionListener(
-                new JButton(
-                    configuration.getTranslator().__("Voltar")
-                ),
+            new ImageButton(
+                configuration.getTranslator().__("Voltar"),
+                "/images/buttonIcons/arrow-left.png",
+                new Dimension(200, 40),
                 new PassengerRegisterModalCloseActionListener(configuration)
             )
         );
         buttonsPanel.add(
-            buildButtonWithActionListener(
-                new JButton(
-                    configuration.getTranslator().__("Cadastrar")
-                ),
+            new ImageButton(
+                configuration.getTranslator().__("Cadastrar"),
+                "/images/buttonIcons/check.png",
+                new Dimension(200, 40),
                 new PassengerRegisterActionListener(configuration)
             )
         );
-        add(buttonsPanel, BorderLayout.SOUTH);
+        gridBagConstraints.insets = new Insets(10, 0, 0, 0);
+        AbstractGridBagLayout.addGridBagElement(
+            this,
+            buttonsPanel,
+            gridBagLayout,
+            gridBagConstraints
+        );
     }
 
     private JButton buildButtonWithActionListener(JButton button, ActionListener actionListener)
     {
         button.addActionListener(actionListener);
         return button;
+    }
+
+    private JPanel buildResponsiblePassengerRadioGroup(ConfigurationEntity configuration)
+    {
+        JPanel responsavelOpcoesPanel = new JPanel(new FlowLayout());
+        responsavelOpcoesPanel.setBackground(Color.WHITE);
+
+        JRadioButton simRadioButton = new JRadioButton(configuration.getTranslator().__("Sim"));
+        JRadioButton naoRadioButton = new JRadioButton(configuration.getTranslator().__("Não"));
+
+        ButtonGroup responsibleRadioGroup = new ButtonGroup();
+        responsibleRadioGroup.add(simRadioButton);
+        responsibleRadioGroup.add(naoRadioButton);
+
+        responsavelOpcoesPanel.add(simRadioButton);
+        responsavelOpcoesPanel.add(naoRadioButton);
+
+        return responsavelOpcoesPanel;
     }
 }

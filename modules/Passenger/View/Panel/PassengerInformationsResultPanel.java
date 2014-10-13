@@ -1,6 +1,7 @@
 package project.modules.Passenger.View.Panel;
 
 import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Entity.ColoredGridDependencyEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
@@ -24,8 +25,16 @@ public class PassengerInformationsResultPanel extends JPanel
     {
         GridBagLayout gridBagLayout = new GridBagLayout();
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
-
         setLayout(gridBagLayout);
+
+        // Entidade do Grid
+        ColoredGridDependencyEntity gridEntity = new ColoredGridDependencyEntity();
+        gridEntity.setGridBagLayout(gridBagLayout)
+                  .setGridBagConstraints(gridBagConstraints)
+                  .setPanelSize(new Dimension(725, 30))
+                  .setLineColumns(new Integer[] {1, 4})
+                  .setBackgroundColor("gray", new Color(204, 204, 204))
+                  .setBackgroundColor("white", Color.WHITE);
 
         // Informações dos Passageiros
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
@@ -40,52 +49,27 @@ public class PassengerInformationsResultPanel extends JPanel
             gridBagConstraints
         );
 
-        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
-        Integer[] lineColumns = {1, 4};
-        Dimension lineDimension = new Dimension(725, 30);
-
-        Component[] components = {
+        Component[][] components = {
             // Perfil Adulto
-            new JLabel(configuration.getTranslator().__("Perfil") + ":"),
-            new JLabel("Adulto (Temporário)"),
-            new JLabel(configuration.getTranslator().__("Total de Passageiros") + ":"),
-            new JLabel("2 (Temporário)")
-        };
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            ColoredGridLayout.build(
-                ColoredGridLayout.allBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                new Color(204, 204, 204),
-                components
-            ),
-            gridBagLayout,
-            gridBagConstraints
-        );
-
-        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
-        components = new Component[] {
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Perfil") + ":"),
+                new JLabel("Adulto (Temporário)"),
+                new JLabel(configuration.getTranslator().__("Total de Passageiros") + ":"),
+                new JLabel("2 (Temporário)")
+            },
             // Perfil Criança
-            new JLabel(configuration.getTranslator().__("Perfil") + ":"),
-            new JLabel("Criança (Temporário)"),
-            new JLabel(configuration.getTranslator().__("Total de Passageiros") + ":"),
-            new JLabel("1 (Temporário)"),
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Perfil") + ":"),
+                new JLabel("Criança (Temporário)"),
+                new JLabel(configuration.getTranslator().__("Total de Passageiros") + ":"),
+                new JLabel("1 (Temporário)")
+            }
         };
-        AbstractGridBagLayout.addGridBagElement(
+        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
+        ColoredGridLayout.make(
             this,
-            ColoredGridLayout.build(
-                ColoredGridLayout.exceptTopBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                Color.WHITE,
-                components
-            ),
-            gridBagLayout,
-            gridBagConstraints
+            gridEntity.setGridBagConstraints(gridBagConstraints)
+                      .setComponents(components)
         );
 
         // Passageiro Responsável

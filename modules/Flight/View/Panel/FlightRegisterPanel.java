@@ -35,6 +35,17 @@ public class FlightRegisterPanel extends JPanel
                   .setBackgroundColor("gray", new Color(204, 204, 204))
                   .setBackgroundColor("white", Color.WHITE);
 
+        // Navigation Button
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        AbstractGridBagLayout.addGridBagElement(
+            this,
+            ComponentCreatePattern.buildNavigationButton(
+                new FlightRegisterNavigationActionListener(configuration)
+            ),
+            gridBagLayout,
+            gridBagConstraints
+        );
+
         // Título
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;

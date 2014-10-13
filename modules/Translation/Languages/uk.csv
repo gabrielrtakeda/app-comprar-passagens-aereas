@@ -64,6 +64,9 @@ Cancelar;Cancel
 Check In efetuado com sucesso;Check In completed successfully
 Sucesso;Success
 Cadastrar Voo;Flight Register
+Consultar Voo;Consult Flight
+Editar Voo;Edit Flight
+Cancelar Voo;Cancel Flight
 Dados Cadastrais;Registration Data
 Dados do Voo;Flight Data
 Aeroporto de Destino;Destination Airport
@@ -84,3 +87,13 @@ Campo Obrigatório;Obrigatory Field
 Confirma o cadastro da Aeronave?;It confirms the register of the Airplane?
 Confirmação de Cadastro da Aeronave;Airplane Register Confirmation
 Aeronave cadastrada com sucesso!;Successfully registered Airplane!
+Confirma o Check In?;Confirms Check In?
+Confirmação do Check In;Check In Confirmation
+Selecione...;Choose...
+Voos;Flights
+Cadastrar;Register
+Consultar;Consult
+Editar;Edit
+Excluir;Delete
+Consultar Voo;Flight Consult
+Por Código;By Code

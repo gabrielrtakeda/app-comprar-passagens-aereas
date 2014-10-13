@@ -28,7 +28,7 @@ public class ApplicationBaseLayoutFooterPanel extends JPanel
                        Boolean showLoginDatetime)
     {
         setLayout(new BorderLayout());
-        setBorder(new EmptyBorder(20, 3, 3, 3));
+        setBorder(new EmptyBorder(10, 3, 3, 3));
         add(
             new ChooseLanguageWidgetPanel(configuration),
             BorderLayout.WEST

@@ -15,7 +15,7 @@ public class ApplicationBaseLayoutHeaderPanel extends JPanel
     public ApplicationBaseLayoutHeaderPanel(ConfigurationEntity configuration)
     {
         setLayout(new BorderLayout());
-        setBorder(new EmptyBorder(3, 3, 20, 3));
+        setBorder(new EmptyBorder(3, 3, 10, 3));
         add(
             buildWelcomeLabel(
                 configuration.getTranslator().__("Seja bem-vindo(a)") + " " +

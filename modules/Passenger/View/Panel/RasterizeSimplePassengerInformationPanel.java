@@ -1,6 +1,7 @@
 package project.modules.Passenger.View.Panel;
 
 import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Entity.ColoredGridDependencyEntity;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Passenger.Entity.PassengerEntity;
@@ -23,6 +24,15 @@ public class RasterizeSimplePassengerInformationPanel extends JPanel
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         setLayout(gridBagLayout);
 
+        // Entidade do Grid
+        ColoredGridDependencyEntity gridEntity = new ColoredGridDependencyEntity();
+        gridEntity.setGridBagLayout(gridBagLayout)
+                  .setGridBagConstraints(gridBagConstraints)
+                  .setPanelSize(new Dimension(450, 30))
+                  .setLineColumns(new Integer[] {1, 4})
+                  .setBackgroundColor("gray", new Color(204, 204, 204))
+                  .setBackgroundColor("white", Color.WHITE);
+
         // Especificação das colunas
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
@@ -39,17 +49,36 @@ public class RasterizeSimplePassengerInformationPanel extends JPanel
         );
 
         // Dados dos Passageiros
-        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
-        for (JPanel line : preparePassengersColoredGrid(passengers)) {
-            AbstractGridBagLayout.addGridBagElement(
-                this,
-                line,
-                gridBagLayout,
-                gridBagConstraints
-            );
+        Integer count = 0;
+        Component[][] components = new Component[passengers.length][2];
+        for (PassengerEntity passenger : passengers) {
+            JLabel nome = new JLabel(
+                passenger.getFormaTratamento() + " " +
+                passenger.getNomeCompleto());
+            nome.setHorizontalAlignment(JLabel.CENTER);
+
+            JLabel perfil = new JLabel(passenger.getPerfil());
+            perfil.setHorizontalAlignment(JLabel.CENTER);
+
+            components[count][0] = nome;
+            components[count][1] = perfil;
+            count++;
         }
+        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
+        ColoredGridLayout.make(
+            this,
+            gridEntity.setGridBagConstraints(gridBagConstraints)
+                      .setComponents(components)
+        );
     }
 
+    /**
+     * Método similar ao ColoredGridLayout.make(),
+     * mas com a diferença que centraliza o texto.
+     * @suggest Passar para a classe ColoredGridLayout
+     *          e utilizar estaticamente.
+     * @return JPanel
+     */
     private JPanel buildColumnsSpecification(String[] columnsList)
     {
         JPanel columnsPanel = new JPanel(
@@ -63,52 +92,5 @@ public class RasterizeSimplePassengerInformationPanel extends JPanel
             columnsPanel.add(columnLabel);
         }
         return columnsPanel;
-    }
-
-    private JPanel[] preparePassengersColoredGrid(PassengerEntity[] passengers)
-    {
-        JPanel[] fullGrid = new JPanel[passengers.length];
-        Integer count = 0;
-        JPanel colorGrid = new JPanel();
-
-        for (PassengerEntity passenger : passengers) {
-            JLabel nome = new JLabel(
-                passenger.getFormaTratamento() + " " +
-                passenger.getNomeCompleto());
-            nome.setHorizontalAlignment(JLabel.CENTER);
-
-            JLabel perfil = new JLabel(passenger.getPerfil());
-            perfil.setHorizontalAlignment(JLabel.CENTER);
-
-            Component[] components = { nome, perfil };
-            Integer[] lineColumns = {1, 2};
-
-            if (count == 0) {
-                colorGrid =
-                    ColoredGridLayout.build(
-                        ColoredGridLayout.allBorders,
-                        Color.BLACK,
-                        new Dimension(450, 30),
-                        lineColumns,
-                        new Color(204, 204, 204),
-                        components
-                    );
-            } else {
-                colorGrid =
-                    ColoredGridLayout.build(
-                        ColoredGridLayout.exceptTopBorders,
-                        Color.BLACK,
-                        new Dimension(450, 30),
-                        lineColumns,
-                        count % 2 == 0
-                            ? new Color(204, 204, 204)
-                            : Color.WHITE,
-                        components
-                    );
-            }
-            fullGrid[count] = colorGrid;
-            count++;
-        }
-        return fullGrid;
     }
 }

@@ -38,8 +38,7 @@ public class PassageInformationsPanel extends JPanel
                 new PassageInformationsNavigationActionListener(configuration)
             ), BorderLayout.WEST
         );
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.gridwidth  =GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = GridBagConstraints.NORTH;
         AbstractGridBagLayout.addGridBagElement(
             this,
             navigationButton,

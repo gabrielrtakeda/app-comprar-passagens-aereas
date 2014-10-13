@@ -1,6 +1,7 @@
 package project.modules.Passenger.View.Panel;
 
 import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Entity.ColoredGridDependencyEntity;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
@@ -24,6 +25,16 @@ public class RasterizeResponsiblePassengerInformationPanel extends JPanel
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         setLayout(gridBagLayout);
 
+        // Entidade do Grid
+        ColoredGridDependencyEntity gridEntity = new ColoredGridDependencyEntity();
+        gridEntity.setGridBagLayout(gridBagLayout)
+                  .setGridBagConstraints(gridBagConstraints)
+                  .setPanelSize(new Dimension(725, 30))
+                  .setLineColumns(new Integer[] {1, 4})
+                  .setBackgroundColor("gray", new Color(204, 204, 204))
+                  .setBackgroundColor("white", Color.WHITE);
+
+        // Título
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.insets = new Insets(10, 0, 10, 0);
@@ -36,81 +47,42 @@ public class RasterizeResponsiblePassengerInformationPanel extends JPanel
             gridBagConstraints
         );
 
+        // Formulário: Passageiro Responsável
+        Component[][] components = {
+            // Nome | Data de Nascimento
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Nome Completo") + ":"),
+                new JLabel(
+                    passengerEntity.getFormaTratamento() + " " +
+                    passengerEntity.getNomeCompleto()
+                ),
+                new JLabel(configuration.getTranslator().__("Data de Nascimento") + ":"),
+                new JLabel(passengerEntity.getDataNascimento())
+            },
+            // Perfil | Responsável
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Perfil") + ":"),
+                new JLabel(passengerEntity.getPerfil()),
+                new JLabel(configuration.getTranslator().__("Responsável") + ":"),
+                new JLabel(
+                    passengerEntity.getResponsavel()
+                    ? configuration.getTranslator().__("Sim")
+                    : configuration.getTranslator().__("Não")
+                )
+            },
+            // Email | Telefone para contato
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Email") + ":"),
+                new JLabel(passengerEntity.getEmail()),
+                new JLabel(configuration.getTranslator().__("Telefone para contato") + ":"),
+                new JLabel(passengerEntity.getTelefone()),
+            }
+        };
         gridBagConstraints.insets = new Insets(0, 0, 0, 0);
-        Dimension lineDimension = new Dimension(725, 30);
-        Integer[] lineColumns = {1, 4};
-
-        // Nome, Data de Nascimento
-        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        Component[] components = {
-            new JLabel(configuration.getTranslator().__("Nome Completo") + ":"),
-            new JLabel(
-                passengerEntity.getFormaTratamento() + " " +
-                passengerEntity.getNomeCompleto()
-            ),
-            new JLabel(configuration.getTranslator().__("Data de Nascimento") + ":"),
-            new JLabel(passengerEntity.getDataNascimento()),
-        };
-        AbstractGridBagLayout.addGridBagElement(
+        ColoredGridLayout.make(
             this,
-            ColoredGridLayout.build(
-                ColoredGridLayout.allBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                new Color(204, 204, 204),
-                components
-            ),
-            gridBagLayout,
-            gridBagConstraints
-        );
-
-        // Perfil, Responsável
-        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        components = new Component[] {
-            new JLabel(configuration.getTranslator().__("Perfil") + ":"),
-            new JLabel(passengerEntity.getPerfil()),
-            new JLabel(configuration.getTranslator().__("Responsável") + ":"),
-            new JLabel(
-                passengerEntity.getResponsavel()
-                ? configuration.getTranslator().__("Sim")
-                : configuration.getTranslator().__("Não")
-            ),
-        };
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            ColoredGridLayout.build(
-                ColoredGridLayout.sidesBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                Color.WHITE,
-                components
-            ),
-            gridBagLayout,
-            gridBagConstraints
-        );
-
-        // Email, Telefone para contato
-        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        components = new Component[] {
-            new JLabel(configuration.getTranslator().__("Email") + ":"),
-            new JLabel(passengerEntity.getEmail()),
-            new JLabel(configuration.getTranslator().__("Telefone para contato") + ":"),
-            new JLabel(passengerEntity.getTelefone()),
-        };
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            ColoredGridLayout.build(
-                ColoredGridLayout.allBorders,
-                Color.BLACK,
-                lineDimension,
-                lineColumns,
-                new Color(204, 204, 204),
-                components
-            ),
-            gridBagLayout,
-            gridBagConstraints
+            gridEntity.setGridBagConstraints(gridBagConstraints)
+                      .setComponents(components)
         );
     }
 }

@@ -12,6 +12,9 @@ import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 
+/**
+ * Classe não utilizada no momento.
+ */
 public class FlightAvailabilityConfirmBookingActionListener extends AbstractActionListener
 {
     public FlightAvailabilityConfirmBookingActionListener(ConfigurationEntity configuration)

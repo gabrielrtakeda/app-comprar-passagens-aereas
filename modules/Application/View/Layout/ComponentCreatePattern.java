@@ -45,32 +45,4 @@ public class ComponentCreatePattern
         navigationButton.addActionListener(actionListener);
         return navigationButton;
     }
-
-    // private JButton buildNavigationButton(ConfigurationEntity configuration)
-    // {
-    //     JButton backButton = new JButton(
-    //         new ImageIcon(getClass().getResource("/images/buttonIcons/arrow-left.png"))
-    //     );
-    //     backButton.setPreferredSize(new Dimension(25, 25));
-    //     backButton.setFocusable(false);
-    //     backButton.setActionCommand("back");
-    //     backButton.addActionListener(
-    //         new PassageInformationsNavigationActionListener(configuration)
-    //     );
-    //     return backButton;
-    // }
-
-    // private JButton buildNavigationBackButton(ConfigurationEntity configuration)
-    // {
-    //     JButton backButton = new JButton(
-    //         new ImageIcon(getClass().getResource("/images/buttonIcons/arrow-left.png"))
-    //     );
-    //     backButton.setPreferredSize(new Dimension(25, 25));
-    //     backButton.setFocusable(false);
-    //     backButton.setActionCommand("back");
-    //     backButton.addActionListener(
-    //         new PassageConsultNavigationActionListener(configuration)
-    //     );
-    //     return backButton;
-    // }
 }

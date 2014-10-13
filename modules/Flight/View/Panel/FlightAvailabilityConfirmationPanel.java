@@ -7,8 +7,8 @@ import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
+import project.modules.Passenger.View.ActionListener.ResponsiblePassengerRegistrationViewActionListener;
 import project.modules.Flight.View.ActionListener.FlightAvailabilityConfirmationNavigationActionListener;
-import project.modules.Flight.View.ActionListener.FlightAvailabilityConfirmBookingActionListener;
 import project.modules.Flight.Entity.FlightEntity;
 import project.modules.Airplane.Entity.AirplaneEntity;
 import project.modules.Airport.Entity.AirportEntity;
@@ -44,9 +44,6 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
                   .setBackgroundColor("gray", new Color(204, 204, 204))
                   .setBackgroundColor("white", Color.WHITE)
                   .setGridBagLayout(gridBagLayout);
-
-        AbstractActionListener confirmBookingActionListener =
-            new FlightAvailabilityConfirmBookingActionListener(configuration);
 
         // Navigation Button
         gridBagConstraints.anchor = GridBagConstraints.NORTH;
@@ -148,39 +145,6 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
                       .setComponents(componentsMatrix)
         );
 
-        // Reserva
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        gridBagConstraints.insets = new Insets(20, 5, 10, 0);
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            ComponentCreatePattern.buildTitleLabel(
-                configuration.getTranslator().__("Reserva")
-            ),
-            gridBagLayout,
-            gridBagConstraints
-        );
-
-        gridBagConstraints.insets = new Insets(0, 5, 0, 0);
-        JPanel bookingPanel = new JPanel(new GridLayout(1, 2));
-        bookingPanel.add(
-            ComponentCreatePattern.buildTextLabel(
-                configuration.getTranslator().__("Quantidade de assentos a reservar") + ":"
-            )
-        );
-        bookingPanel.add(
-            confirmBookingActionListener.addComponent(
-                "passenger-quantity",
-                new JTextField(2)
-            )
-        );
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            bookingPanel,
-            gridBagLayout,
-            gridBagConstraints
-        );
-
         // Buttons
         JPanel buttons = new JPanel(new FlowLayout());
         buttons.add(
@@ -197,7 +161,7 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
                 configuration.getTranslator().__("Confirmar"),
                 "/images/buttonIcons/check.png",
                 new Dimension(180, 40),
-                confirmBookingActionListener
+                new ResponsiblePassengerRegistrationViewActionListener(configuration)
             )
         );
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);

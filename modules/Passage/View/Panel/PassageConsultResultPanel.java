@@ -60,13 +60,15 @@ public class PassageConsultResultPanel extends JPanel
         );
 
         // Separation Line
-        gridBagConstraints.insets = new Insets(10, 0, 10, 0);
-        AbstractGridBagLayout.addGridBagElement(
-            this,
-            new JLabel("Line Here"),
-            gridBagLayout,
-            gridBagConstraints
-        );
+        // JLabel lineText = new JLabel("Line Here");
+        // lineText.setFont(new Font("Arial", Font.PLAIN, 10));
+        // gridBagConstraints.insets = new Insets(10, 0, 10, 0);
+        // AbstractGridBagLayout.addGridBagElement(
+        //     this,
+        //     lineText,
+        //     gridBagLayout,
+        //     gridBagConstraints
+        // );
 
         // Informações da Passagem
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
