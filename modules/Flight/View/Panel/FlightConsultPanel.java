@@ -5,6 +5,9 @@ import project.modules.Application.Entity.ColoredGridDependencyEntity;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
+import project.modules.Application.View.Button.ImageButton;
+import project.modules.Flight.Controller.FlightController;
+import project.modules.Flight.View.ActionListener.FlightConsultNavigationActionListener;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -65,8 +68,15 @@ public class FlightConsultPanel extends JPanel
                 new JTextField()
             },
             new Component[] {
-                new JButton(configuration.getTranslator().__("Voltar")),
-                new JButton(configuration.getTranslator().__("Confirmar"))
+                new ImageButton(
+                    configuration.getTranslator().__("Voltar"),
+                    "/images/buttonIcons/arrow-left.png",
+                    new FlightConsultNavigationActionListener(configuration)
+                ),
+                new ImageButton(
+                    configuration.getTranslator().__("Consultar"),
+                    "/images/buttonIcons/search.png"
+                )
             }
         };
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
@@ -85,13 +95,33 @@ public class FlightConsultPanel extends JPanel
         macroSearchPanel.setLayout(gridBagLayout);
         macroSearchPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        System.out.println(configuration.toString());
         components = new Component[][] {
             new Component[] {
-                new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":")
-                // new JComboBox<String>(
-                //     configuration.getController().getAirports()
-                // )
+                new JLabel(configuration.getTranslator().__("Aeroporto de Origem") + ":"),
+                new JComboBox(
+                    getController(configuration).getAirports()
+                )
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":"),
+                new JComboBox(
+                    getController(configuration).getAirports()
+                )
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Data Partida") + ":"),
+                new JTextField()
+            },
+            new Component[] {
+                new ImageButton(
+                    configuration.getTranslator().__("Voltar"),
+                    "/images/buttonIcons/arrow-left.png",
+                    new FlightConsultNavigationActionListener(configuration)
+                ),
+                new ImageButton(
+                    configuration.getTranslator().__("Consultar"),
+                    "/images/buttonIcons/search.png"
+                )
             }
         };
         ColoredGridLayout.make(
@@ -106,5 +136,10 @@ public class FlightConsultPanel extends JPanel
 
         // Cria Painel de Abas
         add(tabPane);
+    }
+
+    public FlightController getController(ConfigurationEntity configuration)
+    {
+        return (FlightController) configuration.getController();
     }
 }

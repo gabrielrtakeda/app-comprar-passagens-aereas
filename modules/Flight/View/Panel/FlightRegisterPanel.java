@@ -6,6 +6,7 @@ import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
+import project.modules.Flight.Controller.FlightController;
 import project.modules.Flight.View.ActionListener.FlightRegisterNavigationActionListener;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -62,22 +63,22 @@ public class FlightRegisterPanel extends JPanel
         // Form
         Component[][] components = {
             new Component[] {
-                new JLabel(configuration.getTranslator().__("Aeronave") + ":")
-                // new JComboBox<String>(
-                //     configuration.getController().getAirplanes()
-                // )
+                new JLabel(configuration.getTranslator().__("Aeronave") + ":"),
+                new JComboBox(
+                    getController(configuration).getAirplanes()
+                )
             },
             new Component[] {
-                new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":")
-                // new JComboBox<String>(
-                //     configuration.getController().getAirports()
-                // )
+                new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":"),
+                new JComboBox(
+                    getController(configuration).getAirports()
+                )
             },
             new Component[] {
-                new JLabel(configuration.getTranslator().__("Status") + ":")
-                // new JComboBox<String>(
-                //     configuration.getController().getStatusOptions(configuration)
-                // )
+                new JLabel(configuration.getTranslator().__("Status") + ":"),
+                new JComboBox(
+                    getController(configuration).getStatusOptions(configuration)
+                )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Valor") + " (R$) :"),
@@ -116,5 +117,10 @@ public class FlightRegisterPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
+    }
+
+    public FlightController getController(ConfigurationEntity configuration)
+    {
+        return (FlightController) configuration.getController();
     }
 }

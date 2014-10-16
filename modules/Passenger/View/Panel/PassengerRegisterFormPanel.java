@@ -62,7 +62,7 @@ public class PassengerRegisterFormPanel extends JPanel
         Component[][] components = {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Forma de tratamento") + ":"),
-                new JComboBox<String>(
+                new JComboBox(
                     new String[] {
                         configuration.getTranslator().__("Selecione..."),
                         configuration.getTranslator().__("Sr."),

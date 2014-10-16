@@ -68,7 +68,7 @@ public class PassageInformationsPanel extends JPanel
             "Aeroporto de Melborn",
             "Aeroporto de Los Angeles"
         };
-        JComboBox<String> destinosComboBox = new JComboBox<String>(destinos);
+        JComboBox destinosComboBox = new JComboBox(destinos);
 
         Component[] components = {
             new JLabel(configuration.getTranslator().__("Destino") + ":"),

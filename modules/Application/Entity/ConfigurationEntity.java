@@ -16,7 +16,6 @@ import javax.swing.JTextField;
 public class ConfigurationEntity
 {
     protected AbstractController controller;
-    protected Class controllerClass;
     protected AbstractView view;
     protected HashMap<String, AbstractModal> modals = new HashMap<String, AbstractModal>();
     protected AbstractTemplate template;
@@ -29,24 +28,12 @@ public class ConfigurationEntity
     public ConfigurationEntity setController(AbstractController controller)
     {
         this.controller = controller;
-        System.out.println(controller.class);
         return this;
     }
 
     public AbstractController getController()
     {
         return controller;
-    }
-
-    private ConfigurationEntity setControllerClass(Class classController)
-    {
-        this.controllerClass = classController;
-        return this;
-    }
-
-    private Class getControllerClass()
-    {
-        return this.controllerClass;
     }
 
     public ConfigurationEntity setView(AbstractView view)
