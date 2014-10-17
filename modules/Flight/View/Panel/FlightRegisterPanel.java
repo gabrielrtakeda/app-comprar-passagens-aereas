@@ -64,19 +64,19 @@ public class FlightRegisterPanel extends JPanel
         Component[][] components = {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeronave") + ":"),
-                new JComboBox(
+                new JComboBox<String>(
                     getController(configuration).getAirplanes()
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":"),
-                new JComboBox(
+                new JComboBox<String>(
                     getController(configuration).getAirports()
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Status") + ":"),
-                new JComboBox(
+                new JComboBox<String>(
                     getController(configuration).getStatusOptions(configuration)
                 )
             },

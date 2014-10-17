@@ -23,7 +23,7 @@ public class MenuSupervisorPanel extends JPanel
     {
         String imageDirectoryPath = "/images/buttonIcons/";
 
-        JPanel supervisorPanel = new JPanel(new GridLayout(3, 1));
+        JPanel supervisorPanel = new JPanel(new GridLayout(4, 1));
         supervisorPanel.setBorder(new EmptyBorder(0, 45, 0, 45));
 
         supervisorPanel.add(new ImageButton(
@@ -34,6 +34,11 @@ public class MenuSupervisorPanel extends JPanel
         supervisorPanel.add(new ImageButton(
             configuration.getTranslator().__("Cadastrar Aeronaves"),
             imageDirectoryPath + "shipping.png",
+            new AirplaneRegisterViewActionListener(configuration)
+        ));
+        supervisorPanel.add(new ImageButton(
+            configuration.getTranslator().__("Aeroportos"),
+            imageDirectoryPath + "world.png",
             new AirplaneRegisterViewActionListener(configuration)
         ));
         supervisorPanel.add(new ImageButton(

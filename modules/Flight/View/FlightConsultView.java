@@ -9,7 +9,7 @@ public class FlightConsultView extends AbstractView
 {
     public FlightConsultView(ConfigurationEntity configuration)
     {
-    	new FlightController(configuration);
+        new FlightController(configuration);
         configuration.setView(this);
         setConfiguration(configuration);
 

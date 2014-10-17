@@ -7,15 +7,15 @@ import java.awt.event.ActionEvent;
 
 public class FlightConsultNavigationActionListener extends AbstractActionListener
 {
-	public FlightConsultNavigationActionListener(ConfigurationEntity configuration)
-	{
-		configuration.setActionListener(this);
-		setConfiguration(configuration);
-	}
+    public FlightConsultNavigationActionListener(ConfigurationEntity configuration)
+    {
+        configuration.setActionListener(this);
+        setConfiguration(configuration);
+    }
 
-	public void actionPerformed(ActionEvent e)
-	{
-		config.getView().dispose();
-		new FlightMenuView(config);
-	}
+    public void actionPerformed(ActionEvent e)
+    {
+        config.getView().dispose();
+        new FlightMenuView(config);
+    }
 }

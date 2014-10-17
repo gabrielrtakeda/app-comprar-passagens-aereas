@@ -98,13 +98,13 @@ public class FlightConsultPanel extends JPanel
         components = new Component[][] {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Origem") + ":"),
-                new JComboBox(
+                new JComboBox<String>(
                     getController(configuration).getAirports()
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":"),
-                new JComboBox(
+                new JComboBox<String>(
                     getController(configuration).getAirports()
                 )
             },
