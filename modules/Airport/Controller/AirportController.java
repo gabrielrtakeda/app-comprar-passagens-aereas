@@ -1,6 +1,7 @@
 package project.modules.Airport.Controller;
 
 import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Entity.AbstractEntity;
 import project.modules.Application.Controller.AbstractController;
 import project.modules.Airport.Entity.AirportEntity;
 import project.modules.Airport.Model.AirportModel;
@@ -24,7 +25,7 @@ public class AirportController extends AbstractController
         model.register(airportEntity);
     }
 
-    public List<AirportEntity> consultBy(AirportConsultSearchComboType columnType,
+    public List<AbstractEntity> consultBy(AirportConsultSearchComboType columnType,
                                          String search)
     {
         return model.consultBy(columnType, search);

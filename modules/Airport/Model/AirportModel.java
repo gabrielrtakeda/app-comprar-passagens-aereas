@@ -1,10 +1,12 @@
 package project.modules.Airport.Model;
 
 import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Entity.AbstractEntity;
 import project.modules.Application.Model.AbstractModel;
 import project.modules.Airport.Entity.AirportEntity;
 import project.modules.Airport.DataAccessObject.AirportDAO;
 import project.modules.Airport.Type.AirportConsultSearchComboType;
+import project.modules.Airport.View.AirportConsultResultView;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -14,6 +16,11 @@ public class AirportModel extends AbstractModel
     {
         configuration.setModel(this);
         setConfiguration(configuration);
+    }
+
+    private AirportDAO dao()
+    {
+        return new AirportDAO();
     }
 
     public Boolean register(AirportEntity airportEntity)
@@ -53,10 +60,10 @@ public class AirportModel extends AbstractModel
         return result;
     }
 
-    public List<AirportEntity> consultBy(AirportConsultSearchComboType columnType,
+    public List<AbstractEntity> consultBy(AirportConsultSearchComboType columnType,
                                          String search)
     {
-        List<AirportEntity> aeroportoEntities = null;
+        List<AbstractEntity> airportEntities = null;
         if (search.isEmpty()) {
             JOptionPane.showMessageDialog(
                 null,
@@ -65,25 +72,24 @@ public class AirportModel extends AbstractModel
                 JOptionPane.ERROR_MESSAGE
             );
         } else {
-            aeroportoEntities = dao().consultBy(
+            airportEntities = dao().consultBy(
                 ((AirportConsultSearchComboType) columnType).getValue(),
                 search
             );
 
-            if (aeroportoEntities.size() < 1) {
+            if (airportEntities.size() < 1) {
                 JOptionPane.showMessageDialog(
                     null,
                     config.getTranslator().__("Nenhum registro foi encontrado."),
                     config.getTranslator().__("Resultado"),
                     JOptionPane.INFORMATION_MESSAGE
                 );
+            } else {
+                config.getView().dispose();
+                config.setEntitiesCollection(airportEntities);
+                new AirportConsultResultView(config);
             }
         }
-        return aeroportoEntities;
-    }
-
-    private AirportDAO dao()
-    {
-        return AirportDAO dao = new AirportDAO();
+        return airportEntities;
     }
 }

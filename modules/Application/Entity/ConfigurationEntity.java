@@ -13,6 +13,8 @@ import java.awt.Component;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 import javax.swing.JTextField;
 
 public class ConfigurationEntity
@@ -21,6 +23,7 @@ public class ConfigurationEntity
     protected AbstractModel model;
     protected AbstractView view;
     protected Map<String, AbstractEntity> entities = new HashMap<String, AbstractEntity>();
+    protected List<AbstractEntity> entitiesCollection = new ArrayList<AbstractEntity>();
     protected HashMap<String, AbstractModal> modals = new HashMap<String, AbstractModal>();
     protected AbstractTemplate template;
     protected AbstractTemplate previousTemplate;
@@ -76,6 +79,17 @@ public class ConfigurationEntity
     public Map<String, AbstractEntity> getEntities()
     {
         return this.entities;
+    }
+
+    public ConfigurationEntity setEntitiesCollection(List<AbstractEntity> entities)
+    {
+        this.entitiesCollection = entities;
+        return this;
+    }
+
+    public List<AbstractEntity> getEntitiesCollection()
+    {
+        return this.entitiesCollection;
     }
 
     public ConfigurationEntity setModal(String name, AbstractModal modal)

@@ -1,8 +1,9 @@
 package project.modules.Airport.Entity;
 
+import project.modules.Application.Entity.AbstractEntity;
 import java.util.Date;
 
-public class AirportEntity
+public class AirportEntity extends AbstractEntity
 {
     protected Integer id;
     protected String description;

@@ -13,11 +13,14 @@ public Connection conn;
 // construtor
     public MysqlConnect() {
         conn = null;
-        String url = "jdbc:mysql://localhost:8889/"; // localizacao do servidor
+        String url = "jdbc:mysql://127.0.0.1:3306/"; // localizacao do servidor
         String dbName = "projeto_integrado"; // nome do banco de dados
         String driver = "com.mysql.jdbc.Driver"; // nome do driver de conexao
-        String userName = "root"; // nome do usuario do banco
-        String password = "root"; // respectiva senha
+        String userName = "alunos"; // nome do usuario do banco
+        String password = "usjt@but2010"; // respectiva senha
+        // String url = "jdbc:mysql://localhost:8889/"; // localizacao do servidor
+        // String userName = "root"; // nome do usuario do banco
+        // String password = "root"; // respectiva senha
 
         try {
             Class.forName(driver);

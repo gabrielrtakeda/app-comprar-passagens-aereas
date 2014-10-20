@@ -1,5 +1,6 @@
 package project.modules.Airport.DataAccessObject;
 
+import project.modules.Application.Entity.AbstractEntity;
 import project.modules.Database.DatabaseConnect;
 import project.modules.Airport.Entity.AirportEntity;
 import java.sql.PreparedStatement;
@@ -34,9 +35,9 @@ public class AirportDAO extends DatabaseConnect
         return result;
     }
 
-    public List<AirportEntity> consultBy(String column, String search)
+    public List<AbstractEntity> consultBy(String column, String search)
     {
-        List<AirportEntity> entities = new ArrayList<AirportEntity>();
+        List<AbstractEntity> entities = new ArrayList<AbstractEntity>();
         StringBuilder query = new StringBuilder();
         query.append("SELECT * FROM " + table);
         query.append(" WHERE " + column + " LIKE ?");
