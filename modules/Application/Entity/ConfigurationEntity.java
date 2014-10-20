@@ -1,6 +1,8 @@
 package project.modules.Application.Entity;
 
 import project.modules.Application.Controller.AbstractController;
+import project.modules.Application.Model.AbstractModel;
+import project.modules.Application.Entity.AbstractEntity;
 import project.modules.Application.View.AbstractView;
 import project.modules.Application.View.Modal.AbstractModal;
 import project.modules.Application.View.Template.AbstractTemplate;
@@ -16,7 +18,9 @@ import javax.swing.JTextField;
 public class ConfigurationEntity
 {
     protected AbstractController controller;
+    protected AbstractModel model;
     protected AbstractView view;
+    protected Map<String, AbstractEntity> entities = new HashMap<String, AbstractEntity>();
     protected HashMap<String, AbstractModal> modals = new HashMap<String, AbstractModal>();
     protected AbstractTemplate template;
     protected AbstractTemplate previousTemplate;
@@ -36,6 +40,17 @@ public class ConfigurationEntity
         return controller;
     }
 
+    public ConfigurationEntity setModel(AbstractModel model)
+    {
+        this.model = model;
+        return this;
+    }
+
+    public AbstractModel getModel()
+    {
+        return this.model;
+    }
+
     public ConfigurationEntity setView(AbstractView view)
     {
         this.view = view;
@@ -45,6 +60,22 @@ public class ConfigurationEntity
     public AbstractView getView()
     {
         return view;
+    }
+
+    public ConfigurationEntity setEntity(String name, AbstractEntity entity)
+    {
+        this.entities.put(name, entity);
+        return this;
+    }
+
+    public AbstractEntity getEntity(String name)
+    {
+        return this.entities.get(name);
+    }
+
+    public Map<String, AbstractEntity> getEntities()
+    {
+        return this.entities;
     }
 
     public ConfigurationEntity setModal(String name, AbstractModal modal)
@@ -175,6 +206,14 @@ public class ConfigurationEntity
         builder.append(
             getController() != null
              ? getController().getClass().getName()
+             : "null"
+        ).append("\n\t");
+
+        // Model
+        builder.append("Model: ");
+        builder.append(
+            getModel() != null
+             ? getModel().getClass().getName()
              : "null"
         ).append("\n\t");
 

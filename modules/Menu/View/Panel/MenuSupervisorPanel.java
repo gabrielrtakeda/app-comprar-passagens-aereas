@@ -4,6 +4,7 @@ import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Flight.View.ActionListener.FlightMenuViewActionListener;
 import project.modules.Airplane.View.ActionListener.AirplaneRegisterViewActionListener;
+import project.modules.Airport.View.ActionListener.AirportMenuViewActionListener;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -39,7 +40,7 @@ public class MenuSupervisorPanel extends JPanel
         supervisorPanel.add(new ImageButton(
             configuration.getTranslator().__("Aeroportos"),
             imageDirectoryPath + "world.png",
-            new AirplaneRegisterViewActionListener(configuration)
+            new AirportMenuViewActionListener(configuration)
         ));
         supervisorPanel.add(new ImageButton(
             configuration.getTranslator().__("Consultar Vendas"),

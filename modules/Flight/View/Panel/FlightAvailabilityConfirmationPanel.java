@@ -100,7 +100,7 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         componentsMatrix = new Component[][] {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Descrição") + ":"),
-                new JLabel(flightEntity.getAirport().getDescricao())
+                new JLabel(flightEntity.getAirport().getDescription())
             }
         };
         ColoredGridLayout.make(
@@ -209,7 +209,9 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
     {
         AirportEntity airportEntity = new AirportEntity();
         return airportEntity.setId(1)
-                            .setDescricao("Aeroporto de Congonhas")
-                            .setDataCadastro(new Date());
+                            .setDescription("Aeroporto de Congonhas")
+                            .setAbbreviation("CGH")
+                            .setAddress("Av. Washigton Luís s/nº São Paulo-SP")
+                            .setDateRegister(new Date());
     }
 }

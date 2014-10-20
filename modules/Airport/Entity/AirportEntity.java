@@ -5,19 +5,29 @@ import java.util.Date;
 public class AirportEntity
 {
     protected Integer id;
-    protected String descricao;
-    protected Date dataCadastro;
+    protected String description;
+    protected String abbreviation;
+    protected String address;
+    protected Date dateRegister;
 
     public Integer getId() {
         return this.id;
     }
 
-    public String getDescricao() {
-        return this.descricao;
+    public String getDescription() {
+        return this.description;
     }
 
-    public Date getDataCadastro() {
-        return this.dataCadastro;
+    public String getAbbreviation() {
+        return this.abbreviation;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public Date getDateRegister() {
+        return this.dateRegister;
     }
 
     public AirportEntity setId(Integer id) {
@@ -25,13 +35,23 @@ public class AirportEntity
         return this;
     }
 
-    public AirportEntity setDescricao(String descricao) {
-        this.descricao = descricao;
+    public AirportEntity setDescription(String description) {
+        this.description = description;
         return this;
     }
 
-    public AirportEntity setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public AirportEntity setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
+        return this;
+    }
+
+    public AirportEntity setAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
+    public AirportEntity setDateRegister(Date dateRegister) {
+        this.dateRegister = dateRegister;
         return this;
     }
 }
