@@ -25,9 +25,9 @@ public class AirportController extends AbstractController
         model.register(airportEntity);
     }
 
-    public List<AbstractEntity> consultBy(AirportConsultSearchComboType columnType,
-                                         String search)
+    public void consultBy(AirportConsultSearchComboType columnType,
+                          String search)
     {
-        return model.consultBy(columnType, search);
+        model.consultBy(columnType, search);
     }
 }

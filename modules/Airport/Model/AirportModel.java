@@ -60,7 +60,7 @@ public class AirportModel extends AbstractModel
         return result;
     }
 
-    public List<AbstractEntity> consultBy(AirportConsultSearchComboType columnType,
+    public void consultBy(AirportConsultSearchComboType columnType,
                                          String search)
     {
         List<AbstractEntity> airportEntities = null;
@@ -90,6 +90,5 @@ public class AirportModel extends AbstractModel
                 new AirportConsultResultView(config);
             }
         }
-        return airportEntities;
     }
 }

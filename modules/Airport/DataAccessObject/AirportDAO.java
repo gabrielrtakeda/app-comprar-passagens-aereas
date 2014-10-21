@@ -44,7 +44,6 @@ public class AirportDAO extends DatabaseConnect
         try {
             preparedStatement = getConnection().prepareStatement(query.toString());
             preparedStatement.setString(1, "%" + search + "%");
-            System.out.println(preparedStatement.toString());
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
