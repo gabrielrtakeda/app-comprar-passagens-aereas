@@ -18,6 +18,6 @@ public class PassengerRegisterModalActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        new PassengerRegisterModal(config);
+        new PassengerRegisterModal(configuration);
     }
 }

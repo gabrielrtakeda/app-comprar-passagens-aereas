@@ -44,14 +44,14 @@ public class AirplaneRegisterRasterizeActionListener extends AbstractActionListe
                 : "Preencha o campo";
             JOptionPane.showMessageDialog(
                 null,
-                config.getTranslator().__(errorMessage) + ": [" + errorFields +"]",
-                config.getTranslator().__("Campo Obrigatório"),
+                configuration.getTranslator().__(errorMessage) + ": [" + errorFields +"]",
+                configuration.getTranslator().__("Campo Obrigatório"),
                 JOptionPane.ERROR_MESSAGE
             );
         } else {
-            config.getView().dispose();
-            config.setParameter("airplane-register-form-data", getComponents());
-            new AirplaneRegisterRasterizeView(config);
+            configuration.getView().dispose();
+            configuration.setParameter("airplane-register-form-data", getComponents());
+            new AirplaneRegisterRasterizeView(configuration);
         }
     }
 }

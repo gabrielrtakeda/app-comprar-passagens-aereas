@@ -15,8 +15,8 @@ public class PassageConsultTemplate extends AbstractTemplate
         setConfiguration(configuration.setTemplate(this));
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        add(new ApplicationBaseLayoutHeaderPanel(config), BorderLayout.NORTH);
-        add(new ApplicationBaseLayoutFooterPanel(config), BorderLayout.SOUTH);
-        add(new PassageConsultPanel(config), BorderLayout.CENTER);
+        add(new ApplicationBaseLayoutHeaderPanel(configuration), BorderLayout.NORTH);
+        add(new ApplicationBaseLayoutFooterPanel(configuration), BorderLayout.SOUTH);
+        add(new PassageConsultPanel(configuration), BorderLayout.CENTER);
     }
 }

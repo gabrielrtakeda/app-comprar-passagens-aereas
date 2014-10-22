@@ -15,7 +15,7 @@ public class AirportRegisterNavigationActionListener extends AbstractActionListe
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getView().dispose();
-        new AirportMenuView(config);
+        configuration.getView().dispose();
+        new AirportMenuView(configuration);
     }
 }

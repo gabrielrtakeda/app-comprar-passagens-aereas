@@ -15,7 +15,7 @@ public class FlightConsultViewActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getView().dispose();
-        new FlightConsultView(config);
+        configuration.getView().dispose();
+        new FlightConsultView(configuration);
     }
 }

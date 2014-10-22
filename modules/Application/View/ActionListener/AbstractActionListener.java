@@ -14,8 +14,8 @@ public abstract class AbstractActionListener
 implements  ActionListener,
             ConfigurationInterface
 {
-    protected ConfigurationEntity config;
-    private Map<String, Component> components = new HashMap<String, Component>();
+    public ConfigurationEntity configuration;
+    public Map<String, Component> components = new HashMap<String, Component>();
 
     public AbstractActionListener()
     {}
@@ -31,28 +31,34 @@ implements  ActionListener,
         return components.get(key);
     }
 
+    public AbstractActionListener setComponents(Map<String, Component> components)
+    {
+        this.components = components;
+        return this;
+    }
+
     public Map<String, Component> getComponents()
     {
         return components;
     }
 
-    public void setConfiguration(ConfigurationEntity config)
+    public void setConfiguration(ConfigurationEntity configuration)
     {
-        this.config = config;
+        this.configuration = configuration;
 
     }
 
     public void goToMenu()
     {
-        if (config.getUser().isSupervisor()) {
-            new MenuSupervisorView(config);
+        if (configuration.getUser().isSupervisor()) {
+            new MenuSupervisorView(configuration);
         } else {
-            new MenuAtendenteView(config);
+            new MenuAtendenteView(configuration);
         }
     }
 
     public ConfigurationEntity getConfiguration()
     {
-        return config;
+        return configuration;
     }
 }

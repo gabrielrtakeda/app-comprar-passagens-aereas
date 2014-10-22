@@ -13,8 +13,8 @@ public class PassagePurchaseView extends AbstractView
         configuration.setView(this);
         setConfiguration(configuration);
 
-        setTitle(config.getTranslator().__("Compra de Passagem"));
-        setTemplate(new PassagePurchaseTemplate(config));
+        setTitle(configuration.getTranslator().__("Compra de Passagem"));
+        setTemplate(new PassagePurchaseTemplate(configuration));
         showTemplate();
     }
 }

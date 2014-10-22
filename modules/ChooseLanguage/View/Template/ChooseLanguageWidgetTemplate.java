@@ -14,6 +14,6 @@ public class ChooseLanguageWidgetTemplate extends AbstractTemplate
     {
         setConfiguration(configuration.setTemplate(this));
         setLayout(new BorderLayout());
-        add(new ChooseLanguageWidgetPanel(config), BorderLayout.CENTER);
+        add(new ChooseLanguageWidgetPanel(configuration), BorderLayout.CENTER);
     }
 }

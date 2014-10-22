@@ -16,11 +16,11 @@ public class PassageInformationsNavigationActionListener extends AbstractActionL
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getView().dispose();
-        if (config.getUser().isSupervisor()) {
-            new MenuSupervisorView(config);
+        configuration.getView().dispose();
+        if (configuration.getUser().isSupervisor()) {
+            new MenuSupervisorView(configuration);
         } else {
-            new MenuAtendenteView(config);
+            new MenuAtendenteView(configuration);
         }
     }
 }

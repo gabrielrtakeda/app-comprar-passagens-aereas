@@ -20,9 +20,9 @@ public class PassengerRegisterActionListener extends AbstractActionListener
     {
         JOptionPane.showMessageDialog(
             null,
-            config.getTranslator().__("Passageiro cadastrado com sucesso!")
+            configuration.getTranslator().__("Passageiro cadastrado com sucesso!")
         );
-        config.getModal(nameModal).dispose();
-        config.removeModal(nameModal);
+        configuration.getModal(nameModal).dispose();
+        configuration.removeModal(nameModal);
     }
 }

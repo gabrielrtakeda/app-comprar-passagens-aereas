@@ -6,6 +6,7 @@ import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
+import project.modules.Airport.Entity.AirportEntity;
 import project.modules.Airport.View.ActionListener.AirportMenuViewActionListener;
 import project.modules.Airport.View.ActionListener.AirportRegisterNavigationActionListener;
 import project.modules.Airport.View.ActionListener.AirportRegisterRasterizeActionListener;
@@ -64,26 +65,38 @@ public class AirportRegisterPanel extends JPanel
         AirportRegisterRasterizeActionListener registerRasterizeActionListener =
             new AirportRegisterRasterizeActionListener(configuration);
 
+        String descriptionText  = "";
+        String abbreviationText = "";
+        String addressText      = "";
+
+        if (configuration.hasEntity("airport")) {
+            AirportEntity entity = (AirportEntity) configuration.getEntity("airport");
+
+            descriptionText   = entity.getDescription();
+            abbreviationText  = entity.getAbbreviation();
+            addressText       = entity.getAddress();
+        }
+
         Component[][] components = {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Descrição")),
                 registerRasterizeActionListener.addComponent(
                     "description",
-                    new JTextField()
+                    new JTextField(descriptionText)
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Sigla")),
                 registerRasterizeActionListener.addComponent(
                     "abbreviation",
-                    new JTextField()
+                    new JTextField(abbreviationText)
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Endereço")),
                 registerRasterizeActionListener.addComponent(
                     "address",
-                    new JTextField()
+                    new JTextField(addressText)
                 )
             }
         };

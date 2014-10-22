@@ -7,44 +7,50 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 public class FileManager
 {
-	private HashMap<Integer, String> map;
-	private BufferedReader reader = null;
-	private File file;
+    private HashMap<Integer, String> map;
+    private BufferedReader reader = null;
+    private File file;
 
-	public FileManager(String filePath)
-	{
-		map = new HashMap<Integer, String>();
-		file = new File(filePath);
+    public FileManager(String filePath)
+    {
+        map = new HashMap<Integer, String>();
+        file = new File(filePath);
 
-		try {
-			reader = new BufferedReader(new FileReader(file));
-			String content = null;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String content = null;
 
-			int i = 0;
-			while((content = reader.readLine()) != null) {
-				map.put(i, content);
-				i++;
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (reader != null) {
-					reader.close();
-				}
-			} catch (IOException e) {
-				System.out.println("Erro FileManager::reader.close()");
-			}
-		}
-	}
+            int i = 0;
+            while((content = reader.readLine()) != null) {
+                map.put(i, content);
+                i++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Erro FileManager::reader.close()",
+                    "FileManager Error",
+                    JOptionPane.ERROR_MESSAGE
+                );
+            }
+        }
+    }
 
-	public HashMap<Integer, String> getMap()
-	{
-		return map;
-	}
+    public HashMap<Integer, String> getMap()
+    {
+        return map;
+    }
 }

@@ -13,8 +13,8 @@ public class PassageConsultView extends AbstractView
         configuration.setView(this);
         setConfiguration(configuration);
 
-        setTitle(config.getTranslator().__("Check In"));
-        setTemplate(new PassageConsultTemplate(config));
+        setTitle(configuration.getTranslator().__("Check In"));
+        setTemplate(new PassageConsultTemplate(configuration));
         showTemplate();
     }
 }

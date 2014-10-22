@@ -17,8 +17,8 @@ public class PassengerRegisterModalTemplate extends AbstractTemplate
 
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        add(new ApplicationBaseLayoutHeaderPanel(config), BorderLayout.NORTH);
-        add(new ApplicationBaseLayoutFooterPanel(config), BorderLayout.SOUTH);
-        add(new PassengerRegisterFormPanel(config), BorderLayout.CENTER);
+        add(new ApplicationBaseLayoutHeaderPanel(configuration), BorderLayout.NORTH);
+        add(new ApplicationBaseLayoutFooterPanel(configuration), BorderLayout.SOUTH);
+        add(new PassengerRegisterFormPanel(configuration), BorderLayout.CENTER);
     }
 }

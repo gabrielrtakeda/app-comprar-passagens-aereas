@@ -7,8 +7,8 @@ import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Airport.View.ActionListener.AirportMenuNavigationActionListener;
 import project.modules.Airport.View.ActionListener.AirportRegisterViewActionListener;
 import project.modules.Airport.View.ActionListener.AirportConsultViewActionListener;
-// import project.modules.Airport.View.ActionListener.AirportEditViewActionListener;
-// import project.modules.Airport.View.ActionListener.AirportDeleteViewActionListener;
+import project.modules.Airport.View.ActionListener.AirportEditViewActionListener;
+import project.modules.Airport.View.ActionListener.AirportDeleteViewActionListener;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -55,15 +55,15 @@ public class AirportMenuPanel extends JPanel
         airportMenuPanel.add(
             new ImageButton(
                 configuration.getTranslator().__("Editar"),
-                buttonIconsDirectoryPath + "config.png"
-                // new AirportEditViewActionListener(configuration)
+                buttonIconsDirectoryPath + "config.png",
+                new AirportEditViewActionListener(configuration)
             )
         );
         airportMenuPanel.add(
             new ImageButton(
                 configuration.getTranslator().__("Excluir"),
-                buttonIconsDirectoryPath + "brainstorming.png"
-                // new AirportDeleteViewActionListener(configuration)
+                buttonIconsDirectoryPath + "brainstorming.png",
+                new AirportDeleteViewActionListener(configuration)
             )
         );
         gridBagConstraints.anchor = GridBagConstraints.CENTER;

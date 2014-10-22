@@ -1,7 +1,9 @@
 package project.modules.Airport.View.ActionListener;
 
 import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Form.Validator.FormRequiredFieldValidator;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
+import project.modules.Airport.Entity.AirportEntity;
 import project.modules.Airport.View.AirportRegisterRasterizeView;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
@@ -19,39 +21,39 @@ public class AirportRegisterRasterizeActionListener extends AbstractActionListen
 
     public void actionPerformed(ActionEvent e)
     {
-        String errorFields = "";
-        Integer errorCount = 0;
+        JTextField description = (JTextField) getComponent("description");
+        JTextField abbreviation = (JTextField) getComponent("abbreviation");
+        JTextField address = (JTextField) getComponent("address");
 
         Iterator<String> keySetIterator = getComponents().keySet().iterator();
         while (keySetIterator.hasNext()) {
-            String field = keySetIterator.next();
-
-            JTextField textField = (JTextField) getComponent(field);
-            if (textField.getText().equals("")) {
-
-                if (errorFields.equals("")) {
-                    errorFields += field;
-                } else {
-                    errorFields += ", " + field;
-                }
-                errorCount++;
+            String fieldName = keySetIterator.next();
+            switch (fieldName) {
+                case "description":
+                    FormRequiredFieldValidator.validateField(fieldName, description.getText());
+                    break;
+                case "abbreviation":
+                    FormRequiredFieldValidator.validateField(fieldName, abbreviation.getText());
+                    break;
+                case "address":
+                    FormRequiredFieldValidator.validateField(fieldName, address.getText());
+                    break;
             }
         }
 
-        if (errorCount > 0) {
-            String errorMessage = errorCount > 1
-                ? "Preencha os campos"
-                : "Preencha o campo";
-            JOptionPane.showMessageDialog(
-                null,
-                config.getTranslator().__(errorMessage) + ": [" + errorFields +"]",
-                config.getTranslator().__("Campo Obrigatório"),
-                JOptionPane.ERROR_MESSAGE
-            );
+        if (FormRequiredFieldValidator.getErrorCount() > 0) {
+            FormRequiredFieldValidator.setConfiguration(configuration);
+            FormRequiredFieldValidator.showErrorMessage();
         } else {
-            config.getView().dispose();
-            config.setParameter("airport-register-form-data", getComponents());
-            new AirportRegisterRasterizeView(config);
+            AirportEntity airportEntity = new AirportEntity();
+            airportEntity.setDescription(description.getText())
+                         .setAbbreviation(abbreviation.getText())
+                         .setAddress(address.getText());
+
+            configuration.getView().dispose();
+            configuration.setParameter("airport-register-form-data", getComponents());
+            configuration.setEntity("airport", airportEntity);
+            new AirportRegisterRasterizeView(configuration);
         }
     }
 }

@@ -37,7 +37,7 @@ public class FlightAvailabilityConfirmBookingActionListener extends AbstractActi
         } else {
             Integer quantity = Integer.parseInt(passengerQuantity.getText());
             while (quantity != 0) {
-                AbstractModal passengerRegisterModal = new PassengerRegisterModal(config);
+                AbstractModal passengerRegisterModal = new PassengerRegisterModal(configuration);
                 quantity--;
             }
         }

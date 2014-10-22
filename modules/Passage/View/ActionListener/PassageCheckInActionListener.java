@@ -19,23 +19,23 @@ public class PassageCheckInActionListener extends AbstractActionListener
     {
         Integer optionsResult = JOptionPane.showConfirmDialog(
             null,
-            config.getTranslator().__("Confirma o Check In?"),
-            config.getTranslator().__("Confirmação do Check In"),
+            configuration.getTranslator().__("Confirma o Check In?"),
+            configuration.getTranslator().__("Confirmação do Check In"),
             JOptionPane.YES_NO_OPTION
         );
 
         if (optionsResult == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(
                 null,
-                config.getTranslator().__("Check In efetuado com sucesso"),
-                config.getTranslator().__("Sucesso"),
+                configuration.getTranslator().__("Check In efetuado com sucesso"),
+                configuration.getTranslator().__("Sucesso"),
                 JOptionPane.INFORMATION_MESSAGE
             );
-            config.getView().dispose();
-            if (config.getUser().isSupervisor()) {
-                new MenuSupervisorView(config);
+            configuration.getView().dispose();
+            if (configuration.getUser().isSupervisor()) {
+                new MenuSupervisorView(configuration);
             } else {
-                new MenuAtendenteView(config);
+                new MenuAtendenteView(configuration);
             }
         }
     }

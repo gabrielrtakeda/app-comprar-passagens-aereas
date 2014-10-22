@@ -2,6 +2,7 @@ package project.modules.Menu.View.Panel;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.Button.ImageButton;
+import project.modules.Menu.Controller.MenuController;
 import project.modules.Flight.View.ActionListener.FlightMenuViewActionListener;
 import project.modules.Airplane.View.ActionListener.AirplaneRegisterViewActionListener;
 import project.modules.Airport.View.ActionListener.AirportMenuViewActionListener;
@@ -12,15 +13,18 @@ import javax.swing.border.EmptyBorder;
 
 public class MenuSupervisorPanel extends JPanel
 {
+    private ConfigurationEntity configuration;
+
     public MenuSupervisorPanel(ConfigurationEntity configuration)
     {
-        super(new BorderLayout());
+        this.configuration = configuration;
 
+        setLayout(new BorderLayout());
         add(new MenuAtendentePanel(configuration), BorderLayout.NORTH);
-        add(buildSupervisorPanel(configuration), BorderLayout.SOUTH);
+        add(buildSupervisorPanel(), BorderLayout.SOUTH);
     }
 
-    private JPanel buildSupervisorPanel(ConfigurationEntity configuration)
+    private JPanel buildSupervisorPanel()
     {
         String imageDirectoryPath = "/images/buttonIcons/";
 
@@ -40,7 +44,7 @@ public class MenuSupervisorPanel extends JPanel
         supervisorPanel.add(new ImageButton(
             configuration.getTranslator().__("Aeroportos"),
             imageDirectoryPath + "world.png",
-            new AirportMenuViewActionListener(configuration)
+            getController().airportMenuAction()
         ));
         supervisorPanel.add(new ImageButton(
             configuration.getTranslator().__("Consultar Vendas"),
@@ -48,5 +52,10 @@ public class MenuSupervisorPanel extends JPanel
         ));
 
         return supervisorPanel;
+    }
+
+    private MenuController getController()
+    {
+        return new MenuController(configuration);
     }
 }

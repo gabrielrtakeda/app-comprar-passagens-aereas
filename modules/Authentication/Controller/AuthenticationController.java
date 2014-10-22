@@ -1,20 +1,28 @@
 package project.modules.Authentication.Controller;
 
 import project.modules.Application.Controller.AbstractController;
-import project.modules.Authentication.View.AuthenticationView;
+import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Authentication.Model.AuthenticationModel;
-import project.modules.Authentication.Entity.UserEntity;
 
 public class AuthenticationController extends AbstractController
 {
-    private AuthenticationModel
-        model = new AuthenticationModel();
+    private AuthenticationModel model;
 
-    public AuthenticationController()
-    {}
-
-    public UserEntity authenticate(String user, String password)
+    public AuthenticationController(ConfigurationEntity configuration)
     {
-        return model.authenticate(user, password);
+        configuration.setController(this);
+        setConfiguration(configuration);
+
+        model = new AuthenticationModel(configuration);
+    }
+
+    public void indexAction()
+    {
+        model.index();
+    }
+
+    public void authenticateAction(String user, String password)
+    {
+        model.authenticate(user, password);
     }
 }

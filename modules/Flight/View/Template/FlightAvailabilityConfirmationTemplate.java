@@ -17,8 +17,8 @@ public class FlightAvailabilityConfirmationTemplate extends AbstractTemplate
 
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        add(new ApplicationBaseLayoutHeaderPanel(config), BorderLayout.NORTH);
-        add(new ApplicationBaseLayoutFooterPanel(config), BorderLayout.SOUTH);
-        add(new FlightAvailabilityConfirmationPanel(config), BorderLayout.CENTER);
+        add(new ApplicationBaseLayoutHeaderPanel(configuration), BorderLayout.NORTH);
+        add(new ApplicationBaseLayoutFooterPanel(configuration), BorderLayout.SOUTH);
+        add(new FlightAvailabilityConfirmationPanel(configuration), BorderLayout.CENTER);
     }
 }

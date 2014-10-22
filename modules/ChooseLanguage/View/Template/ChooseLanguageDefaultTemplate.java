@@ -17,6 +17,6 @@ public class ChooseLanguageDefaultTemplate extends AbstractTemplate
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(10, 10, 10, 10));
         add(new ChooseLanguageHeaderPanel(), BorderLayout.NORTH);
-        add(new ChooseLanguageFlagsPanel(config), BorderLayout.CENTER);
+        add(new ChooseLanguageFlagsPanel(configuration), BorderLayout.CENTER);
     }
 }

@@ -16,7 +16,7 @@ public class FlightAvailabilityConfirmationNavigationActionListener extends Abst
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getModal(nameModal).dispose();
-        config.removeModal(nameModal);
+        configuration.getModal(nameModal).dispose();
+        configuration.removeModal(nameModal);
     }
 }

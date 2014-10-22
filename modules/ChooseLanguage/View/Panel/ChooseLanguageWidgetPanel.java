@@ -13,8 +13,8 @@ public class ChooseLanguageWidgetPanel extends AbstractChooseLanguageFlagsPanel
             configuration,
             new EmptyBorder(0, 0, 0, 0),
             "22x16",
-            new Dimension(22, 16),
-            ChooseLanguageActionListener.USING_WIDGET
+            new Dimension(22, 16)
         );
+        configuration.setQueryString("using-widget", "yes");
     }
 }

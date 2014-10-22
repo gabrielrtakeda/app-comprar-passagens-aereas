@@ -31,7 +31,11 @@ public class ConfigurationEntity
     protected Translator translator;
     protected UserEntity user;
     protected Map<String, Map<String, Component>> parameters = new HashMap<String, Map<String, Component>>();
+    protected Map<String, String> queryString = new HashMap<String, String>();
 
+    /**
+     * Controller
+     */
     public ConfigurationEntity setController(AbstractController controller)
     {
         this.controller = controller;
@@ -43,6 +47,9 @@ public class ConfigurationEntity
         return controller;
     }
 
+    /**
+     * Model
+     */
     public ConfigurationEntity setModel(AbstractModel model)
     {
         this.model = model;
@@ -54,6 +61,9 @@ public class ConfigurationEntity
         return this.model;
     }
 
+    /**
+     * View
+     */
     public ConfigurationEntity setView(AbstractView view)
     {
         this.view = view;
@@ -65,6 +75,9 @@ public class ConfigurationEntity
         return view;
     }
 
+    /**
+     * Entities
+     */
     public ConfigurationEntity setEntity(String name, AbstractEntity entity)
     {
         this.entities.put(name, entity);
@@ -76,14 +89,34 @@ public class ConfigurationEntity
         return this.entities.get(name);
     }
 
+    public Boolean hasEntity(String name)
+    {
+        return this.entities.containsKey(name);
+    }
+
+    public ConfigurationEntity removeEntity(String name)
+    {
+        this.entities.remove(name);
+        return this;
+    }
+
+    public ConfigurationEntity setEntities(Map<String, AbstractEntity> entities)
+    {
+        this.entities = entities;
+        return this;
+    }
+
     public Map<String, AbstractEntity> getEntities()
     {
         return this.entities;
     }
 
-    public ConfigurationEntity setEntitiesCollection(List<AbstractEntity> entities)
+    /**
+     * Entities Collection
+     */
+    public ConfigurationEntity setEntitiesCollection(List<AbstractEntity> entitiesCollection)
     {
-        this.entitiesCollection = entities;
+        this.entitiesCollection = entitiesCollection;
         return this;
     }
 
@@ -92,6 +125,15 @@ public class ConfigurationEntity
         return this.entitiesCollection;
     }
 
+    public ConfigurationEntity clearEntitiesCollection()
+    {
+        this.entitiesCollection.clear();
+        return this;
+    }
+
+    /**
+     * Modal
+     */
     public ConfigurationEntity setModal(String name, AbstractModal modal)
     {
         modals.put(name, modal);
@@ -103,9 +145,9 @@ public class ConfigurationEntity
         return modals.get(name);
     }
 
-    public HashMap<String, AbstractModal> getModals()
+    public Boolean hasModal(String name)
     {
-        return modals;
+        return modals.containsKey(name);
     }
 
     public ConfigurationEntity removeModal(String name)
@@ -114,11 +156,26 @@ public class ConfigurationEntity
         return this;
     }
 
-    public Boolean hasModal(String name)
+    public ConfigurationEntity setModals(HashMap<String, AbstractModal> modals)
     {
-        return modals.containsKey(name);
+        this.modals = modals;
+        return this;
     }
 
+    public HashMap<String, AbstractModal> getModals()
+    {
+        return modals;
+    }
+
+    public ConfigurationEntity clearModals()
+    {
+        this.modals.clear();
+        return this;
+    }
+
+    /**
+     * Template
+     */
     public ConfigurationEntity setTemplate(AbstractTemplate template)
     {
         this.template = template;
@@ -130,6 +187,9 @@ public class ConfigurationEntity
         return template;
     }
 
+    /**
+     * Previous Template
+     */
     public ConfigurationEntity setPreviousTemplate(AbstractTemplate previousTemplate)
     {
         this.previousTemplate = previousTemplate;
@@ -141,6 +201,9 @@ public class ConfigurationEntity
         return previousTemplate;
     }
 
+    /**
+     * Action Listener
+     */
     public ConfigurationEntity setActionListener(AbstractActionListener actionListener)
     {
         this.actionListener = actionListener;
@@ -152,6 +215,9 @@ public class ConfigurationEntity
         return actionListener;
     }
 
+    /**
+     * Translator
+     */
     public ConfigurationEntity setTranslator(Translator translator)
     {
         this.translator = translator;
@@ -163,6 +229,9 @@ public class ConfigurationEntity
         return translator;
     }
 
+    /**
+     * User
+     */
     public ConfigurationEntity setUser(UserEntity user)
     {
         this.user = user;
@@ -174,6 +243,9 @@ public class ConfigurationEntity
         return user;
     }
 
+    /**
+     * Parameters
+     */
     public ConfigurationEntity setParameter(String name, Map<String, Component> parameter)
     {
         this.parameters.put(name, parameter);
@@ -201,15 +273,71 @@ public class ConfigurationEntity
         return this.parameters;
     }
 
+    public ConfigurationEntity clearParameters()
+    {
+        this.parameters.clear();
+        return this;
+    }
+
+    /**
+     * Query String
+     */
+    public ConfigurationEntity setQueryString(String name, String query)
+    {
+        this.queryString.put(name, query);
+        return this;
+    }
+
+    public String getQueryString(String name)
+    {
+        return this.queryString.get(name);
+    }
+
+    public Boolean hasQueryString(String name)
+    {
+        return this.queryString.containsKey(name);
+    }
+
+    public ConfigurationEntity removeQueryString(String name)
+    {
+        this.queryString.remove(name);
+        return this;
+    }
+
+    public ConfigurationEntity setQueryStrings(Map<String, String> queryStrings)
+    {
+        this.queryString = queryStrings;
+        return this;
+    }
+
+    public Map<String, String> getQueryStrings()
+    {
+        return this.queryString;
+    }
+
+    public ConfigurationEntity clearQueryStrings()
+    {
+        this.queryString.clear();
+        return this;
+    }
+
+    /**
+     * Build Entire Configuration
+     */
     private ConfigurationEntity build(ConfigurationEntity configuration)
     {
         return this .setController(configuration.getController())
+                    .setModel(configuration.getModel())
                     .setView(configuration.getView())
+                    .setEntities(configuration.getEntities())
+                    .setEntitiesCollection(configuration.getEntitiesCollection())
+                    .setModals(configuration.getModals())
                     .setTemplate(configuration.getTemplate())
                     .setActionListener(configuration.getActionListener())
                     .setTranslator(configuration.getTranslator())
                     .setUser(configuration.getUser())
-                    .setParameters(configuration.getParameters());
+                    .setParameters(configuration.getParameters())
+                    .setQueryStrings(configuration.getQueryStrings());
     }
 
     public String toString()
@@ -239,10 +367,45 @@ public class ConfigurationEntity
              : "null"
         ).append("\n\t");
 
+        // Entities
+        builder.append("Entities: ");
+        if (getEntities().size() > 0) {
+            builder.append("[");
+            Iterator<String> keySetIterator = getEntities().keySet().iterator();
+            while (keySetIterator.hasNext()) {
+                String name = keySetIterator.next();
+                builder.append("\n\t\t");
+                builder.append("\"" + name + "\": "+ getEntity(name).getClass().getName());
+            }
+            builder.append("\n\t]");
+        } else {
+            builder.append("null");
+        }
+        builder.append("\n\t");
+
+        // Entities Collection
+        builder.append("Entities Collection: ");
+        if (getEntitiesCollection().size() > 0) {
+            builder.append("[");
+            Iterator<AbstractEntity> iterator = getEntitiesCollection().iterator();
+            Integer index = 0;
+            while (iterator.hasNext()) {
+                builder.append("\n\t\t");
+                builder.append(index + ": [\n");
+                builder.append(iterator.next().toString());
+                builder.append("]");
+                index++;
+                builder.append("\n\t\t]");
+            }
+        } else {
+            builder.append("null");
+        }
+        builder.append("\n\t");
+
         // Modals
         builder.append("Modals: ");
         if (getModals().size() > 0) {
-            builder.append("[");
+            builder.append("[\n");
             Iterator<String> keySetIterator = getModals().keySet().iterator();
             while (keySetIterator.hasNext()) {
                 String name = keySetIterator.next();
@@ -317,12 +480,27 @@ public class ConfigurationEntity
                 while (parameterKeySetIterator.hasNext()) {
                     String parameterName = parameterKeySetIterator.next();
                     builder.append("\n\t\t\t");
-                    System.out.println(getParameter(name).get(parameterName).getClass().getName());
                     JTextField textField = (JTextField) getParameter(name).get(parameterName);
                     builder.append("\"" + parameterName + "\"" + ": " + textField.getText());
                 }
 
                 builder.append("\n\t\t]");
+            }
+            builder.append("\n\t]");
+        } else {
+            builder.append("null");
+        }
+        builder.append("\n\t");
+
+        // Query String
+        builder.append("Query String: ");
+        if (getQueryStrings().size() > 0) {
+            builder.append("[");
+            Iterator<String> keySetIterator = getQueryStrings().keySet().iterator();
+            while (keySetIterator.hasNext()) {
+                String name = keySetIterator.next();
+                builder.append("\n\t\t");
+                builder.append("\"" + name + "\": "+ getQueryString(name));
             }
             builder.append("\n\t]");
         } else {

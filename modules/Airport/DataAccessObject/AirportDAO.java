@@ -19,13 +19,37 @@ public class AirportDAO extends DatabaseConnect
         Boolean result = false;
         StringBuilder query = new StringBuilder();
         query.append("INSERT INTO " + table);
-        query.append(" (descricao, sigla, endereco) VALUES");
+        query.append(" (`descricao`, `sigla`, `endereco`) VALUES");
         query.append(" (?, ?, ?);");
         try {
             preparedStatement = getConnection().prepareStatement(query.toString());
             preparedStatement.setString(1, airportEntity.getDescription());
             preparedStatement.setString(2, airportEntity.getAbbreviation());
             preparedStatement.setString(3, airportEntity.getAddress());
+            preparedStatement.executeUpdate();
+            result = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return result;
+    }
+
+    public Boolean update(AirportEntity airportEntity)
+    {
+        Boolean result = false;
+        StringBuilder query = new StringBuilder();
+        query.append("UPDATE " + table);
+        query.append(" SET `descricao` = ?");
+        query.append(", `sigla` = ?");
+        query.append(", `endereco` = ?");
+        query.append(" WHERE `sigla` = ?");
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            preparedStatement.setString(1, airportEntity.getDescription());
+            preparedStatement.setString(2, airportEntity.getAbbreviation());
+            preparedStatement.setString(3, airportEntity.getAddress());
+            preparedStatement.setString(4, airportEntity.getAbbreviation());
             preparedStatement.executeUpdate();
             result = true;
         } catch (SQLException e) {
@@ -61,5 +85,23 @@ public class AirportDAO extends DatabaseConnect
         }
         closeConnection();
         return entities;
+    }
+
+    public Boolean delete(AirportEntity airportEntity)
+    {
+        Boolean result = false;
+        StringBuilder query = new StringBuilder();
+        query.append("DELETE FROM " + table);
+        query.append(" WHERE `idAeroporto` = ?");
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            preparedStatement.setInt(1, airportEntity.getId());
+            preparedStatement.executeUpdate();
+            result = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return result;
     }
 }

@@ -50,7 +50,7 @@ public class FlightMenuPanel extends JPanel
         ));
         menuGridPanel.add(new ImageButton(
             configuration.getTranslator().__("Editar"),
-            imageDirectoryPath + "config.png"
+            imageDirectoryPath + "configuration.png"
         ));
         menuGridPanel.add(new ImageButton(
             configuration.getTranslator().__("Cancelar"),

@@ -7,24 +7,24 @@ import project.modules.Menu.View.MenuAtendenteView;
 
 public abstract class AbstractModel implements ConfigurationInterface
 {
-    protected ConfigurationEntity config;
+    protected ConfigurationEntity configuration;
 
     public void setConfiguration(ConfigurationEntity configuration)
     {
-        this.config = configuration;
+        this.configuration = configuration;
     }
 
     public ConfigurationEntity getConfiguration()
     {
-        return config;
+        return configuration;
     }
 
     public void goToMenu()
     {
-        if (config.getUser().isSupervisor()) {
-            new MenuSupervisorView(config);
+        if (configuration.getUser().isSupervisor()) {
+            new MenuSupervisorView(configuration);
         } else {
-            new MenuAtendenteView(config);
+            new MenuAtendenteView(configuration);
         }
     }
 }

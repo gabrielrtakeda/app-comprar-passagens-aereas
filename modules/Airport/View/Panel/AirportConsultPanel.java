@@ -73,8 +73,9 @@ public class AirportConsultPanel extends JPanel
                     "column",
                     new JComboBox<AirportConsultSearchComboType>(
                         new AirportConsultSearchComboType[] {
-                            new AirportConsultSearchComboType(configuration, "Descrição", "descricao"),
                             new AirportConsultSearchComboType(configuration, "Sigla", "sigla"),
+                            new AirportConsultSearchComboType(configuration, "Código", "idAeroporto"),
+                            new AirportConsultSearchComboType(configuration, "Descrição", "descricao"),
                             new AirportConsultSearchComboType(configuration, "Endereço", "endereco")
                         }
                     )

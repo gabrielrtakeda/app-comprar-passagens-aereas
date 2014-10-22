@@ -14,7 +14,7 @@ public class PassageConsultResultActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getView().dispose();
-        new PassageConsultResultView(config);
+        configuration.getView().dispose();
+        new PassageConsultResultView(configuration);
     }
 }

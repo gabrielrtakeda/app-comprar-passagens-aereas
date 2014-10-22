@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 public class AbstractModal extends JDialog
 {
-    protected ConfigurationEntity config;
+    protected ConfigurationEntity configuration;
 
     public AbstractModal(AbstractView owner)
     {
@@ -20,14 +20,14 @@ public class AbstractModal extends JDialog
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }
 
-    public void setConfiguration(ConfigurationEntity config)
+    public void setConfiguration(ConfigurationEntity configuration)
     {
-        this.config = config;
+        this.configuration = configuration;
     }
 
     public ConfigurationEntity getConfiguration()
     {
-        return config;
+        return configuration;
     }
 
     public void setLayout(Object layout)
@@ -43,13 +43,6 @@ public class AbstractModal extends JDialog
     public Container getTemplate()
     {
         return getContentPane();
-    }
-
-    public void processWindowEvent(WindowEvent e)
-    {
-        if (e.getID() == WindowEvent.WINDOW_CLOSED) {
-            System.out.println("processWindowEvent");
-        }
     }
 
     public void showModal()

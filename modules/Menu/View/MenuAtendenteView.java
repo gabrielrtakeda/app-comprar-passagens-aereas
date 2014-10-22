@@ -13,9 +13,9 @@ public class MenuAtendenteView extends AbstractView
         configuration.setPreviousTemplate(new AuthenticationTemplate(configuration));
         setConfiguration(configuration);
         setTitle(
-            config.getTranslator().__("Menu Inicial")
+            configuration.getTranslator().__("Menu Inicial")
         );
-        setTemplate(new MenuAtendenteTemplate(config));
+        setTemplate(new MenuAtendenteTemplate(configuration));
         showTemplate();
     }
 }

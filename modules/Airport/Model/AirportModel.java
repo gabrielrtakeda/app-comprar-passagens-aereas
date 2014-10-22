@@ -6,7 +6,10 @@ import project.modules.Application.Model.AbstractModel;
 import project.modules.Airport.Entity.AirportEntity;
 import project.modules.Airport.DataAccessObject.AirportDAO;
 import project.modules.Airport.Type.AirportConsultSearchComboType;
+import project.modules.Airport.View.AirportMenuView;
+import project.modules.Airport.View.AirportConsultView;
 import project.modules.Airport.View.AirportConsultResultView;
+import project.modules.Airport.View.AirportEditContentView;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -23,41 +26,55 @@ public class AirportModel extends AbstractModel
         return new AirportDAO();
     }
 
-    public Boolean register(AirportEntity airportEntity)
+    public void register(AirportEntity airportEntity)
     {
-        Boolean result = false;
         Integer optionsResult = JOptionPane.showConfirmDialog(
             null,
-            config.getTranslator().__("Confirma o cadastro do Aeroporto?"),
-            config.getTranslator().__("Confirmação de Cadastro do Aeroporto"),
+            configuration.getTranslator().__("Confirma o cadastro do Aeroporto?"),
+            configuration.getTranslator().__("Confirmação de Cadastro do Aeroporto"),
             JOptionPane.YES_NO_OPTION
         );
 
         if (optionsResult == JOptionPane.YES_OPTION) {
-            result = dao().register(airportEntity);
+            Boolean result = false;
+            String successMessage = "",
+                   errorMessage = "";
 
-            String message, title;
-            Integer type;
+            // Verifica se o registro já existe a partir da sigla
+            List<AbstractEntity> searchEntity
+                = dao().consultBy("sigla", airportEntity.getAbbreviation());
+
+            if (searchEntity.size() < 1) {
+                // Inserir caso não exista
+                result = dao().register(airportEntity);
+                successMessage = "Aeroporto cadastrado com sucesso!";
+                errorMessage = "Não foi possível finalizar o cadastro do Aeroporto.";
+            } else {
+                // Atualizar caso exista
+                result = dao().update(airportEntity);
+                successMessage = "Aeroporto alterado com sucesso!";
+                errorMessage = "Não foi possível finalizar a alteração do Aeroporto.";
+            }
+
             if (result) {
                 JOptionPane.showMessageDialog(
                     null,
-                    config.getTranslator().__("Aeroporto cadastrado com sucesso!"),
-                    config.getTranslator().__("Sucesso"),
+                    configuration.getTranslator().__(successMessage),
+                    configuration.getTranslator().__("Sucesso"),
                     JOptionPane.INFORMATION_MESSAGE
                 );
-                config.getView().dispose();
+                configuration.removeEntity("airport");
+                configuration.getView().dispose();
                 goToMenu();
             } else {
                 JOptionPane.showMessageDialog(
                     null,
-                    config.getTranslator().__(
-                        "Não foi possível finalizar o cadastro do Aeroporto."),
-                    config.getTranslator().__("Erro"),
+                    configuration.getTranslator().__(errorMessage),
+                    configuration.getTranslator().__("Erro"),
                     JOptionPane.ERROR_MESSAGE
                 );
             }
         }
-        return result;
     }
 
     public void consultBy(AirportConsultSearchComboType columnType,
@@ -67,8 +84,8 @@ public class AirportModel extends AbstractModel
         if (search.isEmpty()) {
             JOptionPane.showMessageDialog(
                 null,
-                config.getTranslator().__("Por favor, preencha o campo") + ": " + columnType.toString(),
-                config.getTranslator().__("Campo Obrigatório"),
+                configuration.getTranslator().__("Por favor, preencha o campo") + ": " + columnType.toString(),
+                configuration.getTranslator().__("Campo Obrigatório"),
                 JOptionPane.ERROR_MESSAGE
             );
         } else {
@@ -80,14 +97,95 @@ public class AirportModel extends AbstractModel
             if (airportEntities.size() < 1) {
                 JOptionPane.showMessageDialog(
                     null,
-                    config.getTranslator().__("Nenhum registro foi encontrado."),
-                    config.getTranslator().__("Resultado"),
+                    configuration.getTranslator().__("Nenhum registro foi encontrado."),
+                    configuration.getTranslator().__("Resultado"),
                     JOptionPane.INFORMATION_MESSAGE
                 );
             } else {
-                config.getView().dispose();
-                config.setEntitiesCollection(airportEntities);
-                new AirportConsultResultView(config);
+                configuration.getView().dispose();
+                configuration.setEntitiesCollection(airportEntities);
+                new AirportConsultResultView(configuration);
+            }
+        }
+    }
+
+    public void menu()
+    {
+        configuration.getView().dispose();
+        new AirportMenuView(configuration);
+    }
+
+    public void searchConsult()
+    {
+        configuration.getView().dispose();
+        configuration.setQueryString("airport-consult", "consult");
+        new AirportConsultView(configuration);
+    }
+
+    public void editConsult()
+    {
+        configuration.getView().dispose();
+        configuration.setQueryString("airport-consult", "edit");
+        new AirportConsultView(configuration);
+    }
+
+    public void editContent()
+    {
+        configuration.getView().dispose();
+        configuration.clearQueryStrings();
+        configuration.clearEntitiesCollection();
+        new AirportEditContentView(configuration);
+    }
+
+    public void deleteConsult()
+    {
+        configuration.getView().dispose();
+        configuration.setQueryString("airport-consult", "delete");
+        new AirportConsultView(configuration);
+    }
+
+    public void delete(AirportEntity airportEntity)
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.append("\n\t");
+        builder.append(configuration.getTranslator().__("Descrição") + ":");
+        builder.append(airportEntity.getDescription());
+        builder.append("\n\t");
+        builder.append(configuration.getTranslator().__("Sigla") + ":");
+        builder.append(airportEntity.getAbbreviation());
+        builder.append("\n\t");
+        builder.append(configuration.getTranslator().__("Endereço") + ":");
+        builder.append(airportEntity.getAddress());
+
+        Integer optionsResult = JOptionPane.showConfirmDialog(
+            null,
+            configuration.getTranslator().__("Confirma a exclusão do seguinte Aeroporto?")
+                + builder.toString(),
+            configuration.getTranslator().__("Confirmação de Exclusão do Aeroporto"),
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (optionsResult == JOptionPane.YES_OPTION) {
+            Boolean result = dao().delete(airportEntity);
+
+            if (result) {
+                JOptionPane.showMessageDialog(
+                    null,
+                    configuration.getTranslator().__("Aeroporto excluído com sucesso!"),
+                    configuration.getTranslator().__("Sucesso"),
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+                configuration.getView().dispose();
+                goToMenu();
+            } else {
+                JOptionPane.showMessageDialog(
+                    null,
+                    configuration.getTranslator().__(
+                        "Não foi possível finalizar a exclusão do Aeroporto."
+                    ),
+                    configuration.getTranslator().__("Erro"),
+                    JOptionPane.ERROR_MESSAGE
+                );
             }
         }
     }

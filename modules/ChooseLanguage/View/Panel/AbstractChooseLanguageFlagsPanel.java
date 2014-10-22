@@ -20,7 +20,6 @@ public class AbstractChooseLanguageFlagsPanel extends JPanel
     private EmptyBorder margin;
     private String iconSize;
     private Dimension flagButtonSize;
-    private Boolean usingWidget = false;
 
     public AbstractChooseLanguageFlagsPanel(ConfigurationEntity configuration,
                                             EmptyBorder margin,
@@ -32,21 +31,6 @@ public class AbstractChooseLanguageFlagsPanel extends JPanel
         this.margin = margin;
         this.iconSize = iconSize;
         this.flagButtonSize = flagButtonSize;
-        build();
-    }
-
-    public AbstractChooseLanguageFlagsPanel(ConfigurationEntity configuration,
-                                            EmptyBorder margin,
-                                            String iconSize,
-                                            Dimension flagButtonSize,
-                                            Boolean usingWidget)
-    {
-        super(new GridLayout(1, 4));
-        this.configuration = configuration;
-        this.margin = margin;
-        this.iconSize = iconSize;
-        this.flagButtonSize = flagButtonSize;
-        this.usingWidget = usingWidget;
         build();
     }
 
@@ -63,11 +47,7 @@ public class AbstractChooseLanguageFlagsPanel extends JPanel
                     ),
                     flagButtonSize
                 );
-            button.addActionListener(
-                usingWidget == ChooseLanguageActionListener.USING_WIDGET
-                    ? new ChooseLanguageActionListener(configuration, usingWidget)
-                    : new ChooseLanguageActionListener(configuration)
-            );
+            button.addActionListener(new ChooseLanguageActionListener(configuration));
             button.setActionCommand(language);
             add(button);
         }

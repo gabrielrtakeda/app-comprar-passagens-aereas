@@ -13,8 +13,8 @@ public class MenuAtendenteTemplate extends AbstractTemplate
     {
         setConfiguration(configuration.setTemplate(this));
         setLayout(new BorderLayout());
-        add(new ApplicationBaseLayoutHeaderPanel(config), BorderLayout.NORTH);
-        add(new ApplicationBaseLayoutFooterPanel(config), BorderLayout.SOUTH);
-        add(new MenuAtendentePanel(config), BorderLayout.CENTER);
+        add(new ApplicationBaseLayoutHeaderPanel(configuration), BorderLayout.NORTH);
+        add(new ApplicationBaseLayoutFooterPanel(configuration), BorderLayout.SOUTH);
+        add(new MenuAtendentePanel(configuration), BorderLayout.CENTER);
     }
 }

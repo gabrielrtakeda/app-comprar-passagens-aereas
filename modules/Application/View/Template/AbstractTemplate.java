@@ -6,18 +6,18 @@ import javax.swing.JPanel;
 
 public abstract class AbstractTemplate extends JPanel
 {
-    protected ConfigurationEntity config;
+    protected ConfigurationEntity configuration;
 
     public AbstractTemplate()
     {}
 
-    public void setConfiguration(ConfigurationEntity config)
+    public void setConfiguration(ConfigurationEntity configuration)
     {
-        this.config = config;
+        this.configuration = configuration;
     }
 
     public ConfigurationEntity getConfiguration()
     {
-        return config;
+        return configuration;
     }
 }

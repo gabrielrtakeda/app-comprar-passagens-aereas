@@ -16,6 +16,6 @@ public class PassengerRegisterModalCloseActionListener extends AbstractActionLis
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getModal(nameModal).dispose();
+        configuration.getModal(nameModal).dispose();
     }
 }

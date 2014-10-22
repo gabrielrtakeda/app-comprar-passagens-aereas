@@ -30,6 +30,6 @@ public class AirportConsultSearchActionListener extends AbstractActionListener
 
     private AirportController getController()
     {
-        return (AirportController) config.getController();
+        return new AirportController(configuration);
     }
 }

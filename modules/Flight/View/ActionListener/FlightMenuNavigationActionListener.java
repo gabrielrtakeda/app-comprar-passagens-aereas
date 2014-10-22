@@ -14,7 +14,7 @@ public class FlightMenuNavigationActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getView().dispose();
+        configuration.getView().dispose();
         goToMenu();
     }
 }

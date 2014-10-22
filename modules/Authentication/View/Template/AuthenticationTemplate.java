@@ -18,10 +18,10 @@ public class AuthenticationTemplate extends AbstractTemplate
         setLayout(new BorderLayout());
         add(new AuthenticationHeaderPanel(), BorderLayout.NORTH);
         add(new ApplicationBaseLayoutFooterPanel(
-                config,
+                configuration,
                 ApplicationBaseLayoutFooterPanel.HIDE_LOGIN_DATETIME
             ), BorderLayout.SOUTH
         );
-        add(new AuthenticationFormPanel(config));
+        add(new AuthenticationFormPanel(configuration));
     }
 }

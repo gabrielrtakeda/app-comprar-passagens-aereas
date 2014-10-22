@@ -15,7 +15,7 @@ public class AirplaneRegisterConfirmationNavigationActionListener extends Abstra
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getView().dispose();
-        new AirplaneRegisterView(config);
+        configuration.getView().dispose();
+        new AirplaneRegisterView(configuration);
     }
 }

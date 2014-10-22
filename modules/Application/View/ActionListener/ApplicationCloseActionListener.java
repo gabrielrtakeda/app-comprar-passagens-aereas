@@ -15,8 +15,8 @@ public class ApplicationCloseActionListener extends AbstractActionListener
     {
         Integer optionsResult = JOptionPane.showConfirmDialog(
             null,
-            config.getTranslator().__("Tem certeza que deseja encerrar a sessão?"),
-            config.getTranslator().__("Requisição de encerramento de sessão"),
+            configuration.getTranslator().__("Tem certeza que deseja encerrar a sessão?"),
+            configuration.getTranslator().__("Requisição de encerramento de sessão"),
             JOptionPane.YES_NO_OPTION
         );
 

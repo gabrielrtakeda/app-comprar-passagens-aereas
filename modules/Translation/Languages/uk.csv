@@ -106,6 +106,8 @@ Endereço;Address
 Confirma o cadastro do Aeroporto?;It confirms the register of the Airport?
 Confirmação de Cadastro do Aeroporto;Airport Register Confirmation
 Aeroporto cadastrado com sucesso!;Successfully registered Airport!
+Aeroporto alterado com sucesso!;Airport successfully changed!
+Não foi possível finalizar a alteração do Aeroporto.;Could not finish changing the Airport.
 Erro;Error
 Não foi possível finalizar o cadastro do Aeroporto.;Unable to complete registration Airport.
 Consulta de Aeroporto;Airport Consult
@@ -113,3 +115,10 @@ Nenhum registro foi encontrado.;No records were found.
 Resultado;Result
 Por favor, preencha o campo;Please fill in the field
 Resultado da Pesquisa;Search Results
+Ok;Ok
+Editar Aeroporto;Edit Airport
+Excluir Aeroporto;Delete Airport
+Confirma a exclusão do seguinte Aeroporto?;Confirms the exclusion of the following Airport?
+Confirmação de Exclusão do Aeroporto;Delete Confirmation Airport
+Aeroporto excluído com sucesso!;Airport successfully deleted!
+Não foi possível finalizar a exclusão do Aeroporto.;Could not complete the deletion of the Airport.

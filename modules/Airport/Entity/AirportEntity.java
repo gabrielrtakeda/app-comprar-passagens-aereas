@@ -31,6 +31,11 @@ public class AirportEntity extends AbstractEntity
         return this.dateRegister;
     }
 
+    public AirportEntity setId(String id) {
+        this.id = Integer.parseInt(id);
+        return this;
+    }
+
     public AirportEntity setId(Integer id) {
         this.id = id;
         return this;
@@ -54,5 +59,21 @@ public class AirportEntity extends AbstractEntity
     public AirportEntity setDateRegister(Date dateRegister) {
         this.dateRegister = dateRegister;
         return this;
+    }
+
+    public String toString()
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.append("\t\t\t");
+        builder.append("id: " + getId());
+        builder.append("\n\t\t\t");
+        builder.append("description: " + getDescription());
+        builder.append("\n\t\t\t");
+        builder.append("abbreviation: " + getAbbreviation());
+        builder.append("\n\t\t\t");
+        builder.append("address: " + getAddress());
+        builder.append("\n\t\t\t");
+        builder.append("date-register: " + getDateRegister());
+        return builder.toString();
     }
 }

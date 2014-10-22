@@ -15,6 +15,6 @@ public class FlightAvailabilityConfirmationActionListener extends AbstractAction
 
     public void actionPerformed(ActionEvent e)
     {
-        new FlightAvailabilityConfirmationModal(config);
+        new FlightAvailabilityConfirmationModal(configuration);
     }
 }

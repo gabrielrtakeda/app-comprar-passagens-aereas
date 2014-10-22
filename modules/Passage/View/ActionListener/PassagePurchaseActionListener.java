@@ -14,7 +14,7 @@ public class PassagePurchaseActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getView().dispose();
-        new PassagePurchaseView(config);
+        configuration.getView().dispose();
+        new PassagePurchaseView(configuration);
     }
 }

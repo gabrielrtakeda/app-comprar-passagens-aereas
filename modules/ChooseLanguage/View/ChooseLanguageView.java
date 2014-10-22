@@ -11,7 +11,7 @@ public class ChooseLanguageView extends AbstractView
     {
         setConfiguration(configuration.setView(this));
         setTitle("Linguagem");
-        setTemplate(new ChooseLanguageDefaultTemplate(config));
+        setTemplate(new ChooseLanguageDefaultTemplate(configuration));
         showTemplate();
     }
 }

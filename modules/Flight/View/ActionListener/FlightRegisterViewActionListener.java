@@ -15,7 +15,7 @@ public class FlightRegisterViewActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getView().dispose();
-        new FlightRegisterView(config);
+        configuration.getView().dispose();
+        new FlightRegisterView(configuration);
     }
 }

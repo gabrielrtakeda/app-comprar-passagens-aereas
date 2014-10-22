@@ -14,8 +14,8 @@ public class MenuSupervisorTemplate extends AbstractTemplate
     {
         setConfiguration(configuration.setTemplate(this));
         setLayout(new BorderLayout());
-        add(new ApplicationBaseLayoutHeaderPanel(config), BorderLayout.NORTH);
-        add(new ApplicationBaseLayoutFooterPanel(config), BorderLayout.SOUTH);
-        add(new MenuSupervisorPanel(config));
+        add(new ApplicationBaseLayoutHeaderPanel(configuration), BorderLayout.NORTH);
+        add(new ApplicationBaseLayoutFooterPanel(configuration), BorderLayout.SOUTH);
+        add(new MenuSupervisorPanel(configuration));
     }
 }

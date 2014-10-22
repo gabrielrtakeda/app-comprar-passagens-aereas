@@ -14,7 +14,7 @@ public class ResponsiblePassengerRegistrationViewActionListener extends Abstract
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getView().dispose();
-        // new ResponsiblePassengerRegistrationView(config);
+        configuration.getView().dispose();
+        // new ResponsiblePassengerRegistrationView(configuration);
     }
 }

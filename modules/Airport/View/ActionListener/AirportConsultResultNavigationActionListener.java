@@ -15,7 +15,7 @@ public class AirportConsultResultNavigationActionListener extends AbstractAction
 
     public void actionPerformed(ActionEvent e)
     {
-        config.getView().dispose();
-        new AirportConsultView(config);
+        configuration.getView().dispose();
+        new AirportConsultView(configuration);
     }
 }

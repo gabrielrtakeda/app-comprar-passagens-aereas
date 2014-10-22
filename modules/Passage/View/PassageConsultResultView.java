@@ -12,8 +12,8 @@ public class PassageConsultResultView extends AbstractView
         configuration.setView(this);
         setConfiguration(configuration);
 
-        setTitle(config.getTranslator().__("Check In"));
-        setTemplate(new PassageConsultResultTemplate(config));
+        setTitle(configuration.getTranslator().__("Check In"));
+        setTemplate(new PassageConsultResultTemplate(configuration));
         showTemplate();
     }
 }

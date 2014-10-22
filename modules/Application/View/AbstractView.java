@@ -10,21 +10,21 @@ import javax.swing.JPanel;
 
 public abstract class AbstractView extends JFrame
 {
-    protected ConfigurationEntity config;
+    protected ConfigurationEntity configuration;
 
     public AbstractView()
     {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void setConfiguration(ConfigurationEntity config)
+    public void setConfiguration(ConfigurationEntity configuration)
     {
-        this.config = config;
+        this.configuration = configuration;
     }
 
     public ConfigurationEntity getConfiguration()
     {
-        return config;
+        return configuration;
     }
 
     public void setLayout(Object layout)

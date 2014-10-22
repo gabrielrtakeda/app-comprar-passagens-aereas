@@ -103,6 +103,8 @@ Endereço;Endereço
 Confirma o cadastro do Aeroporto?;Confirma o cadastro do Aeroporto?
 Confirmação de Cadastro do Aeroporto;Confirmação de Cadastro do Aeroporto
 Aeroporto cadastrado com sucesso!;Aeroporto cadastrado com sucesso!
+Aeroporto alterado com sucesso!;Aeroporto alterado com sucesso!
+Não foi possível finalizar a alteração do Aeroporto.;Não foi possível finalizar a alteração do Aeroporto.
 Erro;Erro
 Não foi possível finalizar o cadastro do Aeroporto.;Não foi possível finalizar o cadastro do Aeroporto.
 Consulta de Aeroporto;Consulta de Aeroporto
@@ -110,3 +112,10 @@ Nenhum registro foi encontrado.;Nenhum registro foi encontrado.
 Resultado;Resultado
 Por favor, preencha o campo;Por favor, preencha o campo
 Resultado da Pesquisa;Resultado da Pesquisa
+Ok;Ok
+Editar Aeroporto;Editar Aeroporto
+Excluir Aeroporto;Excluir Aeroporto
+Confirma a exclusão do seguinte Aeroporto?;Confirma a exclusão do seguinte Aeroporto?
+Confirmação de Exclusão do Aeroporto;Confirmação de Exclusão do Aeroporto
+Aeroporto excluído com sucesso!;Aeroporto excluído com sucesso!
+Não foi possível finalizar a exclusão do Aeroporto.;Não foi possível finalizar a exclusão do Aeroporto.

@@ -15,8 +15,8 @@ public class PassagePurchaseTemplate extends AbstractTemplate
         setConfiguration(configuration.setTemplate(this));
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        add(new ApplicationBaseLayoutHeaderPanel(config), BorderLayout.NORTH);
-        add(new ApplicationBaseLayoutFooterPanel(config), BorderLayout.SOUTH);
-        add(new PassageInformationsPanel(config), BorderLayout.CENTER);
+        add(new ApplicationBaseLayoutHeaderPanel(configuration), BorderLayout.NORTH);
+        add(new ApplicationBaseLayoutFooterPanel(configuration), BorderLayout.SOUTH);
+        add(new PassageInformationsPanel(configuration), BorderLayout.CENTER);
     }
 }

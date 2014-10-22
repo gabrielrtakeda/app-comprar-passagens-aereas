@@ -13,9 +13,9 @@ public class AuthenticationView extends AbstractView
         configuration.setPreviousTemplate(new ChooseLanguageDefaultTemplate(configuration));
         setConfiguration(configuration);
         setTitle(
-            config.getTranslator().__("Autenticação")
+            configuration.getTranslator().__("Autenticação")
         );
-        setTemplate(new AuthenticationTemplate(config));
+        setTemplate(new AuthenticationTemplate(configuration));
         showTemplate();
     }
 }

@@ -17,19 +17,19 @@ public class AirplaneRegisterConfirmationActionListener extends AbstractActionLi
     {
         Integer optionsResult = JOptionPane.showConfirmDialog(
             null,
-            config.getTranslator().__("Confirma o cadastro da Aeronave?"),
-            config.getTranslator().__("Confirmação de Cadastro da Aeronave"),
+            configuration.getTranslator().__("Confirma o cadastro da Aeronave?"),
+            configuration.getTranslator().__("Confirmação de Cadastro da Aeronave"),
             JOptionPane.YES_NO_OPTION
         );
 
         if (optionsResult == JOptionPane.YES_OPTION) {
             JOptionPane.showMessageDialog(
                 null,
-                config.getTranslator().__("Aeronave cadastrada com sucesso!"),
-                config.getTranslator().__("Sucesso"),
+                configuration.getTranslator().__("Aeronave cadastrada com sucesso!"),
+                configuration.getTranslator().__("Sucesso"),
                 JOptionPane.INFORMATION_MESSAGE
             );
-            config.getView().dispose();
+            configuration.getView().dispose();
             goToMenu();
         }
     }
