@@ -14,7 +14,6 @@ public class MenuSupervisorView extends AbstractView
 
         setTitle(configuration.getTranslator().__("Menu Inicial"));
         setTemplate(new MenuSupervisorTemplate(configuration));
-        System.out.println(configuration.toString());
         showTemplate();
     }
 }

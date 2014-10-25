@@ -30,9 +30,7 @@ public class AirportEditContentViewActionListener extends AbstractActionListener
                      .setAddress(       (String) tableModel.getValueAt(row, 3))
                      .setDateRegister(  (Date) tableModel.getValueAt(row, 4));
 
-        configuration.setEntity("airport", airportEntity);
-        setConfiguration(configuration);
-        getController().editContentAction();
+        getController().editContentAction(airportEntity);
     }
 
     private AirportController getController()

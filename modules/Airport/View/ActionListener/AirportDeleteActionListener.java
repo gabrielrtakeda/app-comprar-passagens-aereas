@@ -25,14 +25,13 @@ public class AirportDeleteActionListener extends AbstractActionListener
         DefaultTableModel tableModel = (DefaultTableModel) searchResult.getModel();
 
         AirportEntity airportEntity = new AirportEntity();
-        getController().deleteAction(
-            airportEntity
-                .setId(            (Integer) tableModel.getValueAt(row, 0))
-                .setDescription(   (String) tableModel.getValueAt(row, 1))
-                .setAbbreviation(  (String) tableModel.getValueAt(row, 2))
-                .setAddress(       (String) tableModel.getValueAt(row, 3))
-                .setDateRegister(  (Date) tableModel.getValueAt(row, 4))
-        );
+        airportEntity.setId(          (Integer) tableModel.getValueAt(row, 0))
+                     .setDescription( (String) tableModel.getValueAt(row, 1))
+                     .setAbbreviation((String) tableModel.getValueAt(row, 2))
+                     .setAddress(     (String) tableModel.getValueAt(row, 3))
+                     .setDateRegister((Date) tableModel.getValueAt(row, 4));
+
+        getController().deleteConfirmationAction(airportEntity);
     }
 
     private AirportController getController()

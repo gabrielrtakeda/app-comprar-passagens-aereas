@@ -6,8 +6,11 @@ import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
+import project.modules.Airport.Entity.AirportEntity;
 import project.modules.Airport.View.ActionListener.AirportRegisterViewActionListener;
 import project.modules.Airport.View.ActionListener.AirportRegisterConfirmationActionListener;
+import project.modules.Airport.View.ActionListener.AirportDeleteConfirmationActionListener;
+import project.modules.Airport.Type.AirportButtonType;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
@@ -51,23 +54,20 @@ public class AirportRegisterRasterizePanel extends JPanel
                   .setBackgroundColor("white", Color.WHITE);
 
         // Formulário: Dados da Aeronave
-        Map<String, Component> parameter = configuration.getParameter("airport-register-form-data");
-        JTextField description   = (JTextField) parameter.get("description");
-        JTextField abbreviation  = (JTextField) parameter.get("abbreviation");
-        JTextField address       = (JTextField) parameter.get("address");
+        AirportEntity airportEntity = (AirportEntity) configuration.getEntity("airport");
 
         Component[][] components = {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Descrição") + ":"),
-                new JLabel(description.getText())
+                new JLabel(airportEntity.getDescription())
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Sigla") + ":"),
-                new JLabel(abbreviation.getText())
+                new JLabel(airportEntity.getAbbreviation())
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Endereço") + ":"),
-                new JLabel(address.getText())
+                new JLabel(airportEntity.getAddress())
             }
         };
         gridBagConstraints.insets = new Insets(0, 0, 0, 0);
@@ -77,6 +77,7 @@ public class AirportRegisterRasterizePanel extends JPanel
         );
 
         // Buttons
+        AirportButtonType continueButton = getContinueButtonType(configuration);
         JPanel buttonsPanel = new JPanel(new FlowLayout());
         buttonsPanel.add(
             new ImageButton(
@@ -88,10 +89,10 @@ public class AirportRegisterRasterizePanel extends JPanel
         );
         buttonsPanel.add(
             new ImageButton(
-                configuration.getTranslator().__("Confirmar"),
+                configuration.getTranslator().__(continueButton.getText()),
                 "/images/buttonIcons/check.png",
                 new Dimension(175, 40),
-                new AirportRegisterConfirmationActionListener(configuration)
+                continueButton.getActionListener()
             )
         );
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);
@@ -101,5 +102,24 @@ public class AirportRegisterRasterizePanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
+    }
+
+    private AirportButtonType getContinueButtonType(ConfigurationEntity configuration)
+    {
+        AirportButtonType continueType = new AirportButtonType();
+        switch (configuration.getQueryString("airport-consult-confirmation")) {
+            case "delete":
+                continueType.setText("Excluir");
+                continueType.setActionListener(
+                    new AirportDeleteConfirmationActionListener(configuration)
+                );
+                break;
+            default:
+                continueType.setText("Confirmar");
+                continueType.setActionListener(
+                    new AirportRegisterConfirmationActionListener(configuration)
+                );
+        }
+        return continueType;
     }
 }

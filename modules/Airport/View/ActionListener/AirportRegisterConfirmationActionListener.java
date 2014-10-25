@@ -26,11 +26,11 @@ public class AirportRegisterConfirmationActionListener extends AbstractActionLis
         JTextField address       = (JTextField) parameter.get("address");
 
         AirportEntity airportEntity = new AirportEntity();
-        getController(configuration).register(
-            airportEntity.setDescription(description.getText())
-                         .setAbbreviation(abbreviation.getText())
-                         .setAddress(address.getText())
-        );
+        airportEntity.setDescription(description.getText())
+                     .setAbbreviation(abbreviation.getText())
+                     .setAddress(address.getText());
+
+        getController(configuration).register(airportEntity);
     }
 
     private AirportController getController(ConfigurationEntity configuration)

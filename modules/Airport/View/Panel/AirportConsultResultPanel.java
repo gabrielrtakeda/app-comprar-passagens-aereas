@@ -8,7 +8,7 @@ import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Airport.Controller.AirportController;
 import project.modules.Airport.Entity.AirportEntity;
-import project.modules.Airport.Type.AirportConsultContinueButtonType;
+import project.modules.Airport.Type.AirportButtonType;
 import project.modules.Airport.View.ActionListener.AirportMenuViewActionListener;
 import project.modules.Airport.View.ActionListener.AirportConsultResultNavigationActionListener;
 import project.modules.Airport.View.ActionListener.AirportEditContentViewActionListener;
@@ -116,7 +116,7 @@ public class AirportConsultResultPanel extends JPanel
         // Action Buttons
         JPanel buttonsPanel = new JPanel(new FlowLayout());
         Dimension buttonSize = new Dimension(200, 40);
-        AirportConsultContinueButtonType continueButtonType = getContinueButtonType(configuration);
+        AirportButtonType continueButtonType = getContinueButtonType(configuration);
 
         buttonsPanel.add(
             new ImageButton(
@@ -157,10 +157,9 @@ public class AirportConsultResultPanel extends JPanel
         table.getColumnModel().getColumn(columnIndex).setCellRenderer(rightAlignment);
     }
 
-    private AirportConsultContinueButtonType
-        getContinueButtonType(ConfigurationEntity configuration)
+    private AirportButtonType getContinueButtonType(ConfigurationEntity configuration)
     {
-        AirportConsultContinueButtonType continueType = new AirportConsultContinueButtonType();
+        AirportButtonType continueType = new AirportButtonType();
         switch (configuration.getQueryString("airport-consult")) {
             case "edit":
                 AbstractActionListener editContentActionListener =

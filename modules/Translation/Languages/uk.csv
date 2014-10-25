@@ -118,7 +118,8 @@ Resultado da Pesquisa;Search Results
 Ok;Ok
 Editar Aeroporto;Edit Airport
 Excluir Aeroporto;Delete Airport
-Confirma a exclusão do seguinte Aeroporto?;Confirms the exclusion of the following Airport?
+Tem certeza que deseja prosseguir com a ação?;Are you sure you want to proceed with the action?
 Confirmação de Exclusão do Aeroporto;Delete Confirmation Airport
+Confirmação de Exclusão;Delete Confirmation
 Aeroporto excluído com sucesso!;Airport successfully deleted!
 Não foi possível finalizar a exclusão do Aeroporto.;Could not complete the deletion of the Airport.

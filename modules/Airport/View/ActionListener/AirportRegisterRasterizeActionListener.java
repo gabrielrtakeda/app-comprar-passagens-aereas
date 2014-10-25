@@ -51,7 +51,6 @@ public class AirportRegisterRasterizeActionListener extends AbstractActionListen
                          .setAddress(address.getText());
 
             configuration.getView().dispose();
-            configuration.setParameter("airport-register-form-data", getComponents());
             configuration.setEntity("airport", airportEntity);
             new AirportRegisterRasterizeView(configuration);
         }

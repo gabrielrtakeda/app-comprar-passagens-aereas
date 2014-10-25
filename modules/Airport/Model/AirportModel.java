@@ -10,6 +10,7 @@ import project.modules.Airport.View.AirportMenuView;
 import project.modules.Airport.View.AirportConsultView;
 import project.modules.Airport.View.AirportConsultResultView;
 import project.modules.Airport.View.AirportEditContentView;
+import project.modules.Airport.View.AirportDeleteConfirmationView;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -129,11 +130,12 @@ public class AirportModel extends AbstractModel
         new AirportConsultView(configuration);
     }
 
-    public void editContent()
+    public void editContent(AirportEntity airportEntity)
     {
         configuration.getView().dispose();
         configuration.clearQueryStrings();
         configuration.clearEntitiesCollection();
+        configuration.setEntity("airport", airportEntity);
         new AirportEditContentView(configuration);
     }
 
@@ -144,28 +146,27 @@ public class AirportModel extends AbstractModel
         new AirportConsultView(configuration);
     }
 
-    public void delete(AirportEntity airportEntity)
+    public void deleteConfirmation(AirportEntity airportEntity)
     {
-        StringBuilder builder = new StringBuilder();
-        builder.append("\n\t");
-        builder.append(configuration.getTranslator().__("Descrição") + ":");
-        builder.append(airportEntity.getDescription());
-        builder.append("\n\t");
-        builder.append(configuration.getTranslator().__("Sigla") + ":");
-        builder.append(airportEntity.getAbbreviation());
-        builder.append("\n\t");
-        builder.append(configuration.getTranslator().__("Endereço") + ":");
-        builder.append(airportEntity.getAddress());
+        configuration.getView().dispose();
+        configuration.clearQueryStrings();
+        configuration.clearEntitiesCollection();
+        configuration.setEntity("airport", airportEntity);
+        configuration.setQueryString("airport-consult-confirmation", "delete");
+        new AirportDeleteConfirmationView(configuration);
+    }
 
+    public void delete()
+    {
         Integer optionsResult = JOptionPane.showConfirmDialog(
             null,
-            configuration.getTranslator().__("Confirma a exclusão do seguinte Aeroporto?")
-                + builder.toString(),
+            configuration.getTranslator().__("Tem certeza que deseja prosseguir com a ação?"),
             configuration.getTranslator().__("Confirmação de Exclusão do Aeroporto"),
             JOptionPane.YES_NO_OPTION
         );
 
         if (optionsResult == JOptionPane.YES_OPTION) {
+            AirportEntity airportEntity = (AirportEntity) configuration.getEntity("airport");
             Boolean result = dao().delete(airportEntity);
 
             if (result) {
@@ -176,6 +177,8 @@ public class AirportModel extends AbstractModel
                     JOptionPane.INFORMATION_MESSAGE
                 );
                 configuration.getView().dispose();
+                configuration.removeEntity("airport");
+                configuration.clearQueryStrings();
                 goToMenu();
             } else {
                 JOptionPane.showMessageDialog(

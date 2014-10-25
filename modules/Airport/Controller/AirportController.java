@@ -46,9 +46,9 @@ public class AirportController extends AbstractController
         model.editConsult();
     }
 
-    public void editContentAction()
+    public void editContentAction(AirportEntity airportEntity)
     {
-        model.editContent();
+        model.editContent(airportEntity);
     }
 
     public void deleteConsultAction()
@@ -56,8 +56,13 @@ public class AirportController extends AbstractController
         model.deleteConsult();
     }
 
-    public void deleteAction(AirportEntity airportEntity)
+    public void deleteConfirmationAction(AirportEntity airportEntity)
     {
-        model.delete(airportEntity);
+        model.deleteConfirmation(airportEntity);
+    }
+
+    public void deleteAction()
+    {
+        model.delete();
     }
 }
