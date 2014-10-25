@@ -195,11 +195,11 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         AirplaneEntity airplaneEntity = new AirplaneEntity();
         return airplaneEntity.setId(1)
                              .setDescription("Embraer ERJ 135")
-                             .setCategory("ERJ")
+                             .setFamily("ERJ")
                              .setModel("ERJ 135")
                              .setSeatsTotal(37)
                              .setSeatsVacantTotal(12)
-                             .setStatus(AirplaneEntity.STATUS_RESERVADO)
+                             .setStatus(AirplaneEntity.STATUS_RESERVED)
                              .setDateRegister(new Date());
     }
 

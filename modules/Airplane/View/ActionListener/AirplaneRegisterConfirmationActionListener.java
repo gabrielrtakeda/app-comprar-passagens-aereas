@@ -2,8 +2,8 @@ package project.modules.Airplane.View.ActionListener;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
+import project.modules.Airplane.Controller.AirplaneController;
 import java.awt.event.ActionEvent;
-import javax.swing.JOptionPane;
 
 public class AirplaneRegisterConfirmationActionListener extends AbstractActionListener
 {
@@ -15,22 +15,11 @@ public class AirplaneRegisterConfirmationActionListener extends AbstractActionLi
 
     public void actionPerformed(ActionEvent e)
     {
-        Integer optionsResult = JOptionPane.showConfirmDialog(
-            null,
-            configuration.getTranslator().__("Confirma o cadastro da Aeronave?"),
-            configuration.getTranslator().__("Confirmação de Cadastro da Aeronave"),
-            JOptionPane.YES_NO_OPTION
-        );
+        getController().confirmRegisterAction();
+    }
 
-        if (optionsResult == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(
-                null,
-                configuration.getTranslator().__("Aeronave cadastrada com sucesso!"),
-                configuration.getTranslator().__("Sucesso"),
-                JOptionPane.INFORMATION_MESSAGE
-            );
-            configuration.getView().dispose();
-            goToMenu();
-        }
+    private AirplaneController getController()
+    {
+        return new AirplaneController(configuration);
     }
 }

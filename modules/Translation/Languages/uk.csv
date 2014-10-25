@@ -88,6 +88,7 @@ Campo Obrigatório;Obrigatory Field
 Confirma o cadastro da Aeronave?;It confirms the register of the Airplane?
 Confirmação de Cadastro da Aeronave;Airplane Register Confirmation
 Aeronave cadastrada com sucesso!;Successfully registered Airplane!
+Não foi possível finalizar o cadastro da Aeronave.;Unable to complete registration of the Airplane.
 Confirma o Check In?;Confirms Check In?
 Confirmação do Check In;Check In Confirmation
 Selecione...;Choose...
@@ -124,3 +125,7 @@ Confirmação de Exclusão;Delete Confirmation
 Aeroporto excluído com sucesso!;Airport successfully deleted!
 Não foi possível finalizar a exclusão do Aeroporto.;Could not complete the deletion of the Airport.
 Aeronaves;Airplanes
+Disponível;Available
+Reservado;Reserved
+Inativo;Inactive
+Família;Family

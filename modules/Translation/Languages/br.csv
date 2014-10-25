@@ -85,6 +85,7 @@ Campo Obrigatório;Campo Obrigatório
 Confirma o cadastro da Aeronave?;Confirma o cadastro da Aeronave?
 Confirmação de Cadastro da Aeronave;Confirmação de Cadastro da Aeronave
 Aeronave cadastrada com sucesso!;Aeronave cadastrada com sucesso!
+Não foi possível finalizar o cadastro da Aeronave.;Não foi possível finalizar o cadastro da Aeronave.
 Confirma o Check In?;Confirma o Check In?
 Confirmação do Check In;Confirmação do Check In
 Selecione...;Selecione...
@@ -121,3 +122,7 @@ Confirmação de Exclusão;Confirmação de Exclusão
 Aeroporto excluído com sucesso!;Aeroporto excluído com sucesso!
 Não foi possível finalizar a exclusão do Aeroporto.;Não foi possível finalizar a exclusão do Aeroporto.
 Aeronaves;Aeronaves
+Disponível;Disponível
+Reservado;Reservado
+Inativo;Inativo
+Família;Família

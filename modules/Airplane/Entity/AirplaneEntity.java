@@ -6,13 +6,13 @@ import java.util.Date;
 
 public class AirplaneEntity extends AbstractEntity
 {
-    public static final String STATUS_DISPONIVEL = "Disponível";
-    public static final String STATUS_RESERVADO = "Reservado";
-    public static final String STATUS_INATIVO = "Inativo";
+    public static final String STATUS_AVAILABLE = "Disponível";
+    public static final String STATUS_RESERVED = "Reservado";
+    public static final String STATUS_INACTIVE = "Inativo";
 
     protected Integer id;
     protected String description;
-    protected String category;
+    protected String family;
     protected String model;
     protected Integer seatsTotal;
     protected Integer seatsVacantTotal;
@@ -27,8 +27,8 @@ public class AirplaneEntity extends AbstractEntity
         return this.description;
     }
 
-    public String getCategory() {
-        return this.category;
+    public String getFamily() {
+        return this.family;
     }
 
     public String getModel() {
@@ -61,8 +61,8 @@ public class AirplaneEntity extends AbstractEntity
         return this;
     }
 
-    public AirplaneEntity setCategory(String category) {
-        this.category = category;
+    public AirplaneEntity setFamily(String family) {
+        this.family = family;
         return this;
     }
 

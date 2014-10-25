@@ -22,18 +22,14 @@ public class AirplaneDAO extends DatabaseConnect
         query.append(" (   `descricao`");
         query.append("   , `categoria`");
         query.append("   , `modelo`");
-        query.append("   , `assentosTotal`");
-        query.append("   , `assentosVagosTotal`");
         query.append("   , `status`");
-        query.append(" ) VALUES (?, ?, ?, ?, ?, ?);");
+        query.append(" ) VALUES (?, ?, ?, ?);");
         try {
             preparedStatement = getConnection().prepareStatement(query.toString());
             preparedStatement.setString(1, airplaneEntity.getDescription());
-            preparedStatement.setString(2, airplaneEntity.getCategory());
+            preparedStatement.setString(2, airplaneEntity.getFamily());
             preparedStatement.setString(3, airplaneEntity.getModel());
-            preparedStatement.setInt(   4, airplaneEntity.getSeatsTotal());
-            preparedStatement.setInt(   5, airplaneEntity.getSeatsVacantTotal());
-            preparedStatement.setString(6, airplaneEntity.getStatus());
+            preparedStatement.setString(4, airplaneEntity.getStatus());
             preparedStatement.executeUpdate();
             result = true;
         } catch (SQLException e) {
@@ -82,7 +78,7 @@ public class AirplaneDAO extends DatabaseConnect
                 AirplaneEntity airplaneEntity = new AirplaneEntity();
                 airplaneEntity.setId(resultSet.getInt("idAeronave"))
                               .setDescription(resultSet.getString("descricao"))
-                              .setCategory(resultSet.getString("categoria"))
+                              .setFamily(resultSet.getString("familia"))
                               .setModel(resultSet.getString("modelo"))
                               .setSeatsTotal(resultSet.getInt("assentosTotal"))
                               .setSeatsVacantTotal(resultSet.getInt("assentosVagosTotal"))

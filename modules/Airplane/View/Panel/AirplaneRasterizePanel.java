@@ -6,6 +6,7 @@ import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
+import project.modules.Airplane.Entity.AirplaneEntity;
 import project.modules.Airplane.View.ActionListener.AirplaneRegisterConfirmationNavigationActionListener;
 import project.modules.Airplane.View.ActionListener.AirplaneRegisterConfirmationActionListener;
 import java.awt.GridBagLayout;
@@ -21,9 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class AirplaneRegisterRasterizePanel extends JPanel
+public class AirplaneRasterizePanel extends JPanel
 {
-    public AirplaneRegisterRasterizePanel(ConfigurationEntity configuration)
+    public AirplaneRasterizePanel(ConfigurationEntity configuration)
     {
         GridBagLayout gridBagLayout = new GridBagLayout();
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
@@ -51,23 +52,24 @@ public class AirplaneRegisterRasterizePanel extends JPanel
                   .setBackgroundColor("white", Color.WHITE);
 
         // Formulário: Dados da Aeronave
-        Map<String, Component> parameter = configuration.getParameter("airplane-register-form-data");
-        JTextField description   = (JTextField) parameter.get("description");
-        JTextField model         = (JTextField) parameter.get("model");
-        JTextField amountOfSeats = (JTextField) parameter.get("amount-of-seats");
+        AirplaneEntity airplaneEntity = (AirplaneEntity) configuration.getEntity("airplane");
 
         Component[][] components = {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Descrição") + ":"),
-                new JLabel(description.getText())
+                new JLabel(airplaneEntity.getDescription())
+            },
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Família") + ":"),
+                new JLabel(airplaneEntity.getFamily())
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Modelo") + ":"),
-                new JLabel(model.getText())
+                new JLabel(airplaneEntity.getModel())
             },
             new Component[] {
-                new JLabel(configuration.getTranslator().__("Quantidade de Assentos") + ":"),
-                new JLabel(amountOfSeats.getText())
+                new JLabel(configuration.getTranslator().__("Status") + ":"),
+                new JLabel(configuration.getTranslator().__(airplaneEntity.getStatus()))
             }
         };
         gridBagConstraints.insets = new Insets(0, 0, 0, 0);

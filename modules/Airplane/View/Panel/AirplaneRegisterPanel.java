@@ -7,8 +7,10 @@ import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
+import project.modules.Airplane.Entity.AirplaneEntity;
 import project.modules.Airplane.View.ActionListener.AirplaneRegisterNavigationActionListener;
-import project.modules.Airplane.View.ActionListener.AirplaneRegisterRasterizeActionListener;
+import project.modules.Airplane.View.ActionListener.AirplaneRasterizeActionListener;
+import project.modules.Airplane.Type.AirplaneStatusType;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
@@ -20,6 +22,7 @@ import java.util.Map;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class AirplaneRegisterPanel extends JPanel
 {
@@ -52,22 +55,32 @@ public class AirplaneRegisterPanel extends JPanel
 
         // Formulário: Dados da Aeronave
         AbstractActionListener rasterizeActionListener =
-            new AirplaneRegisterRasterizeActionListener(configuration);
+            new AirplaneRasterizeActionListener(configuration);
 
         String descriptionText   = "";
+        String familyText        = "";
         String modelText         = "";
-        String amountOfSeatsText = "";
+        String statusSelection   = AirplaneEntity.STATUS_AVAILABLE;
 
-        if (configuration.hasParameter("airplane-register-form-data")) {
-            Map<String, Component> parameter = configuration.getParameter("airplane-register-form-data");
-            JTextField description = (JTextField) parameter.get("description");
-            JTextField model = (JTextField) parameter.get("model");
-            JTextField amountOfSeats = (JTextField) parameter.get("amount-of-seats");
+        if (configuration.hasEntity("airplane")) {
+            AirplaneEntity airplaneEntity = (AirplaneEntity) configuration.getEntity("airplane");
 
-            descriptionText   = description.getText();
-            modelText         = model.getText();
-            amountOfSeatsText = amountOfSeats.getText();
+            descriptionText   = airplaneEntity.getDescription();
+            familyText        = airplaneEntity.getFamily();
+            modelText         = airplaneEntity.getModel();
+            statusSelection   = airplaneEntity.getStatus();
         }
+
+        JComboBox<AirplaneStatusType> statusCombo = new JComboBox<AirplaneStatusType>(
+            new AirplaneStatusType[] {
+                new AirplaneStatusType(configuration, AirplaneEntity.STATUS_AVAILABLE),
+                new AirplaneStatusType(configuration, AirplaneEntity.STATUS_RESERVED),
+                new AirplaneStatusType(configuration, AirplaneEntity.STATUS_INACTIVE)
+            }
+        );
+        statusCombo.setSelectedIndex(
+            getStatusComboSelectedItemIndex(statusSelection)
+        );
 
         Component[][] components = {
             new Component[] {
@@ -78,6 +91,13 @@ public class AirplaneRegisterPanel extends JPanel
                 )
             },
             new Component[] {
+                new JLabel(configuration.getTranslator().__("Família") + ":"),
+                rasterizeActionListener.addComponent(
+                    "family",
+                    new JTextField(familyText)
+                )
+            },
+            new Component[] {
                 new JLabel(configuration.getTranslator().__("Modelo") + ":"),
                 rasterizeActionListener.addComponent(
                     "model",
@@ -85,10 +105,10 @@ public class AirplaneRegisterPanel extends JPanel
                 )
             },
             new Component[] {
-                new JLabel(configuration.getTranslator().__("Quantidade de Assentos") + ":"),
+                new JLabel(configuration.getTranslator().__("Status") + ":"),
                 rasterizeActionListener.addComponent(
-                    "amount-of-seats",
-                    new JTextField(amountOfSeatsText)
+                    "status",
+                    statusCombo
                 )
             }
         };
@@ -123,5 +143,24 @@ public class AirplaneRegisterPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
+    }
+
+    private Integer getStatusComboSelectedItemIndex(String statusSelectedItemValue)
+    {
+        Integer index = 0;
+        switch (statusSelectedItemValue) {
+            case AirplaneEntity.STATUS_AVAILABLE:
+                index = 0;
+                break;
+
+            case AirplaneEntity.STATUS_RESERVED:
+                index = 1;
+                break;
+
+            case AirplaneEntity.STATUS_INACTIVE:
+                index = 2;
+                break;
+        }
+        return index;
     }
 }

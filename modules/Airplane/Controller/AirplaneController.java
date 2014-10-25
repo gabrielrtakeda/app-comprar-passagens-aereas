@@ -20,4 +20,9 @@ public class AirplaneController extends AbstractController
     {
         model.navigate(destination);
     }
+
+    public void confirmRegisterAction()
+    {
+        model.confirmRegister();
+    }
 }
