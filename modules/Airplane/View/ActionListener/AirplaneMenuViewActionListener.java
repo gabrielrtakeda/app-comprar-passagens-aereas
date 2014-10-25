@@ -5,9 +5,9 @@ import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Airplane.Controller.AirplaneController;
 import java.awt.event.ActionEvent;
 
-public class AirplaneRegisterViewActionListener extends AbstractActionListener
+public class AirplaneMenuViewActionListener extends AbstractActionListener
 {
-    public AirplaneRegisterViewActionListener(ConfigurationEntity configuration)
+    public AirplaneMenuViewActionListener(ConfigurationEntity configuration)
     {
         configuration.setActionListener(this);
         setConfiguration(configuration);
@@ -15,10 +15,10 @@ public class AirplaneRegisterViewActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        getController().navigateAction("register");
+        getController().navigateAction("menu");
     }
 
-    private AirplaneController getController()
+    public AirplaneController getController()
     {
         return new AirplaneController(configuration);
     }

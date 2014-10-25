@@ -1,43 +1,54 @@
 package project.modules.Airplane.Entity;
 
+import project.modules.Application.Entity.AbstractEntity;
+
 import java.util.Date;
 
-public class AirplaneEntity
+public class AirplaneEntity extends AbstractEntity
 {
+    public static final String STATUS_DISPONIVEL = "Disponível";
+    public static final String STATUS_RESERVADO = "Reservado";
+    public static final String STATUS_INATIVO = "Inativo";
+
     protected Integer id;
-    protected String descricao;
-    protected String modelo;
-    protected Integer assentosTotal;
-    protected Integer assentosVagos;
+    protected String description;
+    protected String category;
+    protected String model;
+    protected Integer seatsTotal;
+    protected Integer seatsVacantTotal;
     protected String status;
-    protected Date dataCadastro;
+    protected Date dateRegister;
 
     public Integer getId() {
         return this.id;
     }
 
-    public String getDescricao() {
-        return this.descricao;
+    public String getDescription() {
+        return this.description;
     }
 
-    public String getModelo() {
-        return this.modelo;
+    public String getCategory() {
+        return this.category;
     }
 
-    public Integer getAssentosTotal() {
-        return this.assentosTotal;
+    public String getModel() {
+        return this.model;
     }
 
-    public Integer getAssentosVagos() {
-        return this.assentosVagos;
+    public Integer getSeatsTotal() {
+        return this.seatsTotal;
+    }
+
+    public Integer getSeatsVacantTotal() {
+        return this.seatsVacantTotal;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public Date getDataCadastro() {
-        return this.dataCadastro;
+    public Date getDateRegister() {
+        return this.dateRegister;
     }
 
     public AirplaneEntity setId(Integer id) {
@@ -45,23 +56,28 @@ public class AirplaneEntity
         return this;
     }
 
-    public AirplaneEntity setDescricao(String descricao) {
-        this.descricao = descricao;
+    public AirplaneEntity setDescription(String description) {
+        this.description = description;
         return this;
     }
 
-    public AirplaneEntity setModelo(String modelo) {
-        this.modelo = modelo;
+    public AirplaneEntity setCategory(String category) {
+        this.category = category;
         return this;
     }
 
-    public AirplaneEntity setAssentosTotal(Integer assentosTotal) {
-        this.assentosTotal = assentosTotal;
+    public AirplaneEntity setModel(String model) {
+        this.model = model;
         return this;
     }
 
-    public AirplaneEntity setAssentosVagos(Integer assentosVagos) {
-        this.assentosVagos = assentosVagos;
+    public AirplaneEntity setSeatsTotal(Integer seatsTotal) {
+        this.seatsTotal = seatsTotal;
+        return this;
+    }
+
+    public AirplaneEntity setSeatsVacantTotal(Integer seatsVacantTotal) {
+        this.seatsVacantTotal = seatsVacantTotal;
         return this;
     }
 
@@ -70,8 +86,8 @@ public class AirplaneEntity
         return this;
     }
 
-    public AirplaneEntity setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public AirplaneEntity setDateRegister(Date dateRegister) {
+        this.dateRegister = dateRegister;
         return this;
     }
 }

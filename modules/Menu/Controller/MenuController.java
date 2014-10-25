@@ -17,6 +17,11 @@ public class MenuController extends AbstractController
         model = new MenuModel(configuration);
     }
 
+    public AbstractActionListener airplaneMenuAction()
+    {
+        return model.airplaneMenu();
+    }
+
     public AbstractActionListener airportMenuAction()
     {
         return model.airportMenu();

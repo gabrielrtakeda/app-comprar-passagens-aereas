@@ -128,11 +128,11 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Total de Assentos") + ":"),
-                new JLabel(String.valueOf(flightEntity.getAirplane().getAssentosTotal()))
+                new JLabel(String.valueOf(flightEntity.getAirplane().getSeatsTotal()))
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Assentos Vagos") + ":"),
-                new JLabel(String.valueOf(flightEntity.getAirplane().getAssentosVagos()))
+                new JLabel(String.valueOf(flightEntity.getAirplane().getSeatsVacantTotal()))
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Status") + ":"),
@@ -194,12 +194,13 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
     {
         AirplaneEntity airplaneEntity = new AirplaneEntity();
         return airplaneEntity.setId(1)
-                             .setDescricao("Embraer ERJ 135")
-                             .setModelo("ERJ 135")
-                             .setAssentosTotal(37)
-                             .setAssentosVagos(12)
-                             .setStatus("Reservado")
-                             .setDataCadastro(new Date());
+                             .setDescription("Embraer ERJ 135")
+                             .setCategory("ERJ")
+                             .setModel("ERJ 135")
+                             .setSeatsTotal(37)
+                             .setSeatsVacantTotal(12)
+                             .setStatus(AirplaneEntity.STATUS_RESERVADO)
+                             .setDateRegister(new Date());
     }
 
     /**

@@ -37,9 +37,9 @@ public class MenuSupervisorPanel extends JPanel
             new FlightMenuViewActionListener(configuration)
         ));
         supervisorPanel.add(new ImageButton(
-            configuration.getTranslator().__("Cadastrar Aeronaves"),
+            configuration.getTranslator().__("Aeronaves"),
             imageDirectoryPath + "shipping.png",
-            new AirplaneRegisterViewActionListener(configuration)
+            getController().airplaneMenuAction()
         ));
         supervisorPanel.add(new ImageButton(
             configuration.getTranslator().__("Aeroportos"),

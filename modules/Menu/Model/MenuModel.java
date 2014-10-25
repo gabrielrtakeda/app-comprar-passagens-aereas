@@ -3,7 +3,7 @@ package project.modules.Menu.Model;
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.Model.AbstractModel;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
-import project.modules.Airport.Controller.AirportController;
+import project.modules.Airplane.View.ActionListener.AirplaneMenuViewActionListener;
 import project.modules.Airport.View.ActionListener.AirportMenuViewActionListener;
 
 public class MenuModel extends AbstractModel
@@ -14,10 +14,15 @@ public class MenuModel extends AbstractModel
         setConfiguration(configuration);
     }
 
+    public AbstractActionListener airplaneMenu()
+    {
+        configuration.getView().dispose();
+        return new AirplaneMenuViewActionListener(configuration);
+    }
+
     public AbstractActionListener airportMenu()
     {
         configuration.getView().dispose();
-        new AirportController(configuration);
         return new AirportMenuViewActionListener(configuration);
     }
 }
