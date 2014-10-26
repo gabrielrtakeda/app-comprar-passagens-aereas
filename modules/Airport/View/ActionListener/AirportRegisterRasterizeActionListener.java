@@ -52,6 +52,7 @@ public class AirportRegisterRasterizeActionListener extends AbstractActionListen
 
             configuration.getView().dispose();
             configuration.setEntity("airport", airportEntity);
+            configuration.setQueryString("airport-consult-confirmation", "register");
             new AirportRegisterRasterizeView(configuration);
         }
     }

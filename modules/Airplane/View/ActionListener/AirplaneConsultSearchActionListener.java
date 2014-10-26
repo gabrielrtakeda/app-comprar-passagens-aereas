@@ -22,7 +22,7 @@ public class AirplaneConsultSearchActionListener extends AbstractActionListener
         JComboBox   column = (JComboBox) getComponent("column");
         JTextField  search = (JTextField) getComponent("search");
 
-        getController().consultAction(
+        getController().consultByAction(
             (AirplaneConsultSearchComboType) column.getSelectedItem(),
             search.getText()
         );

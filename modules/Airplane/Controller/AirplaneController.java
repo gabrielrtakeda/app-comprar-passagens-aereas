@@ -28,9 +28,9 @@ public class AirplaneController extends AbstractController
         model.register();
     }
 
-    public void consultAction(AirplaneConsultSearchComboType columnType, String search)
+    public void consultByAction(AirplaneConsultSearchComboType columnType, String search)
     {
-        model.consult(columnType, search);
+        model.consultBy(columnType, search);
     }
 
     public void editAction(AirplaneEntity airplaneEntity)

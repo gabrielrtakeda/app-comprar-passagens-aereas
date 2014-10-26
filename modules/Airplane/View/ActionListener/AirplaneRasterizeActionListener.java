@@ -43,6 +43,7 @@ public class AirplaneRasterizeActionListener extends AbstractActionListener
                     break;
             }
         }
+        System.out.println(configuration.toString());
 
         if (FormRequiredFieldValidator.getErrorCount() > 0) {
             FormRequiredFieldValidator.setConfiguration(configuration);
@@ -58,6 +59,7 @@ public class AirplaneRasterizeActionListener extends AbstractActionListener
 
             configuration.getView().dispose();
             configuration.setEntity("airplane", airplaneEntity);
+            configuration.setQueryString("airplane-consult-confirmation", "consult");
             new AirplaneRasterizeView(configuration);
         }
     }

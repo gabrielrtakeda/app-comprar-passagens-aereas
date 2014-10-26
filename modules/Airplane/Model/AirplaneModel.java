@@ -92,7 +92,7 @@ public class AirplaneModel extends AbstractModel
             // Verifica se o registro já existe a partir da sigla
             AirplaneEntity airplaneEntity = (AirplaneEntity) configuration.getEntity("airplane");
             List<AbstractEntity> searchEntity
-                = dao().consult("modelo", airplaneEntity.getModel());
+                = dao().consult("dataCadastro", String.valueOf(airplaneEntity.getDateRegister()));
 
             if (searchEntity.size() < 1) {
                 // Inserir caso não exista
@@ -125,29 +125,31 @@ public class AirplaneModel extends AbstractModel
         }
     }
 
-    public void consult(AirplaneConsultSearchComboType columnType, String search)
+    public void consultBy(AirplaneConsultSearchComboType columnType, String search)
     {
         FormRequiredFieldValidator.validateField(columnType.toString(), search);
         if (FormRequiredFieldValidator.hasError()) {
             FormRequiredFieldValidator.setConfiguration(configuration);
             FormRequiredFieldValidator.showErrorMessage();
         } else {
-            List<AbstractEntity> airplaneEntities = dao().consult(
-                ((AirplaneConsultSearchComboType) columnType).getValue(),
-                search
-            );
+            consult(columnType.getValue(), search);
+        }
+    }
 
-            if (airplaneEntities.size() < 1) {
-                JOptionPane.showMessageDialog(
-                    null,
-                    configuration.getTranslator().__("Nenhum registro foi encontrado."),
-                    configuration.getTranslator().__("Resultado"),
-                    JOptionPane.INFORMATION_MESSAGE
-                );
-            } else {
-                configuration.setEntitiesCollection(airplaneEntities);
-                navigate("consult-result");
-            }
+    public void consult(String column, String search)
+    {
+        List<AbstractEntity> airplaneEntities = dao().consult(column, search);
+
+        if (airplaneEntities.size() < 1) {
+            JOptionPane.showMessageDialog(
+                null,
+                configuration.getTranslator().__("Nenhum registro foi encontrado."),
+                configuration.getTranslator().__("Resultado"),
+                JOptionPane.INFORMATION_MESSAGE
+            );
+        } else {
+            configuration.setEntitiesCollection(airplaneEntities);
+            navigate("consult-result");
         }
     }
 

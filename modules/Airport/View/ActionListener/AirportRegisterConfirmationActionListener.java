@@ -20,17 +20,9 @@ public class AirportRegisterConfirmationActionListener extends AbstractActionLis
 
     public void actionPerformed(ActionEvent e)
     {
-        Map<String, Component> parameter = configuration.getParameter("airport-register-form-data");
-        JTextField description   = (JTextField) parameter.get("description");
-        JTextField abbreviation  = (JTextField) parameter.get("abbreviation");
-        JTextField address       = (JTextField) parameter.get("address");
-
-        AirportEntity airportEntity = new AirportEntity();
-        airportEntity.setDescription(description.getText())
-                     .setAbbreviation(abbreviation.getText())
-                     .setAddress(address.getText());
-
-        getController(configuration).registerAction(airportEntity);
+        getController(configuration).registerAction(
+            (AirportEntity) configuration.getEntity("airport")
+        );
     }
 
     private AirportController getController(ConfigurationEntity configuration)
