@@ -20,15 +20,15 @@ public class AirportController extends AbstractController
         model = new AirportModel(configuration);
     }
 
-    public void register(AirportEntity airportEntity)
+    public void registerAction(AirportEntity airportEntity)
     {
         model.register(airportEntity);
     }
 
-    public void consultBy(AirportConsultSearchComboType columnType,
+    public void consultAction(AirportConsultSearchComboType columnType,
                           String search)
     {
-        model.consultBy(columnType, search);
+        model.consult(columnType, search);
     }
 
     public void menuAction()

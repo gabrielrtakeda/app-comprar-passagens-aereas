@@ -6,9 +6,9 @@ import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Airplane.View.ActionListener.AirplaneMenuNavigationActionListener;
 import project.modules.Airplane.View.ActionListener.AirplaneRegisterViewActionListener;
-// import project.modules.Airplane.View.ActionListener.AirplaneConsultViewActionListener;
-// import project.modules.Airplane.View.ActionListener.AirplaneEditViewActionListener;
-// import project.modules.Airplane.View.ActionListener.AirplaneDeleteViewActionListener;
+import project.modules.Airplane.View.ActionListener.AirplaneConsultViewActionListener;
+import project.modules.Airplane.View.ActionListener.AirplaneEditViewActionListener;
+import project.modules.Airplane.View.ActionListener.AirplaneDeleteViewActionListener;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -48,22 +48,22 @@ public class AirplaneMenuPanel extends JPanel
         airportMenuPanel.add(
             new ImageButton(
                 configuration.getTranslator().__("Consultar"),
-                buttonIconsDirectoryPath + "search.png"
-                // , new AirplaneConsultViewActionListener(configuration)
+                buttonIconsDirectoryPath + "search.png",
+                new AirplaneConsultViewActionListener(configuration)
             )
         );
         airportMenuPanel.add(
             new ImageButton(
                 configuration.getTranslator().__("Editar"),
-                buttonIconsDirectoryPath + "config.png"
-                // , new AirplaneEditViewActionListener(configuration)
+                buttonIconsDirectoryPath + "config.png",
+                new AirplaneEditViewActionListener(configuration)
             )
         );
         airportMenuPanel.add(
             new ImageButton(
                 configuration.getTranslator().__("Excluir"),
-                buttonIconsDirectoryPath + "brainstorming.png"
-                // , new AirplaneDeleteViewActionListener(configuration)
+                buttonIconsDirectoryPath + "brainstorming.png",
+                new AirplaneDeleteViewActionListener(configuration)
             )
         );
         gridBagConstraints.anchor = GridBagConstraints.CENTER;

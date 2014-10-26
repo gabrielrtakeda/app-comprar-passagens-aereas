@@ -1,17 +1,17 @@
-package project.modules.Airport.View.ActionListener;
+package project.modules.Airplane.View.ActionListener;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
-import project.modules.Airport.Controller.AirportController;
-import project.modules.Airport.Entity.AirportEntity;
-import project.modules.Airport.Type.AirportConsultSearchComboType;
+import project.modules.Airplane.Controller.AirplaneController;
+import project.modules.Airplane.Entity.AirplaneEntity;
+import project.modules.Airplane.Type.AirplaneConsultSearchComboType;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-public class AirportConsultSearchActionListener extends AbstractActionListener
+public class AirplaneConsultSearchActionListener extends AbstractActionListener
 {
-    public AirportConsultSearchActionListener(ConfigurationEntity configuration)
+    public AirplaneConsultSearchActionListener(ConfigurationEntity configuration)
     {
         configuration.setActionListener(this);
         setConfiguration(configuration);
@@ -23,13 +23,13 @@ public class AirportConsultSearchActionListener extends AbstractActionListener
         JTextField  search = (JTextField) getComponent("search");
 
         getController().consultAction(
-            (AirportConsultSearchComboType) column.getSelectedItem(),
+            (AirplaneConsultSearchComboType) column.getSelectedItem(),
             search.getText()
         );
     }
 
-    private AirportController getController()
+    private AirplaneController getController()
     {
-        return new AirportController(configuration);
+        return new AirplaneController(configuration);
     }
 }

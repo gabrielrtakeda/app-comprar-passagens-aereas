@@ -59,7 +59,7 @@ public class AirportDAO extends DatabaseConnect
         return result;
     }
 
-    public List<AbstractEntity> consultBy(String column, String search)
+    public List<AbstractEntity> consult(String column, String search)
     {
         List<AbstractEntity> entities = new ArrayList<AbstractEntity>();
         StringBuilder query = new StringBuilder();

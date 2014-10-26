@@ -129,3 +129,11 @@ Disponível;Available
 Reservado;Reserved
 Inativo;Inactive
 Família;Family
+Consultar Aeronave;Airplane Consult
+D/R;A/R;
+Data Cadastro;Date Register
+Aeronave alterada com sucesso!;Airplane changed successfully!
+Não foi possível finalizar a alteração da Aeronave.;It was not possible to finalize the change of Airplane.
+Confirmação de Exclusão da Aeronave;Delete Confirmation Airplane
+Aeronave excluída com sucesso!;Successfully deleted Airplane!
+Não foi possível finalizar a exclusão da Aeronave.;Could not complete the deletion of the Airplane.

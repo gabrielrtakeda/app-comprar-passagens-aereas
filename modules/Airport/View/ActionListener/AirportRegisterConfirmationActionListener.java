@@ -30,7 +30,7 @@ public class AirportRegisterConfirmationActionListener extends AbstractActionLis
                      .setAbbreviation(abbreviation.getText())
                      .setAddress(address.getText());
 
-        getController(configuration).register(airportEntity);
+        getController(configuration).registerAction(airportEntity);
     }
 
     private AirportController getController(ConfigurationEntity configuration)

@@ -20,7 +20,7 @@ public class AirplaneDAO extends DatabaseConnect
         StringBuilder query = new StringBuilder();
         query.append("INSERT INTO " + table);
         query.append(" (   `descricao`");
-        query.append("   , `categoria`");
+        query.append("   , `familia`");
         query.append("   , `modelo`");
         query.append("   , `status`");
         query.append(" ) VALUES (?, ?, ?, ?);");
@@ -39,31 +39,34 @@ public class AirplaneDAO extends DatabaseConnect
         return result;
     }
 
-    // public Boolean update(AirplaneEntity airplaneEntity)
-    // {
-    //     Boolean result = false;
-    //     StringBuilder query = new StringBuilder();
-    //     query.append("UPDATE " + table);
-    //     query.append(" SET `descricao` = ?");
-    //     query.append(", `sigla` = ?");
-    //     query.append(", `endereco` = ?");
-    //     query.append(" WHERE `sigla` = ?");
-    //     try {
-    //         preparedStatement = getConnection().prepareStatement(query.toString());
-    //         preparedStatement.setString(1, airplaneEntity.getDescription());
-    //         preparedStatement.setString(2, airplaneEntity.getAbbreviation());
-    //         preparedStatement.setString(3, airplaneEntity.getAddress());
-    //         preparedStatement.setString(4, airplaneEntity.getAbbreviation());
-    //         preparedStatement.executeUpdate();
-    //         result = true;
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
-    //     closeConnection();
-    //     return result;
-    // }
+    public Boolean update(AirplaneEntity airplaneEntity)
+    {
+        Boolean result = false;
+        StringBuilder query = new StringBuilder();
+        query.append("UPDATE " + table);
+        query.append(" SET");
+        query.append(" `descricao` = ?");
+        query.append(", `familia` = ?");
+        query.append(", `modelo` = ?");
+        query.append(", `status` = ?");
+        query.append(" WHERE `modelo` = ?");
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            preparedStatement.setString(1, airplaneEntity.getDescription());
+            preparedStatement.setString(2, airplaneEntity.getFamily());
+            preparedStatement.setString(3, airplaneEntity.getModel());
+            preparedStatement.setString(4, airplaneEntity.getStatus());
+            preparedStatement.setString(5, airplaneEntity.getModel());
+            preparedStatement.executeUpdate();
+            result = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return result;
+    }
 
-    public List<AbstractEntity> consultBy(String column, String search)
+    public List<AbstractEntity> consult(String column, String search)
     {
         List<AbstractEntity> entities = new ArrayList<AbstractEntity>();
         StringBuilder query = new StringBuilder();
@@ -94,21 +97,21 @@ public class AirplaneDAO extends DatabaseConnect
         return entities;
     }
 
-    // public Boolean delete(AirplaneEntity airplaneEntity)
-    // {
-    //     Boolean result = false;
-    //     StringBuilder query = new StringBuilder();
-    //     query.append("DELETE FROM " + table);
-    //     query.append(" WHERE `idAeroporto` = ?");
-    //     try {
-    //         preparedStatement = getConnection().prepareStatement(query.toString());
-    //         preparedStatement.setInt(1, airplaneEntity.getId());
-    //         preparedStatement.executeUpdate();
-    //         result = true;
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
-    //     closeConnection();
-    //     return result;
-    // }
+    public Boolean delete(AirplaneEntity airplaneEntity)
+    {
+        Boolean result = false;
+        StringBuilder query = new StringBuilder();
+        query.append("DELETE FROM " + table);
+        query.append(" WHERE `idAeronave` = ?");
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            preparedStatement.setInt(1, airplaneEntity.getId());
+            preparedStatement.executeUpdate();
+            result = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return result;
+    }
 }

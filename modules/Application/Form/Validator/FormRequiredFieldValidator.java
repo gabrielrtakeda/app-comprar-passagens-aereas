@@ -18,6 +18,11 @@ public class FormRequiredFieldValidator
         }
     }
 
+    public static Boolean hasError()
+    {
+        return errorCount > 0;
+    }
+
     public static void showErrorMessage()
     {
         String errorMessage = getErrorCount() > 1

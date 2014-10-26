@@ -2,6 +2,7 @@ package project.modules.Airport.Model;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.Entity.AbstractEntity;
+import project.modules.Application.Form.Validator.FormRequiredFieldValidator;
 import project.modules.Application.Model.AbstractModel;
 import project.modules.Airport.Entity.AirportEntity;
 import project.modules.Airport.DataAccessObject.AirportDAO;
@@ -43,7 +44,7 @@ public class AirportModel extends AbstractModel
 
             // Verifica se o registro já existe a partir da sigla
             List<AbstractEntity> searchEntity
-                = dao().consultBy("sigla", airportEntity.getAbbreviation());
+                = dao().consult("sigla", airportEntity.getAbbreviation());
 
             if (searchEntity.size() < 1) {
                 // Inserir caso não exista
@@ -78,19 +79,14 @@ public class AirportModel extends AbstractModel
         }
     }
 
-    public void consultBy(AirportConsultSearchComboType columnType,
-                                         String search)
+    public void consult(AirportConsultSearchComboType columnType, String search)
     {
-        List<AbstractEntity> airportEntities = null;
-        if (search.isEmpty()) {
-            JOptionPane.showMessageDialog(
-                null,
-                configuration.getTranslator().__("Por favor, preencha o campo") + ": " + columnType.toString(),
-                configuration.getTranslator().__("Campo Obrigatório"),
-                JOptionPane.ERROR_MESSAGE
-            );
+        FormRequiredFieldValidator.validateField(columnType.toString(), search);
+        if (FormRequiredFieldValidator.hasError()) {
+            FormRequiredFieldValidator.setConfiguration(configuration);
+            FormRequiredFieldValidator.showErrorMessage();
         } else {
-            airportEntities = dao().consultBy(
+            List<AbstractEntity> airportEntities = dao().consult(
                 ((AirportConsultSearchComboType) columnType).getValue(),
                 search
             );

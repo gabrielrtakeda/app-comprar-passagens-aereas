@@ -9,6 +9,8 @@ import project.modules.Application.View.Button.ImageButton;
 import project.modules.Airplane.Entity.AirplaneEntity;
 import project.modules.Airplane.View.ActionListener.AirplaneRegisterConfirmationNavigationActionListener;
 import project.modules.Airplane.View.ActionListener.AirplaneRegisterConfirmationActionListener;
+import project.modules.Airplane.View.ActionListener.AirplaneDeleteConfirmationActionListener;
+import project.modules.Airplane.Type.AirplaneButtonType;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
@@ -79,6 +81,7 @@ public class AirplaneRasterizePanel extends JPanel
         );
 
         // Buttons
+        AirplaneButtonType continueButton = getContinueButtonType(configuration);
         JPanel buttonsPanel = new JPanel(new FlowLayout());
         buttonsPanel.add(
             new ImageButton(
@@ -90,10 +93,10 @@ public class AirplaneRasterizePanel extends JPanel
         );
         buttonsPanel.add(
             new ImageButton(
-                configuration.getTranslator().__("Confirmar"),
+                configuration.getTranslator().__(continueButton.getText()),
                 "/images/buttonIcons/check.png",
                 new Dimension(175, 40),
-                new AirplaneRegisterConfirmationActionListener(configuration)
+                continueButton.getActionListener()
             )
         );
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);
@@ -103,5 +106,24 @@ public class AirplaneRasterizePanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
+    }
+
+    private AirplaneButtonType getContinueButtonType(ConfigurationEntity configuration)
+    {
+        AirplaneButtonType continueType = new AirplaneButtonType();
+        switch (configuration.getQueryString("airplane-consult-confirmation")) {
+            case "delete":
+                continueType.setText("Excluir");
+                continueType.setActionListener(
+                    new AirplaneDeleteConfirmationActionListener(configuration)
+                );
+                break;
+            default:
+                continueType.setText("Confirmar");
+                continueType.setActionListener(
+                    new AirplaneRegisterConfirmationActionListener(configuration)
+                );
+        }
+        return continueType;
     }
 }
