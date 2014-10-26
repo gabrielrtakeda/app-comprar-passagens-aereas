@@ -3,6 +3,7 @@ package project.modules.Airport.DataAccessObject;
 import project.modules.Application.Entity.AbstractEntity;
 import project.modules.Database.DatabaseConnect;
 import project.modules.Airport.Entity.AirportEntity;
+import project.modules.Airport.Type.AirportEntityComboType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -79,6 +80,56 @@ public class AirportDAO extends DatabaseConnect
                                  .setAddress(resultSet.getString("endereco"))
                                  .setDateRegister(resultSet.getDate("dataCadastro"))
                 );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return entities;
+    }
+
+    public List<AirportEntity> load()
+    {
+        List<AirportEntity> entities = new ArrayList<AirportEntity>();
+        String query = "SELECT * FROM " + table + " ORDER BY `descricao` ASC;";
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                AirportEntity airportEntity = new AirportEntity();
+                entities.add(
+                    airportEntity.setId(resultSet.getInt("idAeroporto"))
+                                 .setDescription(resultSet.getString("descricao"))
+                                 .setAbbreviation(resultSet.getString("sigla"))
+                                 .setAddress(resultSet.getString("endereco"))
+                                 .setDateRegister(resultSet.getDate("dataCadastro"))
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return entities;
+    }
+
+    public List<AirportEntityComboType> loadComboType()
+    {
+        List<AirportEntityComboType> entities = new ArrayList<AirportEntityComboType>();
+        String query = "SELECT * FROM " + table + " ORDER BY `descricao` ASC;";
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                AirportEntityComboType airportEntity = new AirportEntityComboType();
+                airportEntity.setId(resultSet.getInt("idAeroporto"))
+                             .setDescription(resultSet.getString("descricao"))
+                             .setAbbreviation(resultSet.getString("sigla"))
+                             .setAddress(resultSet.getString("endereco"))
+                             .setDateRegister(resultSet.getDate("dataCadastro"));
+
+                entities.add(airportEntity);
             }
         } catch (SQLException e) {
             e.printStackTrace();

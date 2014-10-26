@@ -2,20 +2,31 @@ package project.modules.Flight.Controller;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.Controller.AbstractController;
+import project.modules.Flight.Model.FlightModel;
+import project.modules.Flight.Type.FlightStatusType;
+import project.modules.Airport.Type.AirportEntityComboType;
 
 public class FlightController extends AbstractController
 {
-	public FlightController(ConfigurationEntity configuration)
-	{
-		super();
-		configuration.setController(this);
-		setConfiguration(configuration);
-	}
+    private FlightModel model;
+
+    public FlightController(ConfigurationEntity configuration)
+    {
+        configuration.setController(this);
+        setConfiguration(configuration);
+
+        model = new FlightModel(configuration);
+    }
+
+    public void navigateAction(String destination)
+    {
+        model.navigate(destination);
+    }
 
     /**
      * Mock
      */
-    public static String[] getAirplanes()
+    public String[] getAirplanes()
     {
         return new String[]
         {
@@ -25,51 +36,13 @@ public class FlightController extends AbstractController
         };
     }
 
-    /**
-     * Mock
-     */
-	public static String[] getAirports()
-	{
-        return new String[]
-        {
-            "Aeroporto Internacional de San Francisco",
-            "Aeroporto Internacional John F. Kennedy",
-            "Aeroporto de LaGuardia",
-            "Aeroporto Internacional de Newark",
-            "Aeroporto Internacional Logan",
-            "Aeroporto Internacional O'Hare",
-            "Aeroporto Internacional Washington Dulles",
-            "Aeroporto Ronald Reagan",
-            "Aeroporto Internacional William B Hartsfield",
-            "Aeroporto Internacional de Orlando",
-            "Aeroporto Internacional de Miami",
-            "Aeroporto Internacional George Bush",
-            "Aeroporto Internacional de Dallas-Fort Worth",
-            "Aeroporto Internacional de Los Angeles",
-            "Aeroporto Internacional McCarran",
-            "Aeroporto Internacional de Honolulu",
-            "Aeroporto Internacional de San Francisco",
-            "Aeroporto Internacional Tacoma",
-            "Aeroporto Internacional de Denver",
-            "Aeroporto Internacional de Sky Harbor",
-            "Aeroporto Internacional Midway",
-            "Aeroporto Internacional de Salt Lake City"
-        };
-	}
-
-    /**
-     * Mock
-     */
-    public static String[] getStatusOptions(ConfigurationEntity configuration)
+    public AirportEntityComboType[] getAirportEntitiesComboTypeAction()
     {
-        return new String[]
-        {
-            configuration.getTranslator().__("Cancelado"),
-            configuration.getTranslator().__("Adiado"),
-            configuration.getTranslator().__("Prorrogado"),
-            configuration.getTranslator().__("Suspenso"),
-            configuration.getTranslator().__("Transferido"),
-            configuration.getTranslator().__("Pendente")
-        };
+        return model.getAirportEntitiesComboType();
+    }
+
+    public FlightStatusType[] getFlightStatusTypesAction()
+    {
+        return model.getFlightStatusTypes();
     }
 }

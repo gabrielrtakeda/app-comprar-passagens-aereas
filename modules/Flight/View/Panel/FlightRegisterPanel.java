@@ -8,6 +8,8 @@ import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Flight.Controller.FlightController;
 import project.modules.Flight.View.ActionListener.FlightRegisterNavigationActionListener;
+import project.modules.Flight.Type.FlightStatusType;
+import project.modules.Airport.Type.AirportEntityComboType;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.FlowLayout;
@@ -22,8 +24,12 @@ import javax.swing.JTextField;
 
 public class FlightRegisterPanel extends JPanel
 {
+    private ConfigurationEntity configuration;
+
     public FlightRegisterPanel(ConfigurationEntity configuration)
     {
+        this.configuration = configuration;
+
         GridBagLayout gridBagLayout = new GridBagLayout();
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         setLayout(gridBagLayout);
@@ -65,19 +71,19 @@ public class FlightRegisterPanel extends JPanel
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeronave") + ":"),
                 new JComboBox<String>(
-                    getController(configuration).getAirplanes()
+                    getController().getAirplanes()
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":"),
-                new JComboBox<String>(
-                    getController(configuration).getAirports()
+                new JComboBox<AirportEntityComboType>(
+                    getController().getAirportEntitiesComboTypeAction()
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Status") + ":"),
-                new JComboBox<String>(
-                    getController(configuration).getStatusOptions(configuration)
+                new JComboBox<FlightStatusType>(
+                    getController().getFlightStatusTypesAction()
                 )
             },
             new Component[] {
@@ -119,8 +125,8 @@ public class FlightRegisterPanel extends JPanel
         );
     }
 
-    public FlightController getController(ConfigurationEntity configuration)
+    public FlightController getController()
     {
-        return (FlightController) configuration.getController();
+        return new FlightController(configuration);
     }
 }

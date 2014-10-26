@@ -1,8 +1,8 @@
 package project.modules.Flight.View.ActionListener;
 
-import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Application.Entity.ConfigurationEntity;
-import project.modules.Flight.View.FlightRegisterView;
+import project.modules.Application.View.ActionListener.AbstractActionListener;
+import project.modules.Flight.Controller.FlightController;
 import java.awt.event.ActionEvent;
 
 public class FlightRegisterViewActionListener extends AbstractActionListener
@@ -15,7 +15,11 @@ public class FlightRegisterViewActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        configuration.getView().dispose();
-        new FlightRegisterView(configuration);
+        getController().navigateAction("register-view");
+    }
+
+    public FlightController getController()
+    {
+        return new FlightController(configuration);
     }
 }

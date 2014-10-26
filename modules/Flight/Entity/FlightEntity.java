@@ -6,6 +6,14 @@ import java.util.Date;
 
 public class FlightEntity
 {
+    public static final String STATUS_AVAILABLE    = "Disponível";
+    public static final String STATUS_CANCELED     = "Cancelado";
+    public static final String STATUS_POSTPONED    = "Adiado";
+    public static final String STATUS_EXTENDED     = "Prorrogado";
+    public static final String STATUS_SUSPENDED    = "Suspenso";
+    public static final String STATUS_TRANSFERRED  = "Transferido";
+    public static final String STATUS_PENDING      = "Pendente";
+
     protected Integer id;
     protected AirplaneEntity airplane;
     protected AirportEntity airport;

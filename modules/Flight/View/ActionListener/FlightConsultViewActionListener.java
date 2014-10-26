@@ -2,7 +2,7 @@ package project.modules.Flight.View.ActionListener;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
-import project.modules.Flight.View.FlightConsultView;
+import project.modules.Flight.Controller.FlightController;
 import java.awt.event.ActionEvent;
 
 public class FlightConsultViewActionListener extends AbstractActionListener
@@ -15,7 +15,11 @@ public class FlightConsultViewActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        configuration.getView().dispose();
-        new FlightConsultView(configuration);
+        getController().navigateAction("consult-view");
+    }
+
+    public FlightController getController()
+    {
+        return new FlightController(configuration);
     }
 }
