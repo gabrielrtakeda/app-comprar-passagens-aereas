@@ -24,11 +24,11 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-public class FlightRegisterPanel extends JPanel
+public class FlightRasterizePanel extends JPanel
 {
     private ConfigurationEntity configuration;
 
-    public FlightRegisterPanel(ConfigurationEntity configuration)
+    public FlightRasterizePanel(ConfigurationEntity configuration)
     {
         this.configuration = configuration;
 
@@ -69,37 +69,32 @@ public class FlightRegisterPanel extends JPanel
         );
 
         // Form
-        AirportEntityComboType[]
-            airportTypes = getController().getAirportEntitiesComboTypeAction();
+        FlightEntity flightEntity = configuration.getEntity("flight");
 
         Component[][] components = {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeronave") + ":"),
-                new JComboBox<AirplaneEntityComboType>(
-                    getController().getAirplaneEntitiesComboTypeAction()
-                )
+                new JLabel(flightEntity.getAirplane().getDescription())
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Origem") + ":"),
-                new JComboBox<AirportEntityComboType>(airportTypes)
+                new JLabel(flightEntity.getAirportOrigin().getDescription())
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":"),
-                new JComboBox<AirportEntityComboType>(airportTypes)
+                new JLabel(flightEntity.getAirportDestination().getDescription())
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Valor") + " (R$) :"),
-                new JTextField()
+                new JLabel(flightEntity.getPrice())
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Status") + ":"),
-                new JComboBox<FlightStatusType>(
-                    getController().getFlightStatusTypesAction()
-                )
+                new JLabel(flightEntity.getStatus())
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Data Partida") + " :"),
-                new JTextField()
+                new JLabel(flightEntity.getDepartureDate())
             }
         };
 

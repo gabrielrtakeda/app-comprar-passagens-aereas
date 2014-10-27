@@ -19,7 +19,7 @@ public class FlightDAO extends DatabaseConnect
     public List<AbstractEntity> loadAirports()
     {
         List<AbstractEntity> entities = new ArrayList<AbstractEntity>();
-        String query = "SELECT * FROM " + airportTable + "ORDER BY idAeroporto ASC;";
+        String query = "SELECT * FROM " + airportTable + "ORDER BY `idAeroporto` ASC;";
         try {
             preparedStatement = getConnection().prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();

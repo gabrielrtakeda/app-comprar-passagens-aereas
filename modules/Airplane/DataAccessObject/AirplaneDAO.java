@@ -3,6 +3,7 @@ package project.modules.Airplane.DataAccessObject;
 import project.modules.Application.Entity.AbstractEntity;
 import project.modules.Database.DatabaseConnect;
 import project.modules.Airplane.Entity.AirplaneEntity;
+import project.modules.Airplane.Type.AirplaneEntityComboType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -95,6 +96,34 @@ public class AirplaneDAO extends DatabaseConnect
         }
         closeConnection();
         return entities;
+    }
+
+    public List<AirplaneEntityComboType> loadComboType()
+    {
+        List<AirplaneEntityComboType> types = new ArrayList<AirplaneEntityComboType>();
+        String query = "SELECT * FROM " + table + " ORDER BY `modelo` ASC;";
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                AirplaneEntityComboType airplaneEntity = new AirplaneEntityComboType();
+                airplaneEntity.setId(resultSet.getInt("idAeronave"))
+                              .setDescription(resultSet.getString("descricao"))
+                              .setFamily(resultSet.getString("familia"))
+                              .setModel(resultSet.getString("modelo"))
+                              .setSeatsTotal(resultSet.getInt("assentosTotal"))
+                              .setSeatsVacantTotal(resultSet.getInt("assentosVagosTotal"))
+                              .setStatus(resultSet.getString("status"))
+                              .setDateRegister(resultSet.getDate("dataCadastro"));
+
+                types.add(airplaneEntity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return types;
     }
 
     public Boolean delete(AirplaneEntity airplaneEntity)

@@ -7,6 +7,8 @@ import project.modules.Flight.Entity.FlightEntity;
 import project.modules.Flight.View.FlightRegisterView;
 import project.modules.Flight.View.FlightConsultView;
 import project.modules.Flight.Type.FlightStatusType;
+import project.modules.Airplane.DataAccessObject.AirplaneDAO;
+import project.modules.Airplane.Type.AirplaneEntityComboType;
 import project.modules.Airport.DataAccessObject.AirportDAO;
 import project.modules.Airport.Entity.AirportEntity;
 import project.modules.Airport.Type.AirportEntityComboType;
@@ -23,6 +25,11 @@ public class FlightModel extends AbstractModel
     private FlightDAO dao()
     {
         return new FlightDAO();
+    }
+
+    private AirplaneDAO daoAirplane()
+    {
+        return new AirplaneDAO();
     }
 
     private AirportDAO daoAirport()
@@ -47,15 +54,26 @@ public class FlightModel extends AbstractModel
             case "consult-view":
                 new FlightConsultView(configuration);
                 break;
+
+            case "rasterize":
+                new FlightRasterizeView(configuration);
+                break;
         }
+    }
+
+    public AirplaneEntityComboType[] getAirplaneEntitiesComboType()
+    {
+        List<AirplaneEntityComboType> types = daoAirplane().loadComboType();
+        return types.toArray(
+            new AirplaneEntityComboType[types.size()]
+        );
     }
 
     public AirportEntityComboType[] getAirportEntitiesComboType()
     {
-        List<AirportEntityComboType> entities = daoAirport().loadComboType();
-
-        return entities.toArray(
-            new AirportEntityComboType[entities.size()]
+        List<AirportEntityComboType> types = daoAirport().loadComboType();
+        return types.toArray(
+            new AirportEntityComboType[types.size()]
         );
     }
 

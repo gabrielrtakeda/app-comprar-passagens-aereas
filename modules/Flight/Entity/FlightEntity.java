@@ -16,10 +16,12 @@ public class FlightEntity
 
     protected Integer id;
     protected AirplaneEntity airplane;
-    protected AirportEntity airport;
+    protected AirportEntity airportOrigin;
+    protected AirportEntity airportDestination;
+    protected Double price;
     protected String status;
-    protected Float valor;
-    protected Date dataPartida;
+    protected Date dateDeparture;
+    protected Date dateRegister;
 
     public Integer getId() {
         return this.id;
@@ -29,20 +31,28 @@ public class FlightEntity
         return this.airplane;
     }
 
-    public AirportEntity getAirport() {
-        return this.airport;
+    public AirportEntity getAirportOrigin() {
+        return this.airportOrigin;
+    }
+
+    public AirportEntity getAirportDestination() {
+        return this.airportDestination;
+    }
+
+    public Double getPrice() {
+        return this.price;
     }
 
     public String getStatus() {
         return this.status;
     }
 
-    public Float getValor() {
-        return this.valor;
+    public Date getDateDeparture() {
+        return this.dateDeparture;
     }
 
-    public Date getDataPartida() {
-        return this.dataPartida;
+    public Date getDateRegister() {
+        return this.dateRegister;
     }
 
     public FlightEntity setId(Integer id) {
@@ -55,8 +65,18 @@ public class FlightEntity
         return this;
     }
 
-    public FlightEntity setAirport(AirportEntity airport) {
-        this.airport = airport;
+    public FlightEntity setAirportOrigin(AirportEntity airportOrigin) {
+        this.airportOrigin = airportOrigin;
+        return this;
+    }
+
+    public FlightEntity setAirportDestination(AirportEntity airportDestination) {
+        this.airportDestination = airportDestination;
+        return this;
+    }
+
+    public FlightEntity setPrice(Double price) {
+        this.price = price;
         return this;
     }
 
@@ -65,13 +85,13 @@ public class FlightEntity
         return this;
     }
 
-    public FlightEntity setValor(Float valor) {
-        this.valor = valor;
+    public FlightEntity setDateDeparture(Date dateDeparture) {
+        this.dateDeparture = dateDeparture;
         return this;
     }
 
-    public FlightEntity setDataPartida(Date dataPartida) {
-        this.dataPartida = dataPartida;
+    public FlightEntity setDateRegister(Date dateRegister) {
+        this.dateRegister = dateRegister;
         return this;
     }
 }
