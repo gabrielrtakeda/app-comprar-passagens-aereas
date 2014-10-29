@@ -8,6 +8,8 @@ import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Flight.Controller.FlightController;
 import project.modules.Flight.View.ActionListener.FlightConsultNavigationActionListener;
+import project.modules.Flight.View.ActionListener.FlightConsultIdSearchActionListener;
+import project.modules.Flight.View.ActionListener.FlightConsultMacroSearchActionListener;
 import project.modules.Airport.Type.AirportEntityComboType;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -67,10 +69,16 @@ public class FlightConsultPanel extends JPanel
         byIdPanel.setLayout(gridBagLayout);
         byIdPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        FlightConsultIdSearchActionListener
+            consultByIdActionListener = new FlightConsultIdSearchActionListener(configuration);
+
         Component[][] components = {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Código") + ":"),
-                new JTextField()
+                consultByIdActionListener.addComponent(
+                    "id",
+                    new JTextField()
+                )
             },
             new Component[] {
                 new ImageButton(
@@ -80,7 +88,8 @@ public class FlightConsultPanel extends JPanel
                 ),
                 new ImageButton(
                     configuration.getTranslator().__("Consultar"),
-                    "/images/buttonIcons/search.png"
+                    "/images/buttonIcons/search.png",
+                    consultByIdActionListener
                 )
             }
         };
@@ -96,6 +105,10 @@ public class FlightConsultPanel extends JPanel
         );
 
         // Tab: Consulta mais abrangente
+        FlightConsultMacroSearchActionListener
+            consultMacroSearchActionListener =
+                new FlightConsultMacroSearchActionListener(configuration);
+
         JPanel macroSearchPanel = new JPanel();
         macroSearchPanel.setLayout(gridBagLayout);
         macroSearchPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -103,19 +116,28 @@ public class FlightConsultPanel extends JPanel
         components = new Component[][] {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Origem") + ":"),
-                new JComboBox<AirportEntityComboType>(
-                    getController().getAirportEntitiesComboTypeAction()
+                consultMacroSearchActionListener.addComponent(
+                    "airport-origin",
+                    new JComboBox<AirportEntityComboType>(
+                        getController().getAirportEntitiesComboTypeAction()
+                    )
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":"),
-                new JComboBox<AirportEntityComboType>(
-                    getController().getAirportEntitiesComboTypeAction()
+                consultMacroSearchActionListener.addComponent(
+                    "airport-destination",
+                    new JComboBox<AirportEntityComboType>(
+                        getController().getAirportEntitiesComboTypeAction()
+                    )
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Data Partida") + ":"),
-                new JTextField()
+                consultMacroSearchActionListener.addComponent(
+                    "date-departure",
+                    new JTextField()
+                )
             },
             new Component[] {
                 new ImageButton(
@@ -125,7 +147,8 @@ public class FlightConsultPanel extends JPanel
                 ),
                 new ImageButton(
                     configuration.getTranslator().__("Consultar"),
-                    "/images/buttonIcons/search.png"
+                    "/images/buttonIcons/search.png",
+                    consultMacroSearchActionListener
                 )
             }
         };

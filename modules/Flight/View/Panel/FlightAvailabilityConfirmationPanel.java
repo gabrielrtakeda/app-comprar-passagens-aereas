@@ -78,7 +78,7 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Valor") + ":"),
-                new JLabel("R$" + flightEntity.getValor())
+                new JLabel("R$" + flightEntity.getPrice())
             }
         };
         ColoredGridLayout.make(
@@ -100,7 +100,7 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         componentsMatrix = new Component[][] {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Descrição") + ":"),
-                new JLabel(flightEntity.getAirport().getDescription())
+                new JLabel(flightEntity.getAirportOrigin().getDescription())
             }
         };
         ColoredGridLayout.make(
@@ -181,10 +181,10 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         FlightEntity flightEntity = new FlightEntity();
         return flightEntity.setId(1)
                            .setAirplane(buildAirplaneEntity())
-                           .setAirport(buildAirportEntity())
+                           .setAirportOrigin(buildAirportEntity())
                            .setStatus("Transferido")
-                           .setValor(199.90f)
-                           .setDataPartida(new Date());
+                           .setPrice(199.90d)
+                           .setDateDeparture(new Date());
     }
 
     /**

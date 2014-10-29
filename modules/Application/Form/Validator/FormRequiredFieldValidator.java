@@ -18,6 +18,15 @@ public class FormRequiredFieldValidator
         }
     }
 
+    public static void validateFields(String[] names, String[] texts)
+    {
+        Integer count = 0;
+        for (String name : names) {
+            FormRequiredFieldValidator.validateField(name, texts[count]);
+            count++;
+        }
+    }
+
     public static Boolean hasError()
     {
         return errorCount > 0;

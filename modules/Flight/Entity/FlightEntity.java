@@ -1,10 +1,11 @@
 package project.modules.Flight.Entity;
 
+import project.modules.Application.Entity.AbstractEntity;
 import project.modules.Airplane.Entity.AirplaneEntity;
 import project.modules.Airport.Entity.AirportEntity;
 import java.util.Date;
 
-public class FlightEntity
+public class FlightEntity extends AbstractEntity
 {
     public static final String STATUS_AVAILABLE    = "Disponível";
     public static final String STATUS_CANCELED     = "Cancelado";

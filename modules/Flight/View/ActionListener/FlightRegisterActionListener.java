@@ -5,9 +5,9 @@ import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Flight.Controller.FlightController;
 import java.awt.event.ActionEvent;
 
-public class FlightRegisterViewActionListener extends AbstractActionListener
+public class FlightRegisterActionListener extends AbstractActionListener
 {
-    public FlightRegisterViewActionListener(ConfigurationEntity configuration)
+    public FlightRegisterActionListener(ConfigurationEntity configuration)
     {
         configuration.setActionListener(this);
         setConfiguration(configuration);
@@ -15,7 +15,7 @@ public class FlightRegisterViewActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        getController().navigateAction("register");
+        getController().registerAction();
     }
 
     public FlightController getController()

@@ -67,6 +67,23 @@ public class AirplaneDAO extends DatabaseConnect
         return result;
     }
 
+    public AirplaneEntity consult(Integer id)
+    {
+        AirplaneEntity airplaneEntity = new AirplaneEntity();
+        String query = "SELECT * FROM " + table + " WHERE `idAeronave` = ?";
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            airplaneEntity = buildEntity(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return airplaneEntity;
+    }
+
     public List<AbstractEntity> consult(String column, String search)
     {
         List<AbstractEntity> entities = new ArrayList<AbstractEntity>();
@@ -79,17 +96,9 @@ public class AirplaneDAO extends DatabaseConnect
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                AirplaneEntity airplaneEntity = new AirplaneEntity();
-                airplaneEntity.setId(resultSet.getInt("idAeronave"))
-                              .setDescription(resultSet.getString("descricao"))
-                              .setFamily(resultSet.getString("familia"))
-                              .setModel(resultSet.getString("modelo"))
-                              .setSeatsTotal(resultSet.getInt("assentosTotal"))
-                              .setSeatsVacantTotal(resultSet.getInt("assentosVagosTotal"))
-                              .setStatus(resultSet.getString("status"))
-                              .setDateRegister(resultSet.getDate("dataCadastro"));
-
-                entities.add(airplaneEntity);
+                entities.add(
+                    buildEntity(resultSet)
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -142,5 +151,26 @@ public class AirplaneDAO extends DatabaseConnect
         }
         closeConnection();
         return result;
+    }
+
+    private AirplaneEntity buildEntity(ResultSet resultSet)
+    {
+        AirplaneEntity airplaneEntity = new AirplaneEntity();
+
+        try {
+            if (resultSet.next()) {
+                airplaneEntity.setId(resultSet.getInt("idAeronave"))
+                              .setDescription(resultSet.getString("descricao"))
+                              .setFamily(resultSet.getString("familia"))
+                              .setModel(resultSet.getString("modelo"))
+                              .setSeatsTotal(resultSet.getInt("assentosTotal"))
+                              .setSeatsVacantTotal(resultSet.getInt("assentosVagosTotal"))
+                              .setStatus(resultSet.getString("status"))
+                              .setDateRegister(resultSet.getDate("dataCadastro"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return airplaneEntity;
     }
 }

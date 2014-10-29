@@ -4,10 +4,11 @@ import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Flight.Controller.FlightController;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
-public class FlightRegisterViewActionListener extends AbstractActionListener
+public class FlightConsultIdSearchActionListener extends AbstractActionListener
 {
-    public FlightRegisterViewActionListener(ConfigurationEntity configuration)
+    public FlightConsultIdSearchActionListener(ConfigurationEntity configuration)
     {
         configuration.setActionListener(this);
         setConfiguration(configuration);
@@ -15,10 +16,14 @@ public class FlightRegisterViewActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        getController().navigateAction("register");
+        JTextField id = (JTextField) getComponent("id");
+        getController().consulSearchtAction(
+            new String[] {"idVoo"},
+            new String[] {id.getText()}
+        );
     }
 
-    public FlightController getController()
+    private FlightController getController()
     {
         return new FlightController(configuration);
     }

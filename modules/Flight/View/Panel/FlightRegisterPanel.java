@@ -6,6 +6,7 @@ import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
+import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Flight.Controller.FlightController;
 import project.modules.Flight.View.ActionListener.FlightRegisterNavigationActionListener;
 import project.modules.Flight.View.ActionListener.FlightRasterizeActionListener;
@@ -72,34 +73,55 @@ public class FlightRegisterPanel extends JPanel
         AirportEntityComboType[]
             airportTypes = getController().getAirportEntitiesComboTypeAction();
 
+        AbstractActionListener
+            rasterizeActionListener = new FlightRasterizeActionListener(configuration);
+
         Component[][] components = {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeronave") + ":"),
-                new JComboBox<AirplaneEntityComboType>(
-                    getController().getAirplaneEntitiesComboTypeAction()
+                rasterizeActionListener.addComponent(
+                    "airplane",
+                    new JComboBox<AirplaneEntityComboType>(
+                        getController().getAirplaneEntitiesComboTypeAction()
+                    )
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Origem") + ":"),
-                new JComboBox<AirportEntityComboType>(airportTypes)
+                rasterizeActionListener.addComponent(
+                    "airport-origin",
+                    new JComboBox<AirportEntityComboType>(airportTypes)
+                )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":"),
-                new JComboBox<AirportEntityComboType>(airportTypes)
+                rasterizeActionListener.addComponent(
+                    "airport-destination",
+                    new JComboBox<AirportEntityComboType>(airportTypes)
+                )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Valor") + " (R$) :"),
-                new JTextField()
+                rasterizeActionListener.addComponent(
+                    "price",
+                    new JTextField()
+                )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Status") + ":"),
-                new JComboBox<FlightStatusType>(
-                    getController().getFlightStatusTypesAction()
+                rasterizeActionListener.addComponent(
+                    "status",
+                    new JComboBox<FlightStatusType>(
+                        getController().getFlightStatusTypesAction()
+                    )
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Data Partida") + " :"),
-                new JTextField()
+                rasterizeActionListener.addComponent(
+                    "date-departure",
+                    new JTextField()
+                )
             }
         };
 
@@ -124,7 +146,7 @@ public class FlightRegisterPanel extends JPanel
                 configuration.getTranslator().__("Continuar"),
                 "/images/buttonIcons/check.png",
                 new Dimension(225, 40),
-                new FlightRasterizeActionListener(configuration)
+                rasterizeActionListener
             )
         );
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);

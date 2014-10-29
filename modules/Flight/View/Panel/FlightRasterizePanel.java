@@ -7,8 +7,9 @@ import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Flight.Controller.FlightController;
+import project.modules.Flight.Entity.FlightEntity;
 import project.modules.Flight.View.ActionListener.FlightRegisterNavigationActionListener;
-import project.modules.Flight.View.ActionListener.FlightRasterizeActionListener;
+import project.modules.Flight.View.ActionListener.FlightRegisterActionListener;
 import project.modules.Flight.Type.FlightStatusType;
 import project.modules.Airplane.Type.AirplaneEntityComboType;
 import project.modules.Airport.Type.AirportEntityComboType;
@@ -69,7 +70,7 @@ public class FlightRasterizePanel extends JPanel
         );
 
         // Form
-        FlightEntity flightEntity = configuration.getEntity("flight");
+        FlightEntity flightEntity = (FlightEntity) configuration.getEntity("flight");
 
         Component[][] components = {
             new Component[] {
@@ -86,7 +87,7 @@ public class FlightRasterizePanel extends JPanel
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Valor") + " (R$) :"),
-                new JLabel(flightEntity.getPrice())
+                new JLabel(String.valueOf(flightEntity.getPrice()))
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Status") + ":"),
@@ -94,7 +95,7 @@ public class FlightRasterizePanel extends JPanel
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Data Partida") + " :"),
-                new JLabel(flightEntity.getDepartureDate())
+                new JLabel(flightEntity.getDateDeparture().toString())
             }
         };
 
@@ -119,7 +120,7 @@ public class FlightRasterizePanel extends JPanel
                 configuration.getTranslator().__("Continuar"),
                 "/images/buttonIcons/check.png",
                 new Dimension(225, 40),
-                new FlightRasterizeActionListener(configuration)
+                new FlightRegisterActionListener(configuration)
             )
         );
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);

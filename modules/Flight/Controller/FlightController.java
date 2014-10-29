@@ -2,6 +2,7 @@ package project.modules.Flight.Controller;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.Controller.AbstractController;
+import project.modules.Flight.Entity.FlightEntity;
 import project.modules.Flight.Model.FlightModel;
 import project.modules.Flight.Type.FlightStatusType;
 import project.modules.Airplane.Type.AirplaneEntityComboType;
@@ -37,5 +38,21 @@ public class FlightController extends AbstractController
     public FlightStatusType[] getFlightStatusTypesAction()
     {
         return model.getFlightStatusTypes();
+    }
+
+    public void rasterizeFlightEntityAction(FlightEntity flightEntity)
+    {
+        model.rasterizeFlightEntity(flightEntity);
+    }
+
+    public void registerAction()
+    {
+        model.register();
+    }
+
+    public void consulSearchtAction(String[] columns, String[] searches)
+    {
+        configuration.setQueryString("flight-consult", "consult");
+        model.consult(columns, searches);
     }
 }

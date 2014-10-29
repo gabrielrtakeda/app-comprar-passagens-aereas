@@ -60,6 +60,23 @@ public class AirportDAO extends DatabaseConnect
         return result;
     }
 
+    public AirportEntity consult(Integer id)
+    {
+        AirportEntity airportEntity = new AirportEntity();
+        String query = "SELECT * FROM " + table + " WHERE `idAeroporto` = ?";
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            airportEntity = buildEntity(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return airportEntity;
+    }
+
     public List<AbstractEntity> consult(String column, String search)
     {
         List<AbstractEntity> entities = new ArrayList<AbstractEntity>();
@@ -72,13 +89,8 @@ public class AirportDAO extends DatabaseConnect
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
-                AirportEntity airportEntity = new AirportEntity();
                 entities.add(
-                    airportEntity.setId(resultSet.getInt("idAeroporto"))
-                                 .setDescription(resultSet.getString("descricao"))
-                                 .setAbbreviation(resultSet.getString("sigla"))
-                                 .setAddress(resultSet.getString("endereco"))
-                                 .setDateRegister(resultSet.getDate("dataCadastro"))
+                    buildEntity(resultSet)
                 );
             }
         } catch (SQLException e) {
@@ -86,6 +98,24 @@ public class AirportDAO extends DatabaseConnect
         }
         closeConnection();
         return entities;
+    }
+
+    private AirportEntity buildEntity(ResultSet resultSet)
+    {
+        AirportEntity airportEntity = new AirportEntity();
+
+        try {
+            if (resultSet.next()) {
+                airportEntity.setId(resultSet.getInt("idAeroporto"))
+                             .setDescription(resultSet.getString("descricao"))
+                             .setAbbreviation(resultSet.getString("sigla"))
+                             .setAddress(resultSet.getString("endereco"))
+                             .setDateRegister(resultSet.getDate("dataCadastro"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return airportEntity;
     }
 
     public List<AirportEntity> load()
@@ -118,7 +148,7 @@ public class AirportDAO extends DatabaseConnect
         List<AirportEntityComboType> entities = new ArrayList<AirportEntityComboType>();
         String query = "SELECT * FROM " + table + " ORDER BY `descricao` ASC;";
         try {
-            preparedStatement = getConnection().prepareStatement(query.toString());
+            preparedStatement = getConnection().prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while(resultSet.next()) {
