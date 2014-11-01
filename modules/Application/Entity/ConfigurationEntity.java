@@ -125,6 +125,11 @@ public class ConfigurationEntity
         return this.entitiesCollection;
     }
 
+    public AbstractEntity getEntityOfCollection(Integer index)
+    {
+        return this.entitiesCollection.get(index);
+    }
+
     public ConfigurationEntity clearEntitiesCollection()
     {
         this.entitiesCollection.clear();

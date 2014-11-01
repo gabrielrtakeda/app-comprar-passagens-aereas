@@ -7,6 +7,8 @@ import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Flight.View.ActionListener.FlightMenuNavigationActionListener;
 import project.modules.Flight.View.ActionListener.FlightRegisterViewActionListener;
 import project.modules.Flight.View.ActionListener.FlightConsultViewActionListener;
+import project.modules.Flight.View.ActionListener.FlightEditViewActionListener;
+import project.modules.Flight.View.ActionListener.FlightDeleteViewActionListener;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
@@ -50,11 +52,13 @@ public class FlightMenuPanel extends JPanel
         ));
         menuGridPanel.add(new ImageButton(
             configuration.getTranslator().__("Editar"),
-            imageDirectoryPath + "config.png"
+            imageDirectoryPath + "config.png",
+            new FlightEditViewActionListener(configuration)
         ));
         menuGridPanel.add(new ImageButton(
             configuration.getTranslator().__("Cancelar"),
-            imageDirectoryPath + "brainstorming.png"
+            imageDirectoryPath + "brainstorming.png",
+            new FlightDeleteViewActionListener(configuration)
         ));
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.insets = new Insets(0, 45, 0, 45);

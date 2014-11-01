@@ -83,29 +83,37 @@ public class FlightDAO extends DatabaseConnect
         return result;
     }
 
-    // public Boolean update(FlightEntity flightEntity)
-    // {
-    //     Boolean result = false;
-    //     StringBuilder query = new StringBuilder();
-    //     query.append("UPDATE " + table);
-    //     query.append(" SET `descricao` = ?");
-    //     query.append(", `sigla` = ?");
-    //     query.append(", `endereco` = ?");
-    //     query.append(" WHERE `sigla` = ?");
-    //     try {
-    //         preparedStatement = getConnection().prepareStatement(query.toString());
-    //         preparedStatement.setString(1, flightEntity.getDescription());
-    //         preparedStatement.setString(2, flightEntity.getAbbreviation());
-    //         preparedStatement.setString(3, flightEntity.getAddress());
-    //         preparedStatement.setString(4, flightEntity.getAbbreviation());
-    //         preparedStatement.executeUpdate();
-    //         result = true;
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
-    //     closeConnection();
-    //     return result;
-    // }
+    public Boolean update(FlightEntity flightEntity)
+    {
+        Boolean result = false;
+        StringBuilder query = new StringBuilder();
+        query.append("UPDATE " + table);
+        query.append(" SET");
+        query.append("    `idAeronave` = ?");
+        query.append("  , `idAeroportoOrigem` = ?");
+        query.append("  , `idAeroportoDestino` = ?");
+        query.append("  , `valor` = ?");
+        query.append("  , `status` = ?");
+        query.append("  , `dataPartida` = ?");
+        query.append(" WHERE `idVoo` = ?;");
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            preparedStatement.setInt(   1, flightEntity.getAirplane().getId());
+            preparedStatement.setInt(   2, flightEntity.getAirportOrigin().getId());
+            preparedStatement.setInt(   3, flightEntity.getAirportDestination().getId());
+            preparedStatement.setDouble(4, flightEntity.getPrice());
+            preparedStatement.setString(5, flightEntity.getStatus());
+            preparedStatement.setDate(  6, new Date(flightEntity.getDateDeparture().getTime()));
+            preparedStatement.setInt(   7, flightEntity.getId());
+            System.out.println(preparedStatement.toString());
+            preparedStatement.executeUpdate();
+            result = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return result;
+    }
 
     public List<AbstractEntity> consult(String[] columns, String[] searches)
     {
@@ -155,21 +163,21 @@ public class FlightDAO extends DatabaseConnect
         return entities;
     }
 
-    // public Boolean delete(FlightEntity flightEntity)
-    // {
-    //     Boolean result = false;
-    //     StringBuilder query = new StringBuilder();
-    //     query.append("DELETE FROM " + table);
-    //     query.append(" WHERE `idAeroporto` = ?");
-    //     try {
-    //         preparedStatement = getConnection().prepareStatement(query.toString());
-    //         preparedStatement.setInt(1, flightEntity.getId());
-    //         preparedStatement.executeUpdate();
-    //         result = true;
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //     }
-    //     closeConnection();
-    //     return result;
-    // }
+    public Boolean delete(FlightEntity flightEntity)
+    {
+        Boolean result = false;
+        StringBuilder query = new StringBuilder();
+        query.append("DELETE FROM " + table);
+        query.append(" WHERE `idVoo` = ?");
+        try {
+            preparedStatement = getConnection().prepareStatement(query.toString());
+            preparedStatement.setInt(1, flightEntity.getId());
+            preparedStatement.executeUpdate();
+            result = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return result;
+    }
 }

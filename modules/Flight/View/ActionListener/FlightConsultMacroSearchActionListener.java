@@ -22,7 +22,7 @@ public class FlightConsultMacroSearchActionListener extends AbstractActionListen
         JComboBox airportDestination = (JComboBox) getComponent("airport-destination");
         JTextField dateDeparture = (JTextField) getComponent("date-departure");
 
-        getController().consulSearchtAction(
+        getController().consultAction(
             new String[] {"idAeroportoOrigem", "idAeroportoDestino", "dataPartida"},
             new String[] {
                 String.valueOf(

@@ -17,7 +17,7 @@ public class FlightConsultIdSearchActionListener extends AbstractActionListener
     public void actionPerformed(ActionEvent e)
     {
         JTextField id = (JTextField) getComponent("id");
-        getController().consulSearchtAction(
+        getController().consultAction(
             new String[] {"idVoo"},
             new String[] {id.getText()}
         );

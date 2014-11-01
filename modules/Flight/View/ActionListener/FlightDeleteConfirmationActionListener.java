@@ -4,10 +4,11 @@ import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Flight.Controller.FlightController;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
-public class FlightRegisterViewActionListener extends AbstractActionListener
+public class FlightDeleteConfirmationActionListener extends AbstractActionListener
 {
-    public FlightRegisterViewActionListener(ConfigurationEntity configuration)
+    public FlightDeleteConfirmationActionListener(ConfigurationEntity configuration)
     {
         configuration.setActionListener(this);
         setConfiguration(configuration);
@@ -15,10 +16,15 @@ public class FlightRegisterViewActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        getController().registerNavigateAction();
+        JTable table           = (JTable)  getComponent("search-result");
+        configuration.setEntity(
+            "flight",
+            configuration.getEntityOfCollection(table.getSelectedRow())
+        );
+        getController().deleteConfirmationAction();
     }
 
-    public FlightController getController()
+    private FlightController getController()
     {
         return new FlightController(configuration);
     }

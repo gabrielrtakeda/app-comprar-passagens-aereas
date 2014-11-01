@@ -11,8 +11,8 @@ import project.modules.Flight.Entity.FlightEntity;
 import project.modules.Flight.Type.FlightButtonType;
 import project.modules.Flight.View.ActionListener.FlightMenuViewActionListener;
 import project.modules.Flight.View.ActionListener.FlightConsultResultNavigationActionListener;
-// import project.modules.Flight.View.ActionListener.FlightEditContentViewActionListener;
-// import project.modules.Flight.View.ActionListener.FlightDeleteActionListener;
+import project.modules.Flight.View.ActionListener.FlightEditContentViewActionListener;
+import project.modules.Flight.View.ActionListener.FlightDeleteConfirmationActionListener;
 import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.Insets;
@@ -175,23 +175,24 @@ public class FlightConsultResultPanel extends JPanel
     private FlightButtonType getContinueButtonType(ConfigurationEntity configuration)
     {
         FlightButtonType continueType = new FlightButtonType();
+        System.out.println(configuration.toString());
         switch (configuration.getQueryString("flight-consult")) {
-            // case "edit":
-            //     AbstractActionListener editContentActionListener =
-                    // new FlightEditContentViewActionListener(configuration);
-            //     editContentActionListener.setComponents(menuViewActionListener.getComponents());
+            case "edit":
+                AbstractActionListener editContentActionListener =
+                    new FlightEditContentViewActionListener(configuration);
+                editContentActionListener.setComponents(menuViewActionListener.getComponents());
 
-            //     continueType.setText("Editar");
-            //     continueType.setActionListener(editContentActionListener);
-            //     break;
-            // case "delete":
-            //     AbstractActionListener deleteActionListener =
-                    // new FlightDeleteActionListener(configuration);
-                // deleteActionListener.setComponents(menuViewActionListener.getComponents());
+                continueType.setText("Editar");
+                continueType.setActionListener(editContentActionListener);
+                break;
+            case "delete":
+                AbstractActionListener deleteConfirmationActionListener =
+                    new FlightDeleteConfirmationActionListener(configuration);
+                deleteConfirmationActionListener.setComponents(menuViewActionListener.getComponents());
 
-                // continueType.setText("Excluir");
-                // continueType.setActionListener(deleteActionListener);
-                // break;
+                continueType.setText("Excluir");
+                continueType.setActionListener(deleteConfirmationActionListener);
+                break;
             default:
                 continueType.setText("Ok");
                 continueType.setActionListener(

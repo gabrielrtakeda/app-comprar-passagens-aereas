@@ -8,6 +8,7 @@ import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Flight.Controller.FlightController;
+import project.modules.Flight.Entity.FlightEntity;
 import project.modules.Flight.View.ActionListener.FlightRegisterNavigationActionListener;
 import project.modules.Flight.View.ActionListener.FlightRasterizeActionListener;
 import project.modules.Flight.Type.FlightStatusType;
@@ -20,6 +21,8 @@ import java.awt.Insets;
 import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -69,10 +72,75 @@ public class FlightRegisterPanel extends JPanel
             gridBagConstraints
         );
 
-        // Form
+        // Pegar dados para popular os ComboBoxes.
+        AirplaneEntityComboType[]
+            airplaneTypes = getController().getAirplaneEntitiesComboTypeAction();
         AirportEntityComboType[]
             airportTypes = getController().getAirportEntitiesComboTypeAction();
+        FlightStatusType[]
+            flightStatusTypes = getController().getFlightStatusTypesAction();
 
+        /**
+         * Se existir a entidade `flight` na configuração já setada,
+         * exibir o formulário preenchido com esses valores.
+         */
+        Integer airplaneDefaultSelected = 0,
+                airportOriginDefaultSelected = 0,
+                airportDestinationDefaultSelected = 0,
+                flightStatusDefaultSelected = 0;
+        String priceDefined = "",
+               dateDepartureDefined = "";
+
+        if (configuration.hasEntity("flight")) {
+            FlightEntity flightEntity = (FlightEntity) configuration.getEntity("flight");
+            System.out.println("#################################################");
+            System.out.println("ID: " + flightEntity.getId());
+            System.out.println("#################################################");
+
+            airplaneDefaultSelected = getAirplaneComboSelectedIndex(
+                airplaneTypes,
+                flightEntity.getAirplane().getId()
+            );
+            airportOriginDefaultSelected = getAirportComboSelectedIndex(
+                airportTypes,
+                flightEntity.getAirportOrigin().getId()
+            );
+            airportDestinationDefaultSelected = getAirportComboSelectedIndex(
+                airportTypes,
+                flightEntity.getAirportDestination().getId()
+            );
+            flightStatusDefaultSelected = getFlightStatusComboSelectedIndex(
+                flightStatusTypes,
+                flightEntity.getStatus()
+            );
+            priceDefined = String.valueOf(flightEntity.getPrice());
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            dateDepartureDefined = dateFormat.format(flightEntity.getDateDeparture());
+        }
+
+        /**
+         * Seta os ComboBoxes em variáveis.
+         * Possibilitando a escolha de qual item virá selecionado por default.
+         */
+        JComboBox<AirplaneEntityComboType> airplaneCombo =
+            new JComboBox<AirplaneEntityComboType>(airplaneTypes);
+        airplaneCombo.setSelectedIndex(airplaneDefaultSelected);
+
+        JComboBox<AirportEntityComboType> airportOriginCombo =
+            new JComboBox<AirportEntityComboType>(airportTypes);
+        airportOriginCombo.setSelectedIndex(airportOriginDefaultSelected);
+
+        JComboBox<AirportEntityComboType> airportDestinationCombo =
+            new JComboBox<AirportEntityComboType>(airportTypes);
+        airportDestinationCombo.setSelectedIndex(airportDestinationDefaultSelected);
+
+        JComboBox<FlightStatusType> flightStatusCombo =
+            new JComboBox<FlightStatusType>(flightStatusTypes);
+        flightStatusCombo.setSelectedIndex(flightStatusDefaultSelected);
+
+        /**
+         * Form
+         */
         AbstractActionListener
             rasterizeActionListener = new FlightRasterizeActionListener(configuration);
 
@@ -81,51 +149,49 @@ public class FlightRegisterPanel extends JPanel
                 new JLabel(configuration.getTranslator().__("Aeronave") + ":"),
                 rasterizeActionListener.addComponent(
                     "airplane",
-                    new JComboBox<AirplaneEntityComboType>(
-                        getController().getAirplaneEntitiesComboTypeAction()
-                    )
+                    airplaneCombo
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Origem") + ":"),
                 rasterizeActionListener.addComponent(
                     "airport-origin",
-                    new JComboBox<AirportEntityComboType>(airportTypes)
+                    airportOriginCombo
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Aeroporto de Destino") + ":"),
                 rasterizeActionListener.addComponent(
                     "airport-destination",
-                    new JComboBox<AirportEntityComboType>(airportTypes)
+                    airportDestinationCombo
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Valor") + " (R$) :"),
                 rasterizeActionListener.addComponent(
                     "price",
-                    new JTextField()
+                    new JTextField(priceDefined)
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Status") + ":"),
                 rasterizeActionListener.addComponent(
                     "status",
-                    new JComboBox<FlightStatusType>(
-                        getController().getFlightStatusTypesAction()
-                    )
+                    flightStatusCombo
                 )
             },
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Data Partida") + " :"),
                 rasterizeActionListener.addComponent(
                     "date-departure",
-                    new JTextField()
+                    new JTextField(dateDepartureDefined)
                 )
             }
         };
 
-        // Buttons
+        /**
+         * Buttons
+         */
         gridBagConstraints.insets = new Insets(0, 0, 0, 0);
         ColoredGridLayout.make(
             this,
@@ -156,6 +222,46 @@ public class FlightRegisterPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
+    }
+
+    private Integer getAirplaneComboSelectedIndex(AirplaneEntityComboType[] airplaneTypes,
+                                                  Integer airplaneSelectedId)
+    {
+        Integer index = 0;
+        for (AirplaneEntityComboType type : airplaneTypes) {
+            if (type.getId() == airplaneSelectedId) {
+                break;
+            }
+            index++;
+        }
+        return index;
+    }
+
+    private Integer getAirportComboSelectedIndex(AirportEntityComboType[] airportTypes,
+                                                 Integer airportSelectedId)
+    {
+        Integer index = 0;
+        for (AirportEntityComboType type : airportTypes) {
+            if (type.getId() == airportSelectedId) {
+                break;
+            }
+            index++;
+        }
+        return index;
+    }
+
+    private Integer getFlightStatusComboSelectedIndex(FlightStatusType[] flightStatusTypes,
+                                                      String flightStatusSelectedValue)
+    {
+        Integer index = 0;
+        for (FlightStatusType type : flightStatusTypes) {
+            if (type.getValue().equals(flightStatusSelectedValue)) {
+                break;
+            } else {
+                index++;
+            }
+        }
+        return index;
     }
 
     public FlightController getController()

@@ -8,9 +8,11 @@ import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Flight.Controller.FlightController;
 import project.modules.Flight.Entity.FlightEntity;
-import project.modules.Flight.View.ActionListener.FlightRegisterNavigationActionListener;
+import project.modules.Flight.View.ActionListener.FlightRasterizeNavigationActionListener;
+import project.modules.Flight.View.ActionListener.FlightDeleteActionListener;
 import project.modules.Flight.View.ActionListener.FlightRegisterActionListener;
 import project.modules.Flight.Type.FlightStatusType;
+import project.modules.Flight.Type.FlightButtonType;
 import project.modules.Airplane.Type.AirplaneEntityComboType;
 import project.modules.Airport.Type.AirportEntityComboType;
 import java.awt.GridBagLayout;
@@ -50,7 +52,7 @@ public class FlightRasterizePanel extends JPanel
         AbstractGridBagLayout.addGridBagElement(
             this,
             ComponentCreatePattern.buildNavigationButton(
-                new FlightRegisterNavigationActionListener(configuration)
+                new FlightRasterizeNavigationActionListener(configuration)
             ),
             gridBagLayout,
             gridBagConstraints
@@ -100,6 +102,7 @@ public class FlightRasterizePanel extends JPanel
         };
 
         // Buttons
+        FlightButtonType continueButton = getContinueButtonType(configuration);
         gridBagConstraints.insets = new Insets(0, 0, 0, 0);
         ColoredGridLayout.make(
             this,
@@ -112,15 +115,15 @@ public class FlightRasterizePanel extends JPanel
                 configuration.getTranslator().__("Voltar"),
                 "/images/buttonIcons/arrow-left.png",
                 new Dimension(225, 40),
-                new FlightRegisterNavigationActionListener(configuration)
+                new FlightRasterizeNavigationActionListener(configuration)
             )
         );
         buttonsPanel.add(
             new ImageButton(
-                configuration.getTranslator().__("Continuar"),
+                configuration.getTranslator().__(continueButton.getText()),
                 "/images/buttonIcons/check.png",
                 new Dimension(225, 40),
-                new FlightRegisterActionListener(configuration)
+                continueButton.getActionListener()
             )
         );
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);
@@ -132,8 +135,22 @@ public class FlightRasterizePanel extends JPanel
         );
     }
 
-    public FlightController getController()
+    private FlightButtonType getContinueButtonType(ConfigurationEntity configuration)
     {
-        return new FlightController(configuration);
+        FlightButtonType continueType = new FlightButtonType();
+        switch (configuration.getQueryString("flight-rasterize")) {
+            case "delete":
+                continueType.setText("Excluir");
+                continueType.setActionListener(
+                    new FlightDeleteActionListener(configuration)
+                );
+                break;
+            default:
+                continueType.setText("Confirmar");
+                continueType.setActionListener(
+                    new FlightRegisterActionListener(configuration)
+                );
+        }
+        return continueType;
     }
 }

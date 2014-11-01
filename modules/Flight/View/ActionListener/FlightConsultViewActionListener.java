@@ -15,7 +15,7 @@ public class FlightConsultViewActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        getController().navigateAction("consult");
+        getController().defaultConsultAction();
     }
 
     public FlightController getController()

@@ -32,22 +32,33 @@ public class FlightRasterizeActionListener extends AbstractActionListener
         JTextField dateDeparture     = (JTextField) getComponent("date-departure");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+        Boolean isValid = getController().validateRegisterAction(
+            new String[] { "Valor", "Data Partida" },
+            new String[] {
+                price.getText(),
+                dateDeparture.getText()
+            }
+        );
 
-        System.out.println(((AirplaneEntity) airplane.getSelectedItem()).getDescription());
-
-        FlightEntity flightEntity = new FlightEntity();
-        try {
-            flightEntity.setAirplane((AirplaneEntity) airplane.getSelectedItem())
-                        .setAirportOrigin((AirportEntity) airportOrigin.getSelectedItem())
-                        .setAirportDestination((AirportEntity) airportDestination.getSelectedItem())
-                        .setPrice(Double.parseDouble(price.getText()))
-                        .setStatus(((FlightStatusType) status.getSelectedItem()).getValue())
-                        .setDateDeparture(dateFormat.parse(dateDeparture.getText()));
+        if (isValid) {
+            FlightEntity flightEntity = new FlightEntity();
+            if (configuration.hasEntity("flight")) {
+                flightEntity = (FlightEntity) configuration.getEntity("flight");
+            }
+            try {
+                flightEntity
+                    .setAirplane((AirplaneEntity) airplane.getSelectedItem())
+                    .setAirportOrigin((AirportEntity) airportOrigin.getSelectedItem())
+                    .setAirportDestination((AirportEntity) airportDestination.getSelectedItem())
+                    .setPrice(Double.parseDouble(price.getText()))
+                    .setStatus(((FlightStatusType) status.getSelectedItem()).getValue())
+                    .setDateDeparture(dateFormat.parse(dateDeparture.getText()));
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
 
-        getController().rasterizeFlightEntityAction(flightEntity);
+            getController().rasterizeFlightEntityAction(flightEntity);
+        }
     }
 
     public FlightController getController()

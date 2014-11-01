@@ -40,6 +40,11 @@ public class FlightController extends AbstractController
         return model.getFlightStatusTypes();
     }
 
+    public void registerNavigateAction()
+    {
+        model.registerNavigate();
+    }
+
     public void rasterizeFlightEntityAction(FlightEntity flightEntity)
     {
         model.rasterizeFlightEntity(flightEntity);
@@ -50,9 +55,43 @@ public class FlightController extends AbstractController
         model.register();
     }
 
-    public void consulSearchtAction(String[] columns, String[] searches)
+    public Boolean validateRegisterAction(String[] fields, String[] values)
     {
-        configuration.setQueryString("flight-consult", "consult");
+        return model.validateRegister(fields, values);
+    }
+
+    public void consultAction(String[] columns, String[] searches)
+    {
         model.consult(columns, searches);
+    }
+
+    public void defaultConsultAction()
+    {
+        model.defaultConsult();
+    }
+
+    public void editConsultAction()
+    {
+        model.editConsult();
+    }
+
+    public void deleteConsultAction()
+    {
+        model.deleteConsult();
+    }
+
+    public void editContentAction(FlightEntity flightEntity)
+    {
+        model.editContent(flightEntity);
+    }
+
+    public void deleteConfirmationAction()
+    {
+        model.deleteConfirmation();
+    }
+
+    public void deleteAction()
+    {
+        model.delete();
     }
 }

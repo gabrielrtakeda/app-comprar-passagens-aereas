@@ -139,7 +139,12 @@ Aeronave excluída com sucesso!;Successfully deleted Airplane!
 Não foi possível finalizar a exclusão da Aeronave.;Could not complete the deletion of the Airplane.
 Confirma o cadastro do Voo?;It confirms the register of the Flight?
 Confirmação de Cadastro de Voo;Flight Register Confirmation
+Confirma a alteração do Voo?;Confirm the changed flight?
+Confirmação de alteração de Voo;Change Confirmation of Flight
 Voo cadastrado com sucesso!;Successfully registered Flight!
 Não foi possível finalizar o cadastro do Voo.;Unable to complete registration Flight.
 Voo alterado com sucesso!;Flight successfully changed!
 Não foi possível finalizar a alteração do Voo.;Could not finish changing the Flight.
+Confirmação de Cancelamento de Voo;Confirmation of Cancellation of Flight
+Voo cancelado com sucesso!;Canceled flight successfully!
+Não foi possível finalizar o cancelamento do Voo.;It was not possible to finalize the cancellation of the flight.

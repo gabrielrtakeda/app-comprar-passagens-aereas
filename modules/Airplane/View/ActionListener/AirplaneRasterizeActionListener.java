@@ -43,7 +43,6 @@ public class AirplaneRasterizeActionListener extends AbstractActionListener
                     break;
             }
         }
-        System.out.println(configuration.toString());
 
         if (FormRequiredFieldValidator.getErrorCount() > 0) {
             FormRequiredFieldValidator.setConfiguration(configuration);

@@ -6,6 +6,7 @@ import project.modules.Application.Form.Validator.FormRequiredFieldValidator;
 import project.modules.Application.Model.AbstractModel;
 import project.modules.Flight.DataAccessObject.FlightDAO;
 import project.modules.Flight.Entity.FlightEntity;
+import project.modules.Flight.View.FlightMenuView;
 import project.modules.Flight.View.FlightRegisterView;
 import project.modules.Flight.View.FlightConsultView;
 import project.modules.Flight.View.FlightConsultResultView;
@@ -17,6 +18,8 @@ import project.modules.Airport.DataAccessObject.AirportDAO;
 import project.modules.Airport.Entity.AirportEntity;
 import project.modules.Airport.Type.AirportEntityComboType;
 import java.util.List;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import javax.swing.JOptionPane;
 
 public class FlightModel extends AbstractModel
@@ -44,6 +47,10 @@ public class FlightModel extends AbstractModel
                 configuration.clearQueryStrings();
                 configuration.clearEntitiesCollection();
                 goToMenu();
+                break;
+
+            case "menu":
+                new FlightMenuView(configuration);
                 break;
 
             case "register":
@@ -100,42 +107,44 @@ public class FlightModel extends AbstractModel
     {
         FlightEntity flightEntity = (FlightEntity) configuration.getEntity("flight");
 
+        String confirmationMessage = "Confirma o cadastro do Voo?",
+               confirmationTitleMessage = "Confirmação de Cadastro de Voo";
+
+        Boolean edit = false;
+
+        // Verifica se o Voo já existe
+        List<AbstractEntity> searchEntities = dao().consult(
+            new String[] {"idVoo"},
+            new String[] {String.valueOf(flightEntity.getId())}
+        );
+        if (configuration.hasQueryString("flight-consult") || searchEntities.size() > 0) {
+            if (configuration.getQueryString("flight-consult").equals("edit")) {
+                confirmationMessage = "Confirma a alteração do Voo?";
+                confirmationTitleMessage = "Confirmação de alteração de Voo";
+            }
+            edit = true;
+        }
+
         Integer optionsResult = JOptionPane.showConfirmDialog(
             null,
-            configuration.getTranslator().__("Confirma o cadastro do Voo?"),
-            configuration.getTranslator().__("Confirmação de Cadastro de Voo"),
+            configuration.getTranslator().__(confirmationMessage),
+            configuration.getTranslator().__(confirmationTitleMessage),
             JOptionPane.YES_NO_OPTION
         );
 
         if (optionsResult == JOptionPane.YES_OPTION) {
             Boolean result = false;
+
             String successMessage = "",
                    errorMessage = "";
-
-            // Verifica se o registro já existe
-            List<AbstractEntity> searchEntity
-                = dao().consult(
-                    new String[] {
-                        "idAeronave", "idAeroportoOrigem", "idAeroportoDestino", "dataPartida"
-                    },
-                    new String[] {
-                        String.valueOf(flightEntity.getAirplane().getId()),
-                        String.valueOf(flightEntity.getAirportOrigin().getId()),
-                        String.valueOf(flightEntity.getAirportDestination().getId()),
-                        flightEntity.getDateDeparture().toString()
-                    }
-                );
-
-            if (searchEntity.size() < 1) {
-                // Inserir caso não exista
+            if (edit) {
+                result = dao().update((FlightEntity) configuration.getEntity("flight"));
+                successMessage = "Voo alterado com sucesso!";
+                errorMessage = "Não foi possível finalizar a alteração do Voo.";
+            } else {
                 result = dao().register(flightEntity);
                 successMessage = "Voo cadastrado com sucesso!";
                 errorMessage = "Não foi possível finalizar o cadastro do Voo.";
-            } else {
-                // Atualizar caso exista
-                // result = dao().update(airportEntity);
-                successMessage = "Voo alterado com sucesso!";
-                errorMessage = "Não foi possível finalizar a alteração do Voo.";
             }
 
             if (result) {
@@ -146,8 +155,7 @@ public class FlightModel extends AbstractModel
                     JOptionPane.INFORMATION_MESSAGE
                 );
                 configuration.removeEntity("flight");
-                configuration.getView().dispose();
-                goToMenu();
+                navigate("root-menu");
             } else {
                 JOptionPane.showMessageDialog(
                     null,
@@ -157,6 +165,19 @@ public class FlightModel extends AbstractModel
                 );
             }
         }
+    }
+
+    public Boolean validateRegister(String[] fields, String[] values)
+    {
+        Boolean valid = false;
+        FormRequiredFieldValidator.validateFields(fields, values);
+        if (FormRequiredFieldValidator.hasError()) {
+            FormRequiredFieldValidator.setConfiguration(configuration);
+            FormRequiredFieldValidator.showErrorMessage();
+        } else {
+            valid = true;
+        }
+        return valid;
     }
 
     public void consult(String[] columns, String[] searches)
@@ -181,5 +202,78 @@ public class FlightModel extends AbstractModel
                 navigate("consult-result");
             }
         }
+    }
+
+    public void delete()
+    {
+        Integer optionsResult = JOptionPane.showConfirmDialog(
+            null,
+            configuration.getTranslator().__("Tem certeza que deseja prosseguir com a ação?"),
+            configuration.getTranslator().__("Confirmação de Cancelamento de Voo"),
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (optionsResult == JOptionPane.YES_OPTION) {
+            FlightEntity flightEntity = (FlightEntity) configuration.getEntity("flight");
+            Boolean result = dao().delete(flightEntity);
+
+            if (result) {
+                JOptionPane.showMessageDialog(
+                    null,
+                    configuration.getTranslator().__("Voo cancelado com sucesso!"),
+                    configuration.getTranslator().__("Sucesso"),
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+                configuration.removeEntity("flight");
+                navigate("root-menu");
+            } else {
+                JOptionPane.showMessageDialog(
+                    null,
+                    configuration.getTranslator().__(
+                        "Não foi possível finalizar o cancelamento do Voo."
+                    ),
+                    configuration.getTranslator().__("Erro"),
+                    JOptionPane.ERROR_MESSAGE
+                );
+            }
+        }
+    }
+
+    public void registerNavigate()
+    {
+        configuration.setQueryString("flight-rasterize", "register");
+        navigate("register");
+    }
+
+    public void defaultConsult()
+    {
+        configuration.setQueryString("flight-consult", "consult");
+        configuration.setQueryString("flight-rasterize", "consult");
+        navigate("consult");
+    }
+
+    public void editConsult()
+    {
+        configuration.setQueryString("flight-consult", "edit");
+        navigate("consult");
+    }
+
+    public void editContent(FlightEntity flightEntity)
+    {
+        configuration.setQueryString("flight-rasterize", "edit");
+        configuration.setEntity("flight", flightEntity);
+        navigate("consult-result");
+    }
+
+    public void deleteConsult()
+    {
+        configuration.setQueryString("flight-consult", "delete");
+        navigate("consult");
+    }
+
+    public void deleteConfirmation()
+    {
+        configuration.setQueryString("flight-rasterize", "delete");
+        navigate("rasterize");
     }
 }
