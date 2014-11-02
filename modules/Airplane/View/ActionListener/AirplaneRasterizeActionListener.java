@@ -26,7 +26,7 @@ public class AirplaneRasterizeActionListener extends AbstractActionListener
         JTextField description  = (JTextField) getComponent("description");
         JTextField family       = (JTextField) getComponent("family");
         JTextField model        = (JTextField) getComponent("model");
-        JComboBox  status       = (JComboBox) getComponent("status");
+        JComboBox status = (JComboBox) getComponent("status");
 
         Iterator<String> keySetIterator = getComponents().keySet().iterator();
         while (keySetIterator.hasNext()) {

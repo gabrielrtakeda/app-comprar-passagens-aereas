@@ -12,12 +12,14 @@ import project.modules.Flight.View.FlightConsultView;
 import project.modules.Flight.View.FlightConsultResultView;
 import project.modules.Flight.View.FlightRasterizeView;
 import project.modules.Flight.Type.FlightStatusType;
+import project.modules.Flight.View.Modal.FlightAvailabilityConfirmationModal;
 import project.modules.Airplane.DataAccessObject.AirplaneDAO;
 import project.modules.Airplane.Type.AirplaneEntityComboType;
 import project.modules.Airport.DataAccessObject.AirportDAO;
 import project.modules.Airport.Entity.AirportEntity;
 import project.modules.Airport.Type.AirportEntityComboType;
 import java.util.List;
+import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import javax.swing.JOptionPane;
@@ -275,5 +277,31 @@ public class FlightModel extends AbstractModel
     {
         configuration.setQueryString("flight-rasterize", "delete");
         navigate("rasterize");
+    }
+
+    public AbstractEntity checkAvailability(String[] columns, String[] values)
+    {
+        FlightEntity flightEntity = new FlightEntity();
+        FormRequiredFieldValidator.validateFields(columns, values);
+        if (FormRequiredFieldValidator.hasError()) {
+            FormRequiredFieldValidator.setConfiguration(configuration);
+            FormRequiredFieldValidator.showErrorMessage();
+        } else {
+            List<AbstractEntity> entities = dao().consult(columns, values);
+            if (entities.size() < 1) {
+                JOptionPane.showMessageDialog(
+                    null,
+                    "Não há disponibilidade para essa passagem.",
+                    "Indisponibilidade",
+                    JOptionPane.INFORMATION_MESSAGE
+                );
+            } else {
+                flightEntity = (FlightEntity) entities.get(0);
+                configuration.setEntity("passage-purchase-flight", flightEntity);
+                new FlightAvailabilityConfirmationModal(configuration);
+            }
+        }
+
+        return flightEntity;
     }
 }

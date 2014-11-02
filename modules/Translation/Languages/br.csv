@@ -16,12 +16,13 @@ Data Partida;Data Partida
 Validar Disponibilidade;Validar Disponibilidade
 Informações dos Passageiros;Informações dos Passageiros
 Cadastrar Passageiro;Cadastrar Passageiro
+Cadastrar Passageiros;Cadastrar Passageiros
 Sr.;Sr.
 Sra.;Sra.
 Srta.;Srta.
-Dr.;Dr.
-Dra.;Dra.
+Madame;Madame
 Forma de tratamento;Forma de tratamento
+Forma de Tratamento;Forma de Tratamento
 Data de Nascimento;Data de Nascimento
 Nome Completo;Nome Completo
 Sim;Sim
@@ -145,3 +146,10 @@ Não foi possível finalizar a alteração do Aeroporto.;Não foi possível fina
 Confirmação de Cancelamento de Voo;Confirmação de Cancelamento de Voo
 Voo cancelado com sucesso!;Voo cancelado com sucesso!
 Não foi possível finalizar o cancelamento do Voo.;Não foi possível finalizar o cancelamento do Voo.
+Registro de Passageiro Responsável;Registro de Passageiro Responsável
+Telefone;Telefone
+Não foi possível finalizar o cadastro do passageiro.;Não foi possível finalizar o cadastro do passageiro.
+Finalizar;Finalizar
+Valor Unitário;Valor Unitário
+Subtotal;Subtotal
+Efetuar Compra;Efetuar Compra

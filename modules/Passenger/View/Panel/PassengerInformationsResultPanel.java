@@ -16,6 +16,8 @@ import java.awt.Component;
 import java.awt.Insets;
 import java.awt.Font;
 import java.awt.Component;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
@@ -101,15 +103,21 @@ public class PassengerInformationsResultPanel extends JPanel
      */
     private PassengerEntity buildResponsiblePassenger()
     {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         PassengerEntity passengerEntity = new PassengerEntity();
-        return passengerEntity.setId(1)
-                              .setFormaTratamento("Sr.")
-                              .setDataNascimento("14/04/1992")
-                              .setNomeCompleto("Gabriel Ramos Takeda")
-                              .setResponsavel(true)
-                              .setEmail("gabrieel.rt@gmail.com")
-                              .setTelefone("(11) 97999-9994")
-                              .setPerfil("Adulto");
+        try {
+            passengerEntity.setId(1)
+                           .setSalutation("Sr.")
+                           .setDateBirth(dateFormat.parse("1992-04-14"))
+                           .setFullName("Gabriel Ramos Takeda")
+                           .setResponsible(true)
+                           .setEmail("gabrieel.rt@gmail.com")
+                           .setPhone("(11) 97999-9994")
+                           .setProfile("Adulto");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return passengerEntity;
     }
 
     /**
@@ -118,27 +126,32 @@ public class PassengerInformationsResultPanel extends JPanel
      */
     private PassengerEntity[] buildOthersPassenger()
     {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         PassengerEntity[] passengers = new PassengerEntity[2];
-
         PassengerEntity passengerEntity = new PassengerEntity();
-        passengers[0] = passengerEntity.setId(2)
-                                       .setFormaTratamento("Sra.")
-                                       .setDataNascimento("15/12/1996")
-                                       .setNomeCompleto("Joyce dos Santos Ferreira")
-                                       .setResponsavel(false)
-                                       .setEmail("joyce@teste.com")
-                                       .setTelefone("(11) 96666-6666")
-                                       .setPerfil("Adulto");
 
-        passengerEntity = new PassengerEntity();
-        passengers[1] = passengerEntity.setId(3)
-                                       .setFormaTratamento("Srta.")
-                                       .setDataNascimento("01/01/2011")
-                                       .setNomeCompleto("Beatriz Ramos Takeda")
-                                       .setResponsavel(false)
-                                       .setEmail("beatriz@teste.com")
-                                       .setTelefone("(11) 97777-7777")
-                                       .setPerfil("Criança");
+        try {
+            passengers[0] = passengerEntity.setId(2)
+                                           .setSalutation("Sra.")
+                                           .setDateBirth(dateFormat.parse("1996-12-15"))
+                                           .setFullName("Joyce dos Santos Ferreira")
+                                           .setResponsible(false)
+                                           .setEmail("joyce@teste.com")
+                                           .setPhone("(11) 96666-6666")
+                                           .setProfile("Adulto");
+
+            passengerEntity = new PassengerEntity();
+            passengers[1] = passengerEntity.setId(3)
+                                           .setSalutation("Srta.")
+                                           .setDateBirth(dateFormat.parse("2011-01-01"))
+                                           .setFullName("Beatriz Ramos Takeda")
+                                           .setResponsible(false)
+                                           .setEmail("beatriz@teste.com")
+                                           .setPhone("(11) 97777-7777")
+                                           .setProfile("Criança");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return passengers;
     }
 }

@@ -1,5 +1,6 @@
 package project.modules.Application.View.Layout;
 
+import project.modules.Application.Entity.ColoredGridDependencyEntity;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Component;
@@ -14,5 +15,14 @@ public class AbstractGridBagLayout
     {
         gridBagLayout.setConstraints(component, gridBagConstraints);
         panel.add(component);
+    }
+    public static void addGridBagElement(ColoredGridDependencyEntity gridEntity,
+                                         Component component)
+    {
+        gridEntity.getGridBagLayout().setConstraints(
+            component,
+            gridEntity.getGridBagConstraints()
+        );
+        gridEntity.getContainer().add(component);
     }
 }

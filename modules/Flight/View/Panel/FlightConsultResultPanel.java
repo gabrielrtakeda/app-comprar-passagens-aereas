@@ -175,7 +175,6 @@ public class FlightConsultResultPanel extends JPanel
     private FlightButtonType getContinueButtonType(ConfigurationEntity configuration)
     {
         FlightButtonType continueType = new FlightButtonType();
-        System.out.println(configuration.toString());
         switch (configuration.getQueryString("flight-consult")) {
             case "edit":
                 AbstractActionListener editContentActionListener =

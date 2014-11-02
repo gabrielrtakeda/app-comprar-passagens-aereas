@@ -13,6 +13,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Component;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
@@ -48,24 +50,25 @@ public class RasterizeResponsiblePassengerInformationPanel extends JPanel
         );
 
         // Formulário: Passageiro Responsável
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Component[][] components = {
             // Nome | Data de Nascimento
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Nome Completo") + ":"),
                 new JLabel(
-                    passengerEntity.getFormaTratamento() + " " +
-                    passengerEntity.getNomeCompleto()
+                    passengerEntity.getSalutation() + " " +
+                    passengerEntity.getFullName()
                 ),
                 new JLabel(configuration.getTranslator().__("Data de Nascimento") + ":"),
-                new JLabel(passengerEntity.getDataNascimento())
+                new JLabel(dateFormat.format(passengerEntity.getDateBirth()))
             },
             // Perfil | Responsável
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Perfil") + ":"),
-                new JLabel(passengerEntity.getPerfil()),
+                new JLabel(passengerEntity.getProfile()),
                 new JLabel(configuration.getTranslator().__("Responsável") + ":"),
                 new JLabel(
-                    passengerEntity.getResponsavel()
+                    passengerEntity.getResponsible()
                     ? configuration.getTranslator().__("Sim")
                     : configuration.getTranslator().__("Não")
                 )
@@ -75,7 +78,7 @@ public class RasterizeResponsiblePassengerInformationPanel extends JPanel
                 new JLabel(configuration.getTranslator().__("Email") + ":"),
                 new JLabel(passengerEntity.getEmail()),
                 new JLabel(configuration.getTranslator().__("Telefone para contato") + ":"),
-                new JLabel(passengerEntity.getTelefone()),
+                new JLabel(passengerEntity.getPhone()),
             }
         };
         gridBagConstraints.insets = new Insets(0, 0, 0, 0);

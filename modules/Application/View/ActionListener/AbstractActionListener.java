@@ -31,6 +31,11 @@ implements  ActionListener,
         return components.get(key);
     }
 
+    public Boolean hasComponent(String key)
+    {
+        return components.containsKey(key);
+    }
+
     public AbstractActionListener setComponents(Map<String, Component> components)
     {
         this.components = components;

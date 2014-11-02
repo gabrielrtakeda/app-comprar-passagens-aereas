@@ -80,4 +80,29 @@ public class ColoredGridLayout
             count++;
         }
     }
+
+    public static void make(ColoredGridDependencyEntity gridEntity)
+    {
+        Integer count = 0;
+        for (Component[] components : gridEntity.getComponents()) {
+            AbstractGridBagLayout.addGridBagElement(
+                gridEntity.getContainer(),
+                build(
+                    count == 0
+                        ? ColoredGridLayout.allBorders
+                        : ColoredGridLayout.exceptTopBorders,
+                    gridEntity.getBorderColor(),
+                    gridEntity.getPanelSize(),
+                    gridEntity.getLineColumns(),
+                    count % 2 == 0
+                        ? gridEntity.getBackgroundColor("gray")
+                        : gridEntity.getBackgroundColor("white"),
+                    components
+                ),
+                gridEntity.getGridBagLayout(),
+                gridEntity.getGridBagConstraints()
+            );
+            count++;
+        }
+    }
 }

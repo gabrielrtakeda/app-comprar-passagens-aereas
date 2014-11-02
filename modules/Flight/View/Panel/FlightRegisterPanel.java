@@ -93,9 +93,6 @@ public class FlightRegisterPanel extends JPanel
 
         if (configuration.hasEntity("flight")) {
             FlightEntity flightEntity = (FlightEntity) configuration.getEntity("flight");
-            System.out.println("#################################################");
-            System.out.println("ID: " + flightEntity.getId());
-            System.out.println("#################################################");
 
             airplaneDefaultSelected = getAirplaneComboSelectedIndex(
                 airplaneTypes,

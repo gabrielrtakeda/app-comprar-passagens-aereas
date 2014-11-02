@@ -66,7 +66,6 @@ public class FlightDAO extends DatabaseConnect
         query.append("  , `dataPartida`");
         query.append(") VALUES (?, ?, ?, ?, ?, ?)");
         try {
-            DateFormat departureDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             preparedStatement = getConnection().prepareStatement(query.toString());
             preparedStatement.setInt(   1, flightEntity.getAirplane().getId());
             preparedStatement.setInt(   2, flightEntity.getAirportOrigin().getId());
@@ -105,7 +104,6 @@ public class FlightDAO extends DatabaseConnect
             preparedStatement.setString(5, flightEntity.getStatus());
             preparedStatement.setDate(  6, new Date(flightEntity.getDateDeparture().getTime()));
             preparedStatement.setInt(   7, flightEntity.getId());
-            System.out.println(preparedStatement.toString());
             preparedStatement.executeUpdate();
             result = true;
         } catch (SQLException e) {

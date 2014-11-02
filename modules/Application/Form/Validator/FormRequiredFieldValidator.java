@@ -12,7 +12,7 @@ public class FormRequiredFieldValidator
     public static void validateField(String name, String text)
     {
         String errorField = "";
-        if (text.isEmpty()) {
+        if (text.isEmpty() || text.equals("selecione")) {
             errorFields += (errorCount > 0 ? ", " : "") + name;
             errorCount++;
         }

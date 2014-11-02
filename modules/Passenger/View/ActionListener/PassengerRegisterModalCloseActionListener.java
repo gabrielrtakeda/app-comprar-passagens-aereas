@@ -2,7 +2,7 @@ package project.modules.Passenger.View.ActionListener;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
-import java.awt.event.ActionListener;
+import project.modules.Passenger.Controller.PassengerController;
 import java.awt.event.ActionEvent;
 
 public class PassengerRegisterModalCloseActionListener extends AbstractActionListener
@@ -16,6 +16,13 @@ public class PassengerRegisterModalCloseActionListener extends AbstractActionLis
 
     public void actionPerformed(ActionEvent e)
     {
-        configuration.getModal(nameModal).dispose();
+        configuration.setParameter("passenger-register-form-data", getComponents());
+        getController().registerAction();
+        getController().passagePurchaseViewAction();
+    }
+
+    private PassengerController getController()
+    {
+        return new PassengerController(configuration);
     }
 }

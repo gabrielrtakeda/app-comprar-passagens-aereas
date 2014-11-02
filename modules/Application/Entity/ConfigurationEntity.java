@@ -75,6 +75,12 @@ public class ConfigurationEntity
         return view;
     }
 
+    public ConfigurationEntity disposeView()
+    {
+        this.getView().dispose();
+        return this;
+    }
+
     /**
      * Entities
      */
@@ -123,6 +129,12 @@ public class ConfigurationEntity
     public List<AbstractEntity> getEntitiesCollection()
     {
         return this.entitiesCollection;
+    }
+
+    public ConfigurationEntity addEntityInCollection(AbstractEntity entity)
+    {
+        this.entitiesCollection.add(entity);
+        return this;
     }
 
     public AbstractEntity getEntityOfCollection(Integer index)
@@ -175,6 +187,13 @@ public class ConfigurationEntity
     public ConfigurationEntity clearModals()
     {
         this.modals.clear();
+        return this;
+    }
+
+    public ConfigurationEntity disposeModal(String name)
+    {
+        this.getModal(name).dispose();
+        this.removeModal(name);
         return this;
     }
 

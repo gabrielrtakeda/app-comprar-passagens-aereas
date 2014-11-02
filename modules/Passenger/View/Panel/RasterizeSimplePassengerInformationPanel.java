@@ -53,11 +53,11 @@ public class RasterizeSimplePassengerInformationPanel extends JPanel
         Component[][] components = new Component[passengers.length][2];
         for (PassengerEntity passenger : passengers) {
             JLabel nome = new JLabel(
-                passenger.getFormaTratamento() + " " +
-                passenger.getNomeCompleto());
+                passenger.getSalutation() + " " +
+                passenger.getFullName());
             nome.setHorizontalAlignment(JLabel.CENTER);
 
-            JLabel perfil = new JLabel(passenger.getPerfil());
+            JLabel perfil = new JLabel(passenger.getProfile());
             perfil.setHorizontalAlignment(JLabel.CENTER);
 
             components[count][0] = nome;

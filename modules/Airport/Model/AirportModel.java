@@ -87,7 +87,7 @@ public class AirportModel extends AbstractModel
             FormRequiredFieldValidator.showErrorMessage();
         } else {
             List<AbstractEntity> airportEntities = dao().consult(
-                ((AirportConsultSearchComboType) columnType).getValue(),
+                columnType.getValue(),
                 search
             );
 

@@ -2,10 +2,8 @@ package project.modules.Passenger.View.ActionListener;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
-import java.awt.event.ActionListener;
+import project.modules.Passenger.Controller.PassengerController;
 import java.awt.event.ActionEvent;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 public class PassengerRegisterActionListener extends AbstractActionListener
 {
@@ -18,11 +16,12 @@ public class PassengerRegisterActionListener extends AbstractActionListener
 
     public void actionPerformed(ActionEvent e)
     {
-        JOptionPane.showMessageDialog(
-            null,
-            configuration.getTranslator().__("Passageiro cadastrado com sucesso!")
-        );
-        configuration.getModal(nameModal).dispose();
-        configuration.removeModal(nameModal);
+        configuration.setParameter("passenger-register-form-data", getComponents());
+        getController().registerAction();
+    }
+
+    private PassengerController getController()
+    {
+        return new PassengerController(configuration);
     }
 }

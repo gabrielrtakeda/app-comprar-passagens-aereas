@@ -6,9 +6,11 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.HashMap;
+import javax.swing.JPanel;
 
 public class ColoredGridDependencyEntity
 {
+    protected JPanel container;
     protected GridBagLayout gridBagLayout;
     protected GridBagConstraints gridBagConstraints;
     protected Color borderColor = Color.BLACK;
@@ -16,6 +18,12 @@ public class ColoredGridDependencyEntity
     protected Integer[] lineColumns;
     protected HashMap<String, Color> backgroundColors = new HashMap<String, Color>();
     protected Component[][] components;
+
+    public ColoredGridDependencyEntity setContainer(JPanel container)
+    {
+        this.container = container;
+        return this;
+    }
 
     public ColoredGridDependencyEntity setGridBagLayout(GridBagLayout gridBagLayout)
     {
@@ -57,6 +65,11 @@ public class ColoredGridDependencyEntity
     {
         this.components = components;
         return this;
+    }
+
+    public JPanel getContainer()
+    {
+        return this.container;
     }
 
     public GridBagLayout getGridBagLayout()

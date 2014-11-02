@@ -16,12 +16,13 @@ Data Partida;Departure Date
 Validar Disponibilidade;Confirm Availability
 Informações dos Passageiros;Passenger Information
 Cadastrar Passageiro;Register Passenger
+Cadastrar Passageiros;Register Passengers
 Sr.;Mr.
 Sra.;Mrs.
-Srta.;Miss.
-Dr.;Dr.
-Dra.;Dr.
-Forma de tratamento;Treatment
+Srta.;Ms.
+Madame;Madam
+Forma de tratamento;Salutation
+Forma de Tratamento;Salutation
 Data de Nascimento;Date of Birth
 Nome Completo;Full Name
 Sim;Yes
@@ -148,3 +149,10 @@ Não foi possível finalizar a alteração do Voo.;Could not finish changing the
 Confirmação de Cancelamento de Voo;Confirmation of Cancellation of Flight
 Voo cancelado com sucesso!;Canceled flight successfully!
 Não foi possível finalizar o cancelamento do Voo.;It was not possible to finalize the cancellation of the flight.
+Registro de Passageiro Responsável;Passenger Registration Officer
+Telefone;Phone Number
+Não foi possível finalizar o cadastro do passageiro.;Unable to complete registration passenger.
+Finalizar;Finalize
+Valor Unitário;Unit Price
+Subtotal;Subtotal
+Efetuar Compra;Placing Purchase

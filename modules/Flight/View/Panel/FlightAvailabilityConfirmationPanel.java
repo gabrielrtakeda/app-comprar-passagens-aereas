@@ -7,11 +7,11 @@ import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.ActionListener.AbstractActionListener;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
-import project.modules.Passenger.View.ActionListener.ResponsiblePassengerRegistrationViewActionListener;
 import project.modules.Flight.View.ActionListener.FlightAvailabilityConfirmationNavigationActionListener;
 import project.modules.Flight.Entity.FlightEntity;
 import project.modules.Airplane.Entity.AirplaneEntity;
 import project.modules.Airport.Entity.AirportEntity;
+import project.modules.Passage.View.ActionListener.PassagePurchaseFlightConfirmationActionListener;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -37,8 +37,12 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         setLayout(gridBagLayout);
 
+        /**
+         * Entidade de Dependência: ColoredGridLayout
+         */
         ColoredGridDependencyEntity gridEntity = new ColoredGridDependencyEntity();
-        gridEntity.setBorderColor(Color.BLACK)
+        gridEntity.setContainer(this)
+                  .setBorderColor(Color.BLACK)
                   .setPanelSize(new Dimension(364, 30))
                   .setLineColumns(new Integer[] {1, 2})
                   .setBackgroundColor("gray", new Color(204, 204, 204))
@@ -69,8 +73,12 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
             gridBagConstraints
         );
 
-        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
-        FlightEntity flightEntity = buildFlightEntity();
+        /**
+         * Informações
+         */
+        FlightEntity
+            flightEntity = (FlightEntity) configuration.getEntity("passage-purchase-flight");
+
         Component[][] componentsMatrix = {
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Status") + ":"),
@@ -81,6 +89,7 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
                 new JLabel("R$" + flightEntity.getPrice())
             }
         };
+        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
         ColoredGridLayout.make(
             this,
             gridEntity.setGridBagConstraints(gridBagConstraints)
@@ -161,7 +170,7 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
                 configuration.getTranslator().__("Confirmar"),
                 "/images/buttonIcons/check.png",
                 new Dimension(180, 40),
-                new ResponsiblePassengerRegistrationViewActionListener(configuration)
+                new PassagePurchaseFlightConfirmationActionListener(configuration)
             )
         );
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);
@@ -171,48 +180,5 @@ public class FlightAvailabilityConfirmationPanel extends JPanel
             gridBagLayout,
             gridBagConstraints
         );
-    }
-
-    /**
-     * Mock
-     */
-    private FlightEntity buildFlightEntity()
-    {
-        FlightEntity flightEntity = new FlightEntity();
-        return flightEntity.setId(1)
-                           .setAirplane(buildAirplaneEntity())
-                           .setAirportOrigin(buildAirportEntity())
-                           .setStatus("Transferido")
-                           .setPrice(199.90d)
-                           .setDateDeparture(new Date());
-    }
-
-    /**
-     * Mock
-     */
-    private AirplaneEntity buildAirplaneEntity()
-    {
-        AirplaneEntity airplaneEntity = new AirplaneEntity();
-        return airplaneEntity.setId(1)
-                             .setDescription("Embraer ERJ 135")
-                             .setFamily("ERJ")
-                             .setModel("ERJ 135")
-                             .setSeatsTotal(37)
-                             .setSeatsVacantTotal(12)
-                             .setStatus(AirplaneEntity.STATUS_RESERVED)
-                             .setDateRegister(new Date());
-    }
-
-    /**
-     * Mock
-     */
-    private AirportEntity buildAirportEntity()
-    {
-        AirportEntity airportEntity = new AirportEntity();
-        return airportEntity.setId(1)
-                            .setDescription("Aeroporto de Congonhas")
-                            .setAbbreviation("CGH")
-                            .setAddress("Av. Washigton Luís s/nº São Paulo-SP")
-                            .setDateRegister(new Date());
     }
 }

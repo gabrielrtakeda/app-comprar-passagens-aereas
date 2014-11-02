@@ -2,6 +2,7 @@ package project.modules.Application.View.Modal;
 
 import project.modules.Application.Entity.ConfigurationEntity;
 import project.modules.Application.View.AbstractView;
+import project.modules.Application.View.Modal.AbstractModal;
 import java.awt.event.WindowEvent;
 import java.awt.LayoutManager;
 import java.awt.Dimension;
@@ -15,6 +16,12 @@ public class AbstractModal extends JDialog
     protected ConfigurationEntity configuration;
 
     public AbstractModal(AbstractView owner)
+    {
+        super(owner);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+    }
+
+    public AbstractModal(AbstractModal owner)
     {
         super(owner);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
