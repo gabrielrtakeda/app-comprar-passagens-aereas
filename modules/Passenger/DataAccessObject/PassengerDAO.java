@@ -39,7 +39,6 @@ public class PassengerDAO extends DatabaseConnect
             preparedStatement.setString(    7, passengerEntity.getEmail());
             preparedStatement.setString(    8, passengerEntity.getPhone());
             preparedStatement.setBoolean(   9, passengerEntity.getResponsible());
-            System.out.println(preparedStatement.toString());
             preparedStatement.executeUpdate();
             result = true;
         } catch (SQLException e) {

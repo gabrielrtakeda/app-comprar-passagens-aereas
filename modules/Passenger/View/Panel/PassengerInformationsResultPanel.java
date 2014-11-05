@@ -6,6 +6,7 @@ import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ColoredGridLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
+import project.modules.Passenger.Controller.PassengerController;
 import project.modules.Passenger.Entity.PassengerEntity;
 import project.modules.Passenger.View.ActionListener.PassengerRegisterModalActionListener;
 import java.awt.GridBagLayout;
@@ -16,6 +17,9 @@ import java.awt.Component;
 import java.awt.Insets;
 import java.awt.Font;
 import java.awt.Component;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
@@ -23,17 +27,21 @@ import javax.swing.JLabel;
 
 public class PassengerInformationsResultPanel extends JPanel
 {
+    private ConfigurationEntity configuration;
+
     public PassengerInformationsResultPanel(ConfigurationEntity configuration)
     {
+        this.configuration = configuration;
         GridBagLayout gridBagLayout = new GridBagLayout();
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         setLayout(gridBagLayout);
 
         // Entidade do Grid
         ColoredGridDependencyEntity gridEntity = new ColoredGridDependencyEntity();
-        gridEntity.setGridBagLayout(gridBagLayout)
+        gridEntity.setContainer(this)
+                  .setGridBagLayout(gridBagLayout)
                   .setGridBagConstraints(gridBagConstraints)
-                  .setPanelSize(new Dimension(725, 30))
+                  .setPanelSize(new Dimension(725, 23))
                   .setLineColumns(new Integer[] {1, 4})
                   .setBackgroundColor("gray", new Color(204, 204, 204))
                   .setBackgroundColor("white", Color.WHITE);
@@ -51,107 +59,75 @@ public class PassengerInformationsResultPanel extends JPanel
             gridBagConstraints
         );
 
-        Component[][] components = {
-            // Perfil Adulto
+        /**
+         * Quantidade de Passageiros por perfil.
+         */
+        Map<String, Integer> profilesQuantityMap = getController().getQuantityOfEachProfileAction();
+        List<Component[]> components = new ArrayList<Component[]>();
+        /**
+         * Perfil Adulto.
+         */
+        components.add(
             new Component[] {
                 new JLabel(configuration.getTranslator().__("Perfil") + ":"),
-                new JLabel("Adulto (Temporário)"),
+                new JLabel(configuration.getTranslator().__("Adulto")),
                 new JLabel(configuration.getTranslator().__("Total de Passageiros") + ":"),
-                new JLabel("2 (Temporário)")
-            },
-            // Perfil Criança
-            new Component[] {
-                new JLabel(configuration.getTranslator().__("Perfil") + ":"),
-                new JLabel("Criança (Temporário)"),
-                new JLabel(configuration.getTranslator().__("Total de Passageiros") + ":"),
-                new JLabel("1 (Temporário)")
+                new JLabel(String.valueOf(profilesQuantityMap.get("adult")))
             }
-        };
+        );
+        /**
+         * Perfil Criança.
+         */
+        components.add(
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Perfil") + ":"),
+                new JLabel(configuration.getTranslator().__("Criança")),
+                new JLabel(configuration.getTranslator().__("Total de Passageiros") + ":"),
+                new JLabel(String.valueOf(profilesQuantityMap.get("child")))
+            }
+        );
+        /**
+         * Perfil Bebê.
+         */
+        components.add(
+            new Component[] {
+                new JLabel(configuration.getTranslator().__("Perfil") + ":"),
+                new JLabel(configuration.getTranslator().__("Bebê")),
+                new JLabel(configuration.getTranslator().__("Total de Passageiros") + ":"),
+                new JLabel(String.valueOf(profilesQuantityMap.get("baby")))
+            }
+        );
         gridBagConstraints.insets = new Insets(0, 0, 0, 0);
         ColoredGridLayout.make(
-            this,
             gridEntity.setGridBagConstraints(gridBagConstraints)
-                      .setComponents(components)
+                      .setComponents(components.toArray(new Component[components.size()][]))
         );
 
-        // Passageiro Responsável
+        /**
+         * Passageiro Responsável
+         */
         AbstractGridBagLayout.addGridBagElement(
-            this,
+            gridEntity.setGridBagConstraints(gridBagConstraints),
             new RasterizeResponsiblePassengerInformationPanel(
                 configuration,
-                buildResponsiblePassenger()
-            ),
-            gridBagLayout,
-            gridBagConstraints
+                getController().getResponsiblePassengerEntityAction()
+            )
         );
 
-        // Outros Passageiros
+        /**
+         * Passageiros Simples
+         */
         AbstractGridBagLayout.addGridBagElement(
-            this,
+            gridEntity.setGridBagConstraints(gridBagConstraints),
             new RasterizeSimplePassengerInformationPanel(
                 configuration,
-                buildOthersPassenger()
-            ),
-            gridBagLayout,
-            gridBagConstraints
+                getController().getSimplePassengerEntitiesAction()
+            )
         );
     }
 
-    /**
-     * Mock:
-     * Preencher com dados do Banco de Dados.
-     */
-    private PassengerEntity buildResponsiblePassenger()
+    private PassengerController getController()
     {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        PassengerEntity passengerEntity = new PassengerEntity();
-        try {
-            passengerEntity.setId(1)
-                           .setSalutation("Sr.")
-                           .setDateBirth(dateFormat.parse("1992-04-14"))
-                           .setFullName("Gabriel Ramos Takeda")
-                           .setResponsible(true)
-                           .setEmail("gabrieel.rt@gmail.com")
-                           .setPhone("(11) 97999-9994")
-                           .setProfile("Adulto");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return passengerEntity;
-    }
-
-    /**
-     * Mock:
-     * Preencher com dados do Banco de Dados.
-     */
-    private PassengerEntity[] buildOthersPassenger()
-    {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        PassengerEntity[] passengers = new PassengerEntity[2];
-        PassengerEntity passengerEntity = new PassengerEntity();
-
-        try {
-            passengers[0] = passengerEntity.setId(2)
-                                           .setSalutation("Sra.")
-                                           .setDateBirth(dateFormat.parse("1996-12-15"))
-                                           .setFullName("Joyce dos Santos Ferreira")
-                                           .setResponsible(false)
-                                           .setEmail("joyce@teste.com")
-                                           .setPhone("(11) 96666-6666")
-                                           .setProfile("Adulto");
-
-            passengerEntity = new PassengerEntity();
-            passengers[1] = passengerEntity.setId(3)
-                                           .setSalutation("Srta.")
-                                           .setDateBirth(dateFormat.parse("2011-01-01"))
-                                           .setFullName("Beatriz Ramos Takeda")
-                                           .setResponsible(false)
-                                           .setEmail("beatriz@teste.com")
-                                           .setPhone("(11) 97777-7777")
-                                           .setProfile("Criança");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return passengers;
+        return new PassengerController(configuration);
     }
 }

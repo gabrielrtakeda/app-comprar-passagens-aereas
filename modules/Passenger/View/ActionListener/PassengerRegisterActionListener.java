@@ -17,7 +17,7 @@ public class PassengerRegisterActionListener extends AbstractActionListener
     public void actionPerformed(ActionEvent e)
     {
         configuration.setParameter("passenger-register-form-data", getComponents());
-        getController().registerAction();
+        getController().registerAndGoNextAction();
     }
 
     private PassengerController getController()

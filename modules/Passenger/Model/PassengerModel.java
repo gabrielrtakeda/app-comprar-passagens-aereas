@@ -1,6 +1,7 @@
 package project.modules.Passenger.Model;
 
 import project.modules.Application.Entity.ConfigurationEntity;
+import project.modules.Application.Entity.AbstractEntity;
 import project.modules.Application.Form.Validator.FormRequiredFieldValidator;
 import project.modules.Application.Model.AbstractModel;
 import project.modules.Pessenger.DataAccessObject.PassengerDAO;
@@ -9,6 +10,7 @@ import project.modules.Passenger.View.Modal.PassengerRegisterModal;
 import project.modules.Passenger.Type.SalutationType;
 import java.awt.Component;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,18 +25,21 @@ import javax.swing.JOptionPane;
 
 public class PassengerModel extends AbstractModel
 {
+    /**
+     * Data Access Object
+     */
+    protected PassengerDAO dao() { return new PassengerDAO(); }
+
+    /**
+     * Constructor
+     */
     public PassengerModel(ConfigurationEntity configuration)
     {
         configuration.setModel(this);
         setConfiguration(configuration);
     }
 
-    protected PassengerDAO dao()
-    {
-        return new PassengerDAO();
-    }
-
-    public void register()
+    public Boolean register()
     {
         // Pegar componentes por parâmetro.
         Map<String, Component>
@@ -87,6 +92,7 @@ public class PassengerModel extends AbstractModel
         /**
          * Exibe mensagem caso haja erro.
          */
+        Boolean result = false;
         if (FormRequiredFieldValidator.hasError()) {
             FormRequiredFieldValidator.showErrorMessage();
         } else {
@@ -129,7 +135,7 @@ public class PassengerModel extends AbstractModel
                 configuration.disposeModal("passenger-register");
                 configuration.clearParameters();
                 configuration.setQueryString("passenger-register:responsible-passenger", "false");
-                new PassengerRegisterModal(configuration);
+                result = true;
             } else {
                 JOptionPane.showMessageDialog(
                     null,
@@ -141,8 +147,94 @@ public class PassengerModel extends AbstractModel
                 );
             }
         }
+        return result;
     }
 
+    public void registerAndGoNext()
+    {
+        this.register();
+        new PassengerRegisterModal(configuration);
+    }
+
+    public PassengerEntity getResponsiblePassengerEntity()
+    {
+        PassengerEntity entity = new PassengerEntity();
+        List<AbstractEntity> entitiesCollection = configuration.getEntitiesCollection();
+        if (entitiesCollection.size() > 0) {
+
+            if (configuration.hasEntity("responsible-passenger")) {
+                entity = (PassengerEntity) configuration.getEntity("responsible-passenger");
+            } else {
+                PassengerEntity
+                    responsiblePassengerEntity =
+                        (PassengerEntity) configuration.getEntityOfCollection(0);
+
+                if (this.isValidPassengerEntity(responsiblePassengerEntity)) {
+                    entity = responsiblePassengerEntity;
+                    configuration.setEntity("responsible-passenger", entity);
+                    configuration.getEntitiesCollection().remove(0);
+                }
+            }
+        }
+        return entity;
+    }
+
+    public PassengerEntity[] getSimplePassengerEntities()
+    {
+        PassengerEntity[] entities = new PassengerEntity[1];
+        List<AbstractEntity> entitiesCollection = configuration.getEntitiesCollection();
+        if (entitiesCollection.size() > 1) {
+
+            System.out.println("Simple Passenger");
+            if (this.isValidPassengerEntity(entitiesCollection.get(0))) {
+                entities = entitiesCollection.toArray(
+                    new PassengerEntity[entitiesCollection.size()]
+                );
+            }
+        }
+        return entities;
+    }
+
+    public Map<String, Integer> getQuantityOfEachProfile()
+    {
+        Map<String, Integer> quantityMap = new HashMap<String, Integer>();
+        quantityMap.put("adult", 0);
+        quantityMap.put("child", 0);
+        quantityMap.put("baby", 0);
+
+        for (AbstractEntity entity : configuration.getEntitiesCollection()) {
+
+            PassengerEntity passengerEntity = (PassengerEntity) entity;
+            System.out.print(passengerEntity.getProfile() + " = ");
+            switch (passengerEntity.getProfile()) {
+                case PassengerEntity.PROFILE_ADULT:
+                    quantityMap.put(
+                        "adult", quantityMap.get("adult") + 1
+                    );
+                    System.out.print(PassengerEntity.PROFILE_ADULT);
+                    break;
+                case PassengerEntity.PROFILE_CHILD:
+                    quantityMap.put(
+                        "child", quantityMap.get("child") + 1
+                    );
+                    System.out.print(PassengerEntity.PROFILE_CHILD);
+                    break;
+                case PassengerEntity.PROFILE_BABY:
+                    quantityMap.put(
+                        "baby", quantityMap.get("baby") + 1
+                    );
+                    System.out.print(PassengerEntity.PROFILE_BABY);
+                    break;
+            }
+            System.out.println("Adult: "+ quantityMap.get("adult") +", Child: "+ quantityMap.get("child") +", Baby: "+ quantityMap.get("baby"));
+            System.out.println("");
+        }
+        return quantityMap;
+    }
+
+    /**
+     * Privates
+     */
     private Character convertSalutationToGender(String salutation)
     {
         Character gender = 'F';
@@ -179,5 +271,23 @@ public class PassengerModel extends AbstractModel
             profile = PassengerEntity.PROFILE_CHILD;
         }
         return profile;
+    }
+
+    /**
+     * Método que verifica se a entidade passada
+     * é do tipo PassengerEntty
+     * @param AbstractEntity
+     * @return Boolean
+     */
+    private Boolean isValidPassengerEntity(AbstractEntity passengerEntity)
+    {
+        Boolean valid = false;
+        try {
+            PassengerEntity entity = (PassengerEntity) passengerEntity;
+            valid = true;
+        } catch (Exception e) {
+            valid = false;
+        }
+        return valid;
     }
 }

@@ -7,11 +7,8 @@ import project.modules.Application.View.Button.ImageButton;
 import project.modules.Application.View.Layout.AbstractGridBagLayout;
 import project.modules.Application.View.Layout.ComponentCreatePattern;
 import project.modules.Passenger.Entity.PassengerEntity;
-import project.modules.Passenger.View.ActionListener.ResponsiblePassengerRegistrationModalActionListener;
-import project.modules.Passenger.View.ActionListener.PassengerRegisterModalActionListener;
 import project.modules.Passenger.View.Panel.RasterizeResponsiblePassengerInformationPanel;
 import project.modules.Passenger.View.Panel.RasterizeSimplePassengerInformationPanel;
-import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.util.List;
@@ -50,71 +47,10 @@ public class PassengerInformationsPanel extends JPanel
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.insets = new Insets(10, 0, 0, 0);
         AbstractGridBagLayout.addGridBagElement(
-            this,
+            gridEntity.setGridBagConstraints(gridBagConstraints),
             ComponentCreatePattern.buildTitleLabel(
                 configuration.getTranslator().__("Informações dos Passageiros")
-            ),
-            gridBagLayout,
-            gridBagConstraints
-        );
-
-        /**
-         * Informações do Passageiro Responsável.
-         */
-        if (configuration.getEntitiesCollection().size() > 0) {
-            gridBagConstraints.insets = new Insets(0, 0, 15, 0);
-            AbstractGridBagLayout.addGridBagElement(
-                gridEntity.setGridBagConstraints(gridBagConstraints),
-                new RasterizeResponsiblePassengerInformationPanel(
-                    configuration,
-                    (PassengerEntity) configuration.getEntityOfCollection(0)
-                )
-            );
-        }
-
-        /**
-         * Informações do restante dos Passageiros
-         */
-        List<AbstractEntity> passengerEntitiesCollection = configuration.getEntitiesCollection();
-        if (passengerEntitiesCollection.size() > 1) {
-            gridBagConstraints.insets = new Insets(0, 0, 15, 0);
-            AbstractGridBagLayout.addGridBagElement(
-                gridEntity.setGridBagConstraints(gridBagConstraints),
-                new RasterizeSimplePassengerInformationPanel(
-                    configuration,
-                    passengerEntitiesCollection.toArray(
-                        new PassengerEntity[passengerEntitiesCollection.size()]
-                    )
-                )
-            );
-        }
-
-        /**
-         * Botão para cadastro de um novo Passageiro.
-         */
-        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
-        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
-        JPanel buttonsPanel = new JPanel(new FlowLayout());
-        buttonsPanel.add(
-            new ImageButton(
-                configuration.getTranslator().__("Cadastrar Passageiros"),
-                "/images/buttonIcons/user.png",
-                new Dimension(145, 45),
-                configuration.hasQueryString("passenger-register:responsible-passenger")
-                    ? new PassengerRegisterModalActionListener(configuration)
-                    : new ResponsiblePassengerRegistrationModalActionListener(configuration)
             )
-        );
-        buttonsPanel.add(
-            new ImageButton(
-                configuration.getTranslator().__("Efetuar Compra"),
-                "/images/buttonIcons/basket.png",
-                new Dimension(145, 45)
-            )
-        );
-        AbstractGridBagLayout.addGridBagElement(
-            gridEntity.setGridBagConstraints(gridBagConstraints),
-            buttonsPanel
         );
     }
 }

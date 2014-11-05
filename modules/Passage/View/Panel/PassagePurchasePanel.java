@@ -10,8 +10,12 @@ import project.modules.Passage.Controller.PassageController;
 import project.modules.Passage.Entity.PassageEntity;
 import project.modules.Passage.View.ActionListener.PassageInformationsNavigationActionListener;
 import project.modules.Passenger.View.Panel.PassengerInformationsPanel;
+import project.modules.Passenger.View.Panel.PassengerInformationsResultPanel;
+import project.modules.Passenger.View.ActionListener.PassengerRegisterModalActionListener;
+import project.modules.Passenger.View.ActionListener.ResponsiblePassengerRegistrationModalActionListener;
 import project.modules.Flight.View.ActionListener.FlightAvailabilityConfirmationActionListener;
 import project.modules.Airport.Type.AirportEntityComboType;
+import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.BorderLayout;
@@ -55,9 +59,7 @@ public class PassagePurchasePanel extends JPanel
          */
         gridBagConstraints.anchor = GridBagConstraints.NORTH;
         AbstractGridBagLayout.addGridBagElement(
-            gridEntity.setGridBagConstraints(
-                gridBagConstraints
-            ),
+            gridEntity.setGridBagConstraints(gridBagConstraints),
             ComponentCreatePattern.buildNavigationButton(
                 new PassageInformationsNavigationActionListener(configuration)
             )
@@ -70,37 +72,69 @@ public class PassagePurchasePanel extends JPanel
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.insets = new Insets(0, 0, 10, 0);
         AbstractGridBagLayout.addGridBagElement(
-            gridEntity.setGridBagConstraints(
-                gridBagConstraints
-            ),
+            gridEntity.setGridBagConstraints(gridBagConstraints),
             ComponentCreatePattern.buildTitleLabel(
                 configuration.getTranslator().__("Informações da Passagem")
             )
         );
 
         /**
-         * Types
+         * Exibe informações do Voo.
          */
         if (configuration.hasEntity("passage-purchase")) {
-            System.out.println("entrou");
             AbstractGridBagLayout.addGridBagElement(
-                gridEntity,
+                gridEntity.setGridBagConstraints(gridBagConstraints),
                 new PassagePurchaseRasterizeFlightInformationPanel(configuration)
             );
         } else {
-            System.out.println("nao entrou");
             AbstractGridBagLayout.addGridBagElement(
-                gridEntity,
+                gridEntity.setGridBagConstraints(gridBagConstraints),
                 new PassagePurchaseFlightAvailabilityPanel(configuration)
             );
         }
 
+        /**
+         * Exibe informações dos Passageiros.
+         */
         AbstractGridBagLayout.addGridBagElement(
-            this,
-            new PassengerInformationsPanel(configuration),
-            gridBagLayout,
-            gridBagConstraints
+            gridEntity.setGridBagConstraints(gridBagConstraints),
+            configuration.getEntitiesCollection().size() < 1
+             ? new PassengerInformationsPanel(configuration)
+             : new PassengerInformationsResultPanel(configuration)
         );
+
+        /**
+         * Botões de ação.
+         */
+        gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraints.insets = new Insets(0, 0, 0, 0);
+        AbstractGridBagLayout.addGridBagElement(
+            gridEntity.setGridBagConstraints(gridBagConstraints),
+            buildButtonsPanel()
+        );
+    }
+
+    private JPanel buildButtonsPanel()
+    {
+        JPanel buttonsPanel = new JPanel(new FlowLayout());
+        buttonsPanel.add(
+            new ImageButton(
+                configuration.getTranslator().__("Cadastrar Passageiros"),
+                "/images/buttonIcons/user.png",
+                new Dimension(145, 45),
+                configuration.hasQueryString("passenger-register:responsible-passenger")
+                    ? new PassengerRegisterModalActionListener(configuration)
+                    : new ResponsiblePassengerRegistrationModalActionListener(configuration)
+            )
+        );
+        buttonsPanel.add(
+            new ImageButton(
+                configuration.getTranslator().__("Efetuar Compra"),
+                "/images/buttonIcons/basket.png",
+                new Dimension(145, 45)
+            )
+        );
+        return buttonsPanel;
     }
 
     private PassageController getController()
