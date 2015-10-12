@@ -9,13 +9,13 @@
     cd project
     ```
 
-### Database ![Windows Logo](https://cdn0.iconfinder.com/data/icons/octicons/1024/database-16.png "Windows Logo")
+### Database ![Windows Logo](https://raw.githubusercontent.com/gabrielrtakeda/app-comprar-passagens-aereas/master/binary/images/icons/database-16.png "Windows Logo")
 
 * Configurar o banco de dados alterando o arquivo
     `modules/Database/Drivers/MysqlConnect.java`
     com as informações de banco de dados.
 
-### Unix ![Apple Logo](https://cdn4.iconfinder.com/data/icons/proglyphs-free/512/Apple-16.png "Apple Logo")![Linux Logo](https://cdn4.iconfinder.com/data/icons/proglyphs-free/512/Linux_-_Tux-16.png "Linux Logo")
+### Unix ![Apple Logo](https://raw.githubusercontent.com/gabrielrtakeda/app-comprar-passagens-aereas/master/binary/images/icons/apple-16.png "Apple Logo")![Linux Logo](https://raw.githubusercontent.com/gabrielrtakeda/app-comprar-passagens-aereas/master/binary/images/icons/linux-16.png "Linux Logo")
 
 1. Compile
     ```sh
@@ -32,7 +32,7 @@
 3. Run
     * No project root executar `./run.sh`
 
-### Windows ![Windows Logo](https://cdn4.iconfinder.com/data/icons/proglyphs-free/512/Windows_alt-16.png "Windows Logo")
+### Windows ![Windows Logo](https://raw.githubusercontent.com/gabrielrtakeda/app-comprar-passagens-aereas/master/binary/images/icons/windows-16.png "Windows Logo")
 
 1. Compile
     ```bat
@@ -45,14 +45,14 @@
     java -cp lib/mysql-connector-java-5.1.36-bin.jar:binary/ project.Main
     ```
 
-### ![ST Logo](http://icons.iconarchive.com/icons/alecive/flatwoken/24/Apps-Sublime-Text-icon.png "ST Logo") Sublime Text Project:
+### ![ST Logo](https://raw.githubusercontent.com/gabrielrtakeda/app-comprar-passagens-aereas/master/binary/images/icons/sublime-24.png "ST Logo") Sublime Text Project:
 * Importar o projeto `app-comprar-passagens-aereas.sublime-project`
 * Build:
-    * ![Apple Logo](https://cdn4.iconfinder.com/data/icons/proglyphs-free/512/Apple-16.png "Apple Logo")
+    * ![Apple Logo](https://raw.githubusercontent.com/gabrielrtakeda/app-comprar-passagens-aereas/master/binary/images/icons/apple-16.png "Apple Logo")
          Mac OSX: `⌘ + Shift + B`
-    * ![Windows Logo](https://cdn4.iconfinder.com/data/icons/proglyphs-free/512/Windows_alt-16.png "Windows Logo")
+    * ![Windows Logo](https://raw.githubusercontent.com/gabrielrtakeda/app-comprar-passagens-aereas/master/binary/images/icons/windows-16.png "Windows Logo")
          Windows: `Ctrl + Shift + B`
-    * ![Linux Logo](https://cdn4.iconfinder.com/data/icons/proglyphs-free/512/Linux_-_Tux-16.png "Linux Logo")
+    * ![Linux Logo](https://raw.githubusercontent.com/gabrielrtakeda/app-comprar-passagens-aereas/master/binary/images/icons/linux-16.png "Linux Logo")
          Linux: `Ctrl + Shift + B`
 * Existem 3 opções para compilar e executar o projeto:
     - Compile (apenas compila)
