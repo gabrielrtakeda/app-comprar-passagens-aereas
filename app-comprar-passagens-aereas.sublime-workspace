@@ -1,0 +1,938 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"prod",
+				"productRemoveSelectionModel"
+			],
+			[
+				"product",
+				"productSelectionModel"
+			],
+			[
+				"seri",
+				"serialize	.serialize()"
+			],
+			[
+				"text",
+				"textStatus"
+			],
+			[
+				"depe",
+				"dependency"
+			],
+			[
+				"dependenc",
+				"dependency"
+			],
+			[
+				"depen",
+				"dependencies"
+			],
+			[
+				"serialize",
+				"serializeArray	.serializeArray()"
+			],
+			[
+				"lg",
+				"logout"
+			],
+			[
+				"ser",
+				"service	AngularJS"
+			],
+			[
+				"first",
+				"firstNumber"
+			],
+			[
+				"on",
+				"onlyNumeric"
+			],
+			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"pro",
+				"productList"
+			],
+			[
+				"produc",
+				"productList"
+			],
+			[
+				"e",
+				"end	.end()"
+			],
+			[
+				"calc",
+				"calculatesBasicOperationEntity"
+			],
+			[
+				"CalculatesB",
+				"CalculatesBasicOperationEntity"
+			],
+			[
+				"conte",
+				"contextPath"
+			],
+			[
+				"serv",
+				"servlet-class"
+			],
+			[
+				"Calcula",
+				"CalculaOperacoesEntity"
+			],
+			[
+				"opera",
+				"operationStrategy"
+			],
+			[
+				"Basic",
+				"BasicOperationInterface"
+			],
+			[
+				"HttpServ",
+				"HttpServletResponse"
+			],
+			[
+				"obtem",
+				"obtemnomefuncionario"
+			],
+			[
+				"cod",
+				"codcargo"
+			],
+			[
+				"cell",
+				"cellpadding	Attr"
+			],
+			[
+				"second",
+				"secondNumber"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Main.java",
+			"settings":
+			{
+				"buffer_size": 559,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modules/Database/Drivers/MysqlConnect.java",
+			"settings":
+			{
+				"buffer_size": 1734,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "sql/inserts.sql",
+			"settings":
+			{
+				"buffer_size": 3578,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Java/JavaC.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Java/JavaC.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 294.0,
+		"last_filter": "java",
+		"selected_items":
+		[
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"ssjson",
+				"Set Syntax: JSON"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"android",
+				"Import Android Classes"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"markdownpre",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"sshtml",
+				"Set Syntax: HTML"
+			],
+			[
+				"sshmtl",
+				"Set Syntax: HTML"
+			],
+			[
+				"html",
+				"HTMLBeautify"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"nume",
+				"King: Number: Number Sequence"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"sspyth",
+				"Set Syntax: Python"
+			],
+			[
+				"number",
+				"King: Number: Number Sequence"
+			],
+			[
+				"sshtmlji",
+				"Set Syntax: HTML (Jinja2)"
+			],
+			[
+				"ssjin",
+				"Set Syntax: HTML (Jinja2)"
+			],
+			[
+				"remove pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Channel"
+			],
+			[
+				"ssangu",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"ssjava",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssang",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"ssan",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"ssruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"text",
+				"Text Pastry: Range"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ssjavascript",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ssjquery",
+				"Set Syntax: jQuery (JavaScript)"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"javatar",
+				"Javatar: Builds..."
+			],
+			[
+				"objec",
+				"Set Syntax: Objective-C"
+			],
+			[
+				"ssql",
+				"Set Syntax: SQL"
+			],
+			[
+				"sssql",
+				"Set Syntax: SQL"
+			],
+			[
+				"sql",
+				"SQL Beautifier: Format Current SQL File"
+			]
+		],
+		"width": 443.0
+	},
+	"console":
+	{
+		"height": 473.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Library/WebServer/Documents/htdocs/usjt/app-comprar-passagens-aereas",
+		"/Library/WebServer/Documents/htdocs/usjt/app-comprar-passagens-aereas/modules",
+		"/Library/WebServer/Documents/htdocs/usjt/app-comprar-passagens-aereas/modules/Database",
+		"/Library/WebServer/Documents/htdocs/usjt/app-comprar-passagens-aereas/modules/Database/Drivers",
+		"/Library/WebServer/Documents/htdocs/usjt/app-comprar-passagens-aereas/sql",
+		"/Library/WebServer/Documents/htdocs/usjt/app-comprar-passagens-aereas/sql/MER"
+	],
+	"file_history":
+	[
+		"/Library/WebServer/Documents/htdocs/usjt/app-comprar-passagens-aereas/sql/MER/projeto_integrado.mwb",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/java/br/usjt/cervejap3/adapter/SectionIndexBuilder.java",
+		"/Library/WebServer/Documents/htdocs/test.dev/api.php",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_09_18/CervejaProjeto-master/app/src/main/java/br/usjt/cervejap1/Especialista.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/java/br/usjt/cervejap3/network/CervejaRequester.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/res/layout/linha_cerveja.xml",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/java/br/usjt/cervejap3/adapter/CervejaAdapter.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/java/br/usjt/cervejap3/controller/MainActivity.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/res/layout/activity_main.xml",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/java/br/usjt/cervejap3/controller/ListaCervejaActivity.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/java/br/usjt/cervejap3/controller/DetalheCervejaActivity.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_09/CervejaP4-master/app/src/main/java/br/usjt/cervejap4/controller/DetalheCervejaActivity.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_09/CervejaP4-master/app/src/main/java/br/usjt/cervejap4/controller/ListaCervejaActivity.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_09/CervejaP4-master/app/src/main/java/br/usjt/cervejap4/controller/MainActivity.java",
+		"/Library/WebServer/Documents/htdocs/test.dev/flights.json",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/java/br/com/gabrielrtakeda/arqdesis_comprar_passagens_aereas/adapter/DisplayAvailableFlightsAdapter.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/java/br/usjt/cervejap3/util/Util.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_09_25/CervejaProjeto2-master/app/src/main/res/layout/linha_cerveja.xml",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/java/br/usjt/cervejap3/util/ViewHolder.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/app.iml",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/build.gradle",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_09_18/CervejaProjeto-master/build.gradle",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_09_18/CervejaProjeto-master/app/src/main/java/br/usjt/cervejap1/MainActivity.java",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/java/br/com/gabrielrtakeda/comprar_passagens_aereas/MainActivity.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_09_18/CervejaProjeto-master/app/src/main/res/values/styles.xml",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_09_18/CervejaProjeto-master/app/src/main/java/br/usjt/cervejap1/ListaCervejaActivity.java",
+		"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_09_18/CervejaProjeto-master/app/src/main/res/layout/activity_main.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/java/br/com/gabrielrtakeda/comprar_passagens_aereas/listener/SelectedCountryOnItemSelectedListener.java",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/java/br/com/gabrielrtakeda/comprar_passagens_aereas/listener/FlightDescriptionOnClickListener.java",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/.gradle/2.4/taskArtifacts/fileSnapshots.bin",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/.gradle/2.4/taskArtifacts/taskArtifacts.bin",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/.idea/workspace.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build.gradle",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/generated/source/buildConfig/androidTest/debug/br/com/gabrielrtakeda/comprar_passagens_aereas/test/BuildConfig.java",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/generated/source/buildConfig/debug/br/com/gabrielrtakeda/comprar_passagens_aereas/BuildConfig.java",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/generated/source/r/debug/br/com/gabrielrtakeda/comprar_passagens_aereas/R.java",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/intermediates/dex/debug/classes.dex",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/intermediates/manifests/full/debug/AndroidManifest.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/intermediates/res/merged/debug/layout/activity_dislay_message.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/intermediates/res/merged/debug/layout/activity_display_available_flights.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/intermediates/res/merged/debug/layout/activity_flight_description.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/intermediates/res/merged/debug/menu/menu_dislay_message.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/intermediates/res/merged/debug/menu/menu_display_available_flights.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/intermediates/res/merged/debug/menu/menu_flight_description.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/build/outputs/logs/manifest-merger-debug-report.txt",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/androidTest/java/br/com/gabrielrtakeda/comprar_passagens_aereas/ApplicationTest.java",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/AndroidManifest.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/java/br/com/gabrielrtakeda/comprar_passagens_aereas/DisplayAvailableFlightsActivity.java",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/java/br/com/gabrielrtakeda/comprar_passagens_aereas/FlightDescriptionActivity.java",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/res/layout/activity_dislay_message.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/res/layout/activity_display_available_flights.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/res/layout/activity_flight_description.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/res/menu/menu_dislay_message.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/res/menu/menu_display_available_flights.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/src/main/res/menu/menu_flight_description.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/.idea/.name",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/.idea/modules.xml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/app/app.iml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/arqdesis-comprar-passagens-aereas.iml",
+		"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas/README.md",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/index.html",
+		"/Users/gtakeda/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/js/model/ProductFancyboxModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/templates/partials/product-description-fancybox.html",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/js/controller/ProductSelectionController.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/js/model/ProductRemoveSelectionModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/js/model/ProductSelectionModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/js/config.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/js/main.js",
+		"/etc/apache2/extra/httpd-vhosts.conf",
+		"/etc/hosts",
+		"/Users/gtakeda/.zshrc",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/README.md",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/.gitignore",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/js/model/ProductCalculateModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/js/helper/DependencyCheckerHelper.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/js/model/ProductRemoveSelectionModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/js/model/ProductSelectionModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/js/model/ProductFancyboxModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/js/model/ProductCalculateModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/js/main.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/css/product-selection.css",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/index.html",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/css/main.css",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/package.json",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/bower.json",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/npm-debug.log",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/templates/partials/product-description-fancybox.html",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/raw/product-description.json",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/css/animations.css",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/agmd-segundo-semestre-project/js/helper/DependencyCheckerHelper.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/css/product-selection.css",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/css/main.css",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/js/model/ProductSelectionModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/index.html",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/js/model/ProductFancyboxModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/js/main.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/js/models/ProductSelectionModel.js",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/images/products/amphibians.jpg",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/images/products/coelenterates.jpg",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/images/products/mammals.jpg",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/images/products/oviparous.jpg",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/images/products/reptiles.jpg",
+		"/Library/WebServer/Documents/htdocs/usjt/agmd/segundo-semestre-project/package.json",
+		"/Users/gtakeda/Library/Application Support/Skype/live#3agabriel.rt/log",
+		"/private/etc/apache2/extra/httpd-vhosts.conf",
+		"/private/etc/apache2/httpd.conf",
+		"/Users/gtakeda/www/htdocs/index.php",
+		"/Library/WebServer/Documents/htdocs/index.php",
+		"/Users/gtakeda/.bashrc",
+		"/Users/gtakeda/.bash_profile",
+		"/Library/WebServer/Documents/index.html.en",
+		"/etc/apache2/httpd.conf",
+		"/Users/gtakeda/www/htdocs/test.dev/index.html",
+		"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src/main/java/com/br/sergio/vendadepassagensaula13/MainActivity.java",
+		"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src/main/java/com/br/sergio/vendadepassagensaula13/ListaVoo.java",
+		"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src/main/res/layout/activity_main.xml",
+		"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src/main/res/layout/activity_lista_voo.xml",
+		"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src/main/res/layout/activity_linha_voo.xml",
+		"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src/main/res/layout/activity_detalhe_voo.xml",
+		"/Users/gtakeda/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/private/etc/php.ini.default",
+		"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src/main/java/com/br/sergio/vendadepassagensaula13/LinhaVoo.java",
+		"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src/main/java/com/br/sergio/vendadepassagensaula13/DetalheVooActivity.java",
+		"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src/main/java/com/br/sergio/vendadepassagensaula13/DetalheVoo.java",
+		"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src/main/java/com/br/sergio/vendadepassagensaula13/Detalhe_Voo.java",
+		"/Users/gtakeda/AndroidStudioProjects/comprar-passagens-aereas/app/src/main/java/br/com/gabrielrtakeda/comprar_passagens_aereas/DisplayAvailableFlightsActivity.java"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 129.0,
+		"where_history":
+		[
+			"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master/app/src/main/java/br/usjt/cervejap3",
+			"/Users/gtakeda/AndroidStudioProjects/ARQDESIS/2015_10_02/CervejaP3-master",
+			"/Library/WebServer/Documents/htdocs/usjt/arqdesis-comprar-passagens-aereas",
+			"/Library/WebServer/Documents/htdocs/usjt/agmd-segundo-semestre-project/node_modules/fancybox",
+			"/Users/gtakeda/AndroidStudioProjects/VendaDePassagensAula13/app/src",
+			"/Users/gtakeda/AndroidStudioProjects/comprar-passagens-aereas",
+			"/Users/gtakeda/AndroidStudioProjects/change_arqdesis-exercicio-aula-12",
+			"/Users/gtakeda/AndroidStudioProjects/comprar-passagens-aereas",
+			"/Users/gtakeda/AndroidStudioProjects/ComprarPassagensAereas",
+			"/usr/local/apache-tomcat-8.0.23/webapps/USJT/basic-operations",
+			"/Applications/MAMP/htdocs/admin.tristar.dev/tristar/includes",
+			"/Applications/MAMP/htdocs/admin.tristar.dev/tristar/modulos/certificados/pendentes"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"resum",
+			"mProgre",
+			"\"image\":",
+			"_",
+			"list_cities_",
+			".jpg",
+			"-",
+			" ",
+			"origin",
+			"-",
+			" Suspendisse dapibus eleifend nibh.",
+			" Vestibulum a volutpat metus. Pellentesque id augue ut eros vulputate suscipit. Nunc suscipit tellus justo, vitae rutrum nunc vestibulum in.",
+			"vestibu",
+			" Vivamus auctor mauris et quam sodales, in finibus diam auctor. Sed et lectus odio.",
+			", ",
+			"));",
+			"available_flight_image",
+			".jpg",
+			"-",
+			": ",
+			":",
+			"\"flight\":",
+			"\"flight\"",
+			" ",
+			"\\n",
+			"\\s",
+			"cerve",
+			"nomeCerveja",
+			"fotinhoCerveja",
+			"BuildSectionHeaders",
+			"SectionIndexBuilder",
+			"okhttp",
+			"CervejaAdapter",
+			"string-array name=\"list_cities_brasil\"",
+			"DisplayAvailableFlightsActivity",
+			"DisplayAvailableFlightsActivity.java",
+			"spinner",
+			"Spinner",
+			"spinner",
+			"comprar_passagens_aereas",
+			"onCreateOptionsMenu",
+			"onOptionsItemSelected",
+			"intent",
+			"comprar-passagens-aereas",
+			"image",
+			"touch",
+			"src",
+			"path",
+			"ajax|getJSON|get|post",
+			"console",
+			"remove-selected",
+			"id=\"remove-selected\"",
+			"remover",
+			"btn btn-warning btn-sm select-all",
+			"select-all",
+			"#select-all",
+			"select-all",
+			"btn btn",
+			"Selec. todos",
+			"Selecionar todos",
+			"console.log",
+			"console",
+			"selected-remove",
+			"hideboxes",
+			"input[type=\"checkbox\"]",
+			");\n",
+			"checkbox",
+			"checked",
+			"checkbox",
+			"target",
+			"checkbo",
+			"checkbox",
+			"Remover",
+			"Fancybox",
+			"purchaseStated",
+			"initializePurchases",
+			"console",
+			"hidden",
+			"disabled",
+			".row .selected",
+			"length",
+			"hidden",
+			"calcular",
+			"info",
+			"number",
+			"$.number",
+			"tf",
+			"th",
+			"number",
+			"R$",
+			"product[",
+			"'product",
+			"key",
+			"product",
+			"key",
+			"h4",
+			"section.product-selection form > div",
+			"129.00",
+			"129,00",
+			" + ",
+			"div",
+			"this.products",
+			"object",
+			"textStatus",
+			"The numbers of species cite",
+			"\"",
+			"[",
+			"'",
+			"\"",
+			"~",
+			"[",
+			"\"",
+			" - ",
+			"ˈ",
+			"\"",
+			"[",
+			"\"",
+			"Echinoderm",
+			"\"",
+			"[",
+			",\n        \"price\": \"\"",
+			"\\/",
+			"/",
+			"’",
+			"o",
+			"value=\"product[",
+			"this.data",
+			"self.data"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"-",
+			"$$$",
+			"-",
+			"arqdesis_comprar_passagens_aereas",
+			"arqdesis-comprar-passagens-aereas",
+			"comprar_passagens_aereas",
+			"DisplayAvailableFlightsActivity",
+			"comprar_passagens_aereas",
+			"comprar-passagens-aereas",
+			"comprar_passagens_aereas",
+			"comprar-passagens-aereas",
+			"comprar_passagens_aereas",
+			"comprar-passagens-aereas",
+			"ComprarPassagensAereas",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Main.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 559,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								546,
+								546
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "modules/Database/Drivers/MysqlConnect.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1734,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "sql/inserts.sql",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3578,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								3578
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SQL/SQL.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/Library/WebServer/Documents/htdocs/usjt/app-comprar-passagens-aereas/sql",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 32.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 313.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "app-comprar-passagens-aereas.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"linha",
+				"CervejaProjeto2-master/app/src/main/res/layout/linha_cerveja.xml"
+			],
+			[
+				"build.gra",
+				"CervejaP3-master/app/build.gradle"
+			],
+			[
+				"build.gradle",
+				"CervejaP3-master/app/build.gradle"
+			],
+			[
+				"styles",
+				"CervejaProjeto-master/app/src/main/res/values/styles.xml"
+			],
+			[
+				"comprar/mainac",
+				"arqdesis-comprar-passagens-aereas/app/src/main/java/br/com/gabrielrtakeda/comprar_passagens_aereas/MainActivity.java"
+			],
+			[
+				"config.js",
+				"agmd-segundo-semestre-project/js/config.js"
+			],
+			[
+				"read",
+				"agmd-segundo-semestre-project/README.md"
+			],
+			[
+				".git",
+				"agmd-segundo-semestre-project/.gitignore"
+			],
+			[
+				"config",
+				"agmd-segundo-semestre-project/js/config.js"
+			],
+			[
+				"config.",
+				"agmd-segundo-semestre-project/js/config.js"
+			],
+			[
+				"product",
+				"agmd/agmd-segundo-semestre-project/css/product-selection.css"
+			],
+			[
+				".css",
+				"agmd/agmd-segundo-semestre-project/css/main.css"
+			],
+			[
+				"package",
+				"agmd/agmd-segundo-semestre-project/package.json"
+			],
+			[
+				"mainac",
+				"app/src/main/java/com/br/sergio/vendadepassagensaula13/MainActivity.java"
+			],
+			[
+				"botoesmenu.js",
+				"tristar/includes/botoesMenu.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 374.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 360.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 373.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,23 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+    "build_systems":
+    [
+        {
+            "name": "Compile",
+            "shell_cmd": "dir=`pwd`; rootDir=`expr \\$dir : '\\(.*app-comprar-passagens-aereas\\)'`; cd \\$rootDir; find . -name '*.java' | xargs javac -d binary/"
+        },
+        {
+            "name": "Execute",
+            "shell_cmd": "dir=`pwd`; rootDir=`expr \\$dir : '\\(.*app-comprar-passagens-aereas\\)'`cd \\$rootDir; java -cp lib/mysql-connector-java-5.1.36-bin.jar:binary/ project.Main &"
+        },
+        {
+            "name": "Run",
+            "shell_cmd": "dir=`pwd`; rootDir=`expr \\$dir : '\\(.*app-comprar-passagens-aereas\\)'`; cd \\$rootDir; find . -name '*.java' | xargs javac -d binary/; java -cp lib/mysql-connector-java-5.1.36-bin.jar:binary/ project.Main"
+        }
+    ]
+}

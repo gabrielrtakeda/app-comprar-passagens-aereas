@@ -1,4 +1,4 @@
-INSERT INTO `projeto_integrado`.`Aeroporto` (`descricao`, `sigla`, `endereco`) VALUES
+INSERT INTO `app_comprar_passagens_aereas`.`Aeroporto` (`descricao`, `sigla`, `endereco`) VALUES
 ('Aeroporto Internacional de São Paulo - Guarulhos',                'GRU', 'Rod. Hélio Smidt, s/nº - Cumbica, Guarulhos - SP, 07190-100'),
 ('Aeroporto de Congonhas - São Paulo',                              'CGH', 'Av. Washington Luís, s/nº - Vila Congonhas, São Paulo - SP, 04626-911'),
 ('Aeroporto Internacional de Brasília - Brasília',                  'BSB', 'Lago Sul, Brasília - DF, 71608-900'),
@@ -23,3 +23,6 @@ INSERT INTO `projeto_integrado`.`Aeroporto` (`descricao`, `sigla`, `endereco`) V
 ('Aeroporto Internacional de Bayeux - João Pessoa',                 'JPA', 'Aeroporto Internacional Presidente Castro Pinto , s/n , Jardim Aeroporto, Bayeux - PB'),
 ('Aeroporto Internacional de Aracaju - Aracaju',                    'AJU', 'Av. Senador Júlio Cesar Leite - Santa Teresa, Aracaju - SE, 49037-580'),
 ('Aeroporto Santa Genoveva - Goiânia',                              'GYN', 'Pça. Cap. Frazão, 913 - Santa Genoveva, Goiânia - GO, 74672-410');
+
+INSERT INTO `app_comprar_passagens_aereas`.`Aeronave` (`descricao`, `familia`, `modelo`, `assentosTotal`, `assentosVagosTotal`, `status`) VALUES
+('70 to 78 Seats | 2,150 nm Range | General Electric CF34-8E Engines | LR & AR Versions', 'ERJS', 'E170', 78, 57, 'Disponível');
